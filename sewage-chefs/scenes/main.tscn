@@ -1,5 +1,15 @@
 [gd_scene format=3 uid="uid://b7vt4h3kigtuv"]
 
+[ext_resource type="PackedScene" uid="uid://ttjlmywmh8aj" path="res://scenes/restaurant.tscn" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://c36j07vxpsvvf" path="res://scenes/player_character.tscn" id="1_o5qli"]
+
 [node name="main" type="Node2D" unique_id=1174336425]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2015447584]
+anchor_mode = 0
+zoom = Vector2(3, 3)
+
+[node name="Restaurant" parent="." unique_id=145271607 instance=ExtResource("1_0wfyh")]
+
+[node name="Player_Character" parent="." unique_id=702846183 instance=ExtResource("1_o5qli")]
+position = Vector2(133, 154)
