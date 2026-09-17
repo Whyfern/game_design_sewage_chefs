@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://ttjlmywmh8aj"]
+
+[ext_resource type="Texture2D" uid="uid://mgwlhl0mm4st" path="res://sprites/restaurant_floor_tile_1.png" id="1_tdg2f"]
+
+[node name="Restaurant" type="Node2D" unique_id=145271607]
+
+[node name="Example_Camera" type="Camera2D" parent="." unique_id=1976314500]
+texture_filter = 1
+limit_left = 0
+limit_top = 0
+limit_right = 1152
+limit_bottom = 648
+
+[node name="RestaurantFloorTile1" type="Sprite2D" parent="." unique_id=688995462]
+texture_filter = 1
+texture_repeat = 2
+texture = ExtResource("1_tdg2f")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 1000, 1000)
