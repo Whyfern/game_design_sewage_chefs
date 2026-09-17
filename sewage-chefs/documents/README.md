@@ -19,9 +19,9 @@
 - Examples: `playerHealth`, `sporeCount`, `recipeLevel`
 - Never use camelCase: `playerHealth` is correct, `Player_Health` is wrong
 
-### Scene Naming (Snake_Case)
-- Scene headers use Snake_Case, 
-- Examples: `The_Sewage_Treatment_Plant`, `Chefs_Kitchen_Arena`, `The_Spore_Storm`
+### Scene Naming (snake_case)
+- Scene headers use snake_case, 
+- Examples: `the_sewage_treatment_plant`, `chefs_kitchen_arena`, `the_spore_storm`
 
 ---
 
@@ -31,6 +31,6 @@
 |---------|--------|---------|
 | specific Files | kebab-case | `game-mechanics.md` |
 | Variables | lowerCamelCase | `playerHealth` |
-| Scenes | snake Case | `The_Kitchen` |
+| Scenes | snake_case | `the_kitchen` |
 
 ---

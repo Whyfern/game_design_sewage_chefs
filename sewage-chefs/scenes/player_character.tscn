@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c36j07vxpsvvf"]
+
+[ext_resource type="Texture2D" uid="uid://dsg8qiffu44gf" path="res://sprites/chef_rat.jpg" id="1_iuqp7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
+size = Vector2(160, 160)
+
+[node name="Player_Character" type="Node2D" unique_id=732190354]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
+shape = SubResource("RectangleShape2D_uqykc")
+
+[node name="ChefRat" type="Sprite2D" parent="CollisionShape2D" unique_id=1828937166]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_iuqp7")
