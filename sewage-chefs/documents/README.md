@@ -19,9 +19,13 @@
 - Examples: `playerHealth`, `sporeCount`, `recipeLevel`
 - Never use camelCase: `playerHealth` is correct, `Player_Health` is wrong
 
-### Scene Naming (snake_case)
-- Scene headers use snake_case, 
-- Examples: `the_sewage_treatment_plant`, `chefs_kitchen_arena`, `the_spore_storm`
+### Function Naming (snake_case)
+- All words are fully capitalized and are connected with underscores.
+- Examples: `get_speed()`, `character_attack()`
+
+### Scene Naming (capitalized_Snake_Case)
+- Scene headers use capitalized_Snake_Case so, every word except for the first one is capitalized
+- Examples: `the_Sewage_Treatment_Plant`, `chefs_Kitchen_Arena`, `the_Spore_Storm`
 
 ---
 
@@ -31,6 +35,7 @@
 |---------|--------|---------|
 | specific Files | kebab-case | `game-mechanics.md` |
 | Variables | lowerCamelCase | `playerHealth` |
-| Scenes | snake_case | `the_kitchen` |
+| Functions | snake_case | `create_world()`
+| Scenes | capitalized_Snake_Case | `the_Kitchen` |
 
 ---

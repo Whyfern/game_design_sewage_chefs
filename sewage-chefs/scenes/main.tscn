@@ -7,15 +7,16 @@
 [node name="Main" type="Node2D" unique_id=1174336425]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=2015447584]
+z_index = 1
 anchor_mode = 0
 zoom = Vector2(3, 3)
 
 [node name="Restaurant" parent="." unique_id=145271607 instance=ExtResource("1_0wfyh")]
 
-[node name="Player_Character" parent="." unique_id=702846183 instance=ExtResource("1_o5qli")]
-position = Vector2(133, 154)
-
 [node name="Character_Manager" type="Node" parent="." unique_id=757642771]
 
 [node name="Level_Manager" type="Node" parent="." unique_id=2081016786]
 script = ExtResource("3_sugp2")
+
+[node name="Player_Character" parent="." unique_id=702846183 instance=ExtResource("1_o5qli")]
+position = Vector2(51, 68)
