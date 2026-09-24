@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ttjlmywmh8aj"]
 
-[ext_resource type="Texture2D" uid="uid://mgwlhl0mm4st" path="res://sprites/restaurant_floor_tile_1.png" id="1_tdg2f"]
+[ext_resource type="Texture2D" uid="uid://mgwlhl0mm4st" path="res://sprites/placeholder assets/old/restaurant_floor_tile_1.png" id="1_tdg2f"]
 
 [node name="Restaurant" type="Node2D" unique_id=145271607]
 

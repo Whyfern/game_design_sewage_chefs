@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c36j07vxpsvvf"]
 
 [ext_resource type="Script" uid="uid://cda65libt4v4h" path="res://scripts/player_character.gd" id="1_6r27q"]
-[ext_resource type="Texture2D" uid="uid://dsg8qiffu44gf" path="res://sprites/chef_rat.jpg" id="2_kww55"]
+[ext_resource type="Texture2D" uid="uid://dsg8qiffu44gf" path="res://sprites/placeholder assets/old/chef_rat.jpg" id="2_kww55"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
 size = Vector2(80, 80)

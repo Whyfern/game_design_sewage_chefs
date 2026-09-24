@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mgwlhl0mm4st"
-path="res://.godot/imported/restaurant_floor_tile_1.png-a91589a78ef956390053863f4cfb2f1d.ctex"
+uid="uid://cvgyprb63kygm"
+path="res://.godot/imported/icon.svg-8f4b65ba6898ce753f0c3334b073b8f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/restaurant_floor_tile_1.png"
-dest_files=["res://.godot/imported/restaurant_floor_tile_1.png-a91589a78ef956390053863f4cfb2f1d.ctex"]
+source_file="res://sprites/placeholder assets/old/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-8f4b65ba6898ce753f0c3334b073b8f5.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

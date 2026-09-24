@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://s1wc36ipkarp"]
 
+[ext_resource type="Texture2D" uid="uid://b1nx4ah8th7dc" path="res://sprites/placeholder assets/old/images.jpg" id="1_rppv5"]
+
 [node name="Sewer" type="Node2D" unique_id=2130332083]
+
+[node name="Images" type="Sprite2D" parent="." unique_id=1101994497]
+texture = ExtResource("1_rppv5")
+centered = false
