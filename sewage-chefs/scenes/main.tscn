@@ -18,4 +18,4 @@ script = ExtResource("3_sugp2")
 
 [node name="Player_Character" parent="." unique_id=702846183 instance=ExtResource("1_o5qli")]
 z_index = 10
-position = Vector2(51, 68)
+position = Vector2(565, 326)
