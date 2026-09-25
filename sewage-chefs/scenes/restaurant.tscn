@@ -12,9 +12,11 @@ limit_right = 1152
 limit_bottom = 648
 
 [node name="RestaurantFloorTile1" type="Sprite2D" parent="." unique_id=688995462]
+modulate = Color(5.7333937, 7.087404, 7.087404, 1)
 texture_filter = 1
 texture_repeat = 2
+scale = Vector2(3, 3)
 texture = ExtResource("1_tdg2f")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 1000, 1000)
+region_rect = Rect2(0, 0, 384, 216)

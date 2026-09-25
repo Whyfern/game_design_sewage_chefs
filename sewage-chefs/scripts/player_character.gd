@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 120
+@export var speed = 120 * 3
 var motion = Vector2()
 
 func _ready() -> void:
