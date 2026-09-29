@@ -1,32 +1,45 @@
 extends CharacterBody2D
 
-@export var speed = 120 * 3
-var motion = Vector2()
-
+#@export var speed = 120 * 3
+#var motion = Vector2()
+#
 #var viewRect := get_viewport_rect()
-
-func _ready() -> void:
-	pass
+#
+#func _ready() -> void:
+	#pass
+	#
+#
+#func _physics_process(delta):
+	#get_input()
+	#move_and_slide()
+#
+#func get_input():
+	#position.x = clamp(position.x, $CollisionShape2D.shape.size.x / 2, get_viewport_rect().size.x - $CollisionShape2D.shape.size.x / 2)
+	#position.y = clamp(position.y, $CollisionShape2D.shape.size.x / 2, get_viewport_rect().size.y - $CollisionShape2D.shape.size.x / 2)
+	#motion = Vector2.ZERO
+	#if Input.is_action_pressed("press_a"):
+		#motion.x = -speed
+		#print(motion)
+	#if Input.is_action_pressed("press_d"):
+		#motion.x = speed
+		#print(motion)
+	#if Input.is_action_pressed("press_w"):
+		#motion.y = -speed
+		#print(motion)
+	#if Input.is_action_pressed("press_s"):
+		#motion.y = speed
+		#print(motion)
+	#velocity = motion
 	
+	
+	#SAVE - NEW CODE PROPOSITION (Select lines 3-32 and press Ctrl + K to revert to normal)
+	
+var direction: Vector2 = Vector2(1,0) #variables for player's movement
+var speed: int = 120*3
 
-func _physics_process(delta):
-	get_input()
+func _physics_process(_delta: float) -> void:
+	direction = Input.get_vector("press_a","press_d","press_w","press_s")
+	
+	velocity = direction * speed  #access velocity, a var for collision
+	#animation() #call animation function before creating it
 	move_and_slide()
-
-func get_input():
-	position.x = clamp(position.x, $CollisionShape2D.shape.size.x / 2, get_viewport_rect().size.x - $CollisionShape2D.shape.size.x / 2)
-	position.y = clamp(position.y, $CollisionShape2D.shape.size.x / 2, get_viewport_rect().size.y - $CollisionShape2D.shape.size.x / 2)
-	motion = Vector2.ZERO
-	if Input.is_action_pressed("press_a"):
-		motion.x = -speed
-		print(motion)
-	if Input.is_action_pressed("press_d"):
-		motion.x = speed
-		print(motion)
-	if Input.is_action_pressed("press_w"):
-		motion.y = -speed
-		print(motion)
-	if Input.is_action_pressed("press_s"):
-		motion.y = speed
-		print(motion)
-	velocity = motion

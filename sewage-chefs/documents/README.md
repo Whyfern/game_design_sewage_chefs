@@ -4,7 +4,7 @@
 
 ### normal coneventions
 - leave comments in code to describe what it does
-- make plan of what you are goind to do
+- make plan of what you are going to do
 - make clear variable names
 - don't use similar variable names
 - pay attention to the capitalization

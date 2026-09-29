@@ -12,7 +12,7 @@ It will be more usefull to undestand it.
 when you are using git in the terminal there are a few commands to remember.
 here is the list of important commands:
 -git status   -   this shows you which files are in the repository which are staged for commit etc.
--git add file_name   -   stages fole for commiting. the file_name can be switched to whatever file you want to stage.Or if you want to stage them all use this -> .
+-git add file_name   -   stages for commiting. the file_name can be switched to whatever file you want to stage. Or if you want to stage them all use this -> .
 -git commit -m "blah blah blah"   -   this commits the file to the local repository. The contents of the "" should be a description of what you changed in the file such that people can understand what has changed.
 -git push   -   push the changes of your repo the the main branch such that other people can pull and use it.
 -git pull   -   pulls the latest version of the main branch. this way you can get all changes and work with them. (advice before you start working on you own thing use this command just in case other people have worked on the same part)
