@@ -7,9 +7,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_c03w2"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -447, 674, 0, 0, 0, 0, 623, 682, 0, 0, 0, 0, 618, 617, 0, 0, 0, 0, 410, 617, 0, 0, 0, 0, 387, 476, 0, 0, 0, 0, 0, 466, 0, 0, 0, 0, -8, 66, 0, 0, 0, 0, -569, 60)
+"points": PackedVector2Array(0, 0, 0, 0, -449, 675, 0, 0, 0, 0, 623, 682, 0, 0, 0, 0, 618, 617, 0, 0, 0, 0, 410, 617, 0, 0, 0, 0, 391, 460, 0, 0, 0, 0, 49, 463, 0, 0, 0, 0, 51, 34, 0, 0, 0, 0, -565, 31, 0, 0, 0, 0, -565, 108, 0, 0, 0, 0, -34, 104, 0, 0, 0, 0, -34, 505, 0, 0, 0, 0, -129, 504, 0, 0, 0, 0, -122, 584, 0, 0, 0, 0, -452, 585, 0, 0, 0, 0, -449, 675)
 }
-point_count = 8
+point_count = 15
 
 [node name="Sewer" type="Node2D" unique_id=2130332083]
 
@@ -25,11 +25,12 @@ texture = ExtResource("2_7w1x0")
 curve = SubResource("Curve2D_c03w2")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=993262635]
-position = Vector2(-447, 674)
+position = Vector2(-449, 675)
 rotation = 0.0074764965
+rotates = false
 
 [node name="rat_enemies" parent="Path2D/PathFollow2D" unique_id=893018143 instance=ExtResource("4_c03w2")]
-position = Vector2(441.9484, -677.3231)
+position = Vector2(3.0148315, 1.9776049)
 rotation = -0.0074764965
 
 [node name="map borders" type="Node2D" parent="." unique_id=676834481]
