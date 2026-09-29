@@ -3,6 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://b1nx4ah8th7dc" path="res://sprites/placeholder assets/old/images.jpg" id="1_rppv5"]
 [ext_resource type="Texture2D" uid="uid://b4qykjirqhvxk" path="res://sprites/placeholder assets/architecture/sewer assets/MockUp-01.png" id="2_7w1x0"]
 [ext_resource type="PackedScene" uid="uid://c36j07vxpsvvf" path="res://scenes/player_character.tscn" id="3_c03w2"]
+[ext_resource type="PackedScene" uid="uid://7f2crjg8qw6u" path="res://scenes/rat_enemies.tscn" id="4_c03w2"]
+
+[sub_resource type="Curve2D" id="Curve2D_c03w2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -447, 674, 0, 0, 0, 0, 623, 682, 0, 0, 0, 0, 618, 617, 0, 0, 0, 0, 410, 617, 0, 0, 0, 0, 387, 476, 0, 0, 0, 0, 0, 466, 0, 0, 0, 0, -8, 66, 0, 0, 0, 0, -569, 60)
+}
+point_count = 8
 
 [node name="Sewer" type="Node2D" unique_id=2130332083]
 
@@ -14,26 +21,41 @@ centered = false
 [node name="background" type="Sprite2D" parent="." unique_id=1168079265]
 texture = ExtResource("2_7w1x0")
 
+[node name="Path2D" type="Path2D" parent="." unique_id=1685405095]
+curve = SubResource("Curve2D_c03w2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=993262635]
+position = Vector2(-447, 674)
+rotation = 0.0074764965
+
+[node name="rat_enemies" parent="Path2D/PathFollow2D" unique_id=893018143 instance=ExtResource("4_c03w2")]
+position = Vector2(441.9484, -677.3231)
+rotation = -0.0074764965
+
 [node name="map borders" type="Node2D" parent="." unique_id=676834481]
 
 [node name="border Up L" type="StaticBody2D" parent="map borders" unique_id=1103606152]
+collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map borders/border Up L" unique_id=1003621243]
 polygon = PackedVector2Array(-799, -212, -249, -210, -248, -294, -730.1071, -297.3944, -727, -605, -545, -605, -545, -575, -475, -574, -474, -607, -226, -607, -226, -576, -157, -573, -157, -604, 33, -604, 33, -846, -820, -848, -824, -304)
 
 [node name="border Up R" type="StaticBody2D" parent="map borders" unique_id=1884289867]
+collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map borders/border Up R" unique_id=625751687]
 position = Vector2(964, 10)
 polygon = PackedVector2Array(-663, -808, -615, -808, -612, -616, -357, -624, -357, -552, -228, -552, -228, -430, -423, -429, -420, -167, -231, -166, -231, -139, -351, -139, -349, -40, -233, -36, -233, 68, -687, 71, -682, 163, -134, 168, -125, -840, -665, -857)
 
 [node name="border Down" type="StaticBody2D" parent="map borders" unique_id=79863433]
+collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map borders/border Down" unique_id=1799552480]
 position = Vector2(0, 749)
 polygon = PackedVector2Array(-732, -277, -607, -277, -608, -330, -485, -329, -482, -266, -357, -267, -350, -198, -218, -197, -219, -326, -86, -328, -90, -592, -723, -594, -724, -647, -618, -649, -621, -764, -493, -766, -497, -846, -820, -848, -822, 69, 836, 62, 829, -470, 240, -470, 242, -378, 358, -376, 360, -337, 422, -333, 419, -278, 436, -265, 485, -265, 484, -204, 672, -203, 670, -172, 729, -172, 729, -75, 803, -74, 802, -19, -481, -11, -482, -142, -502, -141, -507, -100, -539, -101, -539, -141, -610, -142, -618, -206, -664, -206, -667.2541, -140, -729, -140)
 
 [node name="border small" type="StaticBody2D" parent="map borders" unique_id=1117531258]
+collision_mask = 14
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map borders/border small" unique_id=219932162]
 position = Vector2(580, 493)
