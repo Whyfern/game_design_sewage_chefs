@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://brwacvk7dtkmb" path="res://scenes/interacting_component.tscn" id="2_kww55"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
-size = Vector2(47, 78)
+size = Vector2(24, 24)
 
 [node name="Player_Character" type="CharacterBody2D" unique_id=702846183]
 collision_layer = 2
@@ -22,10 +22,10 @@ limit_bottom = 800
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
-position = Vector2(0, -4)
+position = Vector2(-3, 24)
 shape = SubResource("RectangleShape2D_uqykc")
 
 [node name="ChefRat" type="Sprite2D" parent="CollisionShape2D" unique_id=1828937166]
-position = Vector2(15, -3.1250002)
+position = Vector2(18, -31.125)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("2_6r27q")

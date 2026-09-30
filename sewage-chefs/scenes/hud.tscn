@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://cv140hv8hx2ft"]
+
+[ext_resource type="Script" uid="uid://dkovo7b3e5sxh" path="res://scenes/hud.gd" id="1_ahhtf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r27q"]
+bg_color = Color(0.44910234, 0.64456695, 0.6229813, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HUD" type="CanvasLayer" unique_id=328106959]
+script = ExtResource("1_ahhtf")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=658600509]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 220.0
+offset_bottom = 102.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_6r27q")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1694832828]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1060036836]
+layout_mode = 2
+
+[node name="MoneyLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=235615117]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_position = Vector2(15, 3)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Cash: $0"
+
+[node name="DebtLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=213959477]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 24
+text = "Mafia Debt: $50"
