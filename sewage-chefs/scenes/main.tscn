@@ -4,13 +4,9 @@
 [ext_resource type="Script" uid="uid://di05c4xptbcgk" path="res://scripts/event_bus.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bgrbpcamkbr14" path="res://scenes/toilet.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://cx114n0r6b7sw" path="res://scripts/level_manager.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cv140hv8hx2ft" path="res://scenes/hud.tscn" id="5_tbgi4"]
 
 [node name="Main" type="Node2D" unique_id=1174336425]
-
-[node name="Camera" type="Camera2D" parent="." unique_id=2015447584]
-z_index = 1
-position = Vector2(-1, 0)
-anchor_mode = 0
 
 [node name="character_manager" type="Node" parent="." unique_id=757642771]
 
@@ -28,4 +24,6 @@ position = Vector2(565, 326)
 
 [node name="Toilet" parent="." unique_id=1982298826 instance=ExtResource("3_jyhfs")]
 z_index = 13
-position = Vector2(415, 280)
+position = Vector2(207, 287)
+
+[node name="HUD" parent="." unique_id=328106959 instance=ExtResource("5_tbgi4")]

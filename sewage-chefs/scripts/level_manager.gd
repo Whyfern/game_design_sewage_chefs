@@ -6,31 +6,45 @@ extends Node
 
 var restaurantInstance : Node = null
 var sewerInstance : Node = null
+var restraurantState = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	EventBus.connect("toiletFlushed", instantiate_level)
+	EventBus.connect("toiletFlushed", switch_level)
 	instatiate_restaurant()
 	pass
 
+
+func switch_level():
+	if restraurantState:
+		instantiate_level()
+	elif !restraurantState:
+		instatiate_restaurant()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 func instatiate_restaurant():
-	restaurantInstance = restaurant.instantiate()
-	restaurantInstance.z_index = 0
-	main.add_child.call_deferred(restaurantInstance)
+	if !restraurantState:
+		restaurantInstance = restaurant.instantiate()
+		restaurantInstance.z_index = 0
+		main.add_child.call_deferred(restaurantInstance)
+		if sewerInstance:
+			sewerInstance.queue_free()
+		restraurantState = true
 	
 
 func instantiate_level():
-	print("toilet flushed");
-	sewerInstance = sewer.instantiate()
-	sewerInstance.z_index = 0
-	main.add_child.call_deferred(sewerInstance)
-	restaurantInstance.queue_free()
-	pass
+	if restraurantState:
+		print("toilet flushed");
+		sewerInstance = sewer.instantiate()
+		sewerInstance.z_index = 0
+		main.add_child.call_deferred(sewerInstance)
+		if restaurantInstance:
+			restaurantInstance.queue_free()
+		restraurantState = false
+		pass
 
 	#var restraunt = 1
 	#
