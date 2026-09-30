@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://s1wc36ipkarp"]
 
-[ext_resource type="Texture2D" uid="uid://b1nx4ah8th7dc" path="res://sprites/placeholder assets/old/images.jpg" id="1_rppv5"]
 [ext_resource type="Texture2D" uid="uid://b4qykjirqhvxk" path="res://sprites/placeholder assets/architecture/sewer assets/MockUp-01.png" id="2_7w1x0"]
 [ext_resource type="PackedScene" uid="uid://c36j07vxpsvvf" path="res://scenes/player_character.tscn" id="3_c03w2"]
 [ext_resource type="PackedScene" uid="uid://7f2crjg8qw6u" path="res://scenes/rat_enemies.tscn" id="4_c03w2"]
@@ -12,11 +11,6 @@ _data = {
 point_count = 15
 
 [node name="Sewer" type="Node2D" unique_id=2130332083]
-
-[node name="background_temp" type="Sprite2D" parent="." unique_id=1101994497]
-visible = false
-texture = ExtResource("1_rppv5")
-centered = false
 
 [node name="background" type="Sprite2D" parent="." unique_id=1168079265]
 texture = ExtResource("2_7w1x0")

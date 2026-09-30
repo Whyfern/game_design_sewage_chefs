@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bgrbpcamkbr14"]
+
+[ext_resource type="Script" uid="uid://yqdcpdrjtqry" path="res://scripts/toilet.gd" id="1_5rkpo"]
+[ext_resource type="Texture2D" uid="uid://4qtww7gk5het" path="res://sprites/placeholder assets/old/toilet_1.png" id="1_yyxms"]
+[ext_resource type="PackedScene" uid="uid://crttjcv3fu111" path="res://scenes/interactable.tscn" id="2_5rkpo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
+size = Vector2(20.42253, 26)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqykc"]
+radius = 61.03278
+
+[node name="Toilet" type="StaticBody2D" unique_id=1982298826]
+script = ExtResource("1_5rkpo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1295751465]
+position = Vector2(5.9604645e-07, 0)
+scale = Vector2(1.1751728, 1.2181572)
+shape = SubResource("RectangleShape2D_uqykc")
+
+[node name="Toilet1" type="Sprite2D" parent="." unique_id=18924754]
+texture = ExtResource("1_yyxms")
+
+[node name="Interactable" parent="." unique_id=1601367178 instance=ExtResource("2_5rkpo")]
+interactName = "flush"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=2037374777]
+shape = SubResource("CircleShape2D_uqykc")

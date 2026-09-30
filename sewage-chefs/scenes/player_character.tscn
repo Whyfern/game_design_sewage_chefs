@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cda65libt4v4h" path="res://scripts/player_character.gd" id="1_6r27q"]
 [ext_resource type="Texture2D" uid="uid://c2x81oukkl6x2" path="res://sprites/placeholder assets/old/chef_rat.png" id="2_6r27q"]
+[ext_resource type="PackedScene" uid="uid://brwacvk7dtkmb" path="res://scenes/interacting_component.tscn" id="2_kww55"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
 size = Vector2(47, 78)
@@ -10,6 +11,8 @@ size = Vector2(47, 78)
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_6r27q")
+
+[node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
 limit_left = -800

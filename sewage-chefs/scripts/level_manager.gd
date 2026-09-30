@@ -9,6 +9,7 @@ var sewerInstance : Node = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	EventBus.connect("toiletFlushed", instantiate_level)
 	instatiate_restaurant()
 	pass
 
@@ -24,9 +25,11 @@ func instatiate_restaurant():
 	
 
 func instantiate_level():
+	print("toilet flushed");
 	sewerInstance = sewer.instantiate()
 	sewerInstance.z_index = 0
 	main.add_child.call_deferred(sewerInstance)
+	restaurantInstance.queue_free()
 	pass
 
 	#var restraunt = 1
