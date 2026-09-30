@@ -15,14 +15,14 @@ script = ExtResource("1_6r27q")
 [node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
-limit_left = -800
-limit_top = -800
-limit_right = 800
-limit_bottom = 800
+limit_left = 0
+limit_top = 0
+limit_right = 1600
+limit_bottom = 1600
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
-position = Vector2(-3, 24)
+position = Vector2(0, 24)
 shape = SubResource("RectangleShape2D_uqykc")
 
 [node name="ChefRat" type="Sprite2D" parent="CollisionShape2D" unique_id=1828937166]

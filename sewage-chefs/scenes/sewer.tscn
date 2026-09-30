@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://s1wc36ipkarp"]
 
 [ext_resource type="Texture2D" uid="uid://b4qykjirqhvxk" path="res://sprites/placeholder assets/architecture/sewer assets/MockUp-01.png" id="2_7w1x0"]
-[ext_resource type="PackedScene" uid="uid://c36j07vxpsvvf" path="res://scenes/player_character.tscn" id="3_c03w2"]
 [ext_resource type="PackedScene" uid="uid://7f2crjg8qw6u" path="res://scenes/rat_enemies.tscn" id="4_c03w2"]
 
 [sub_resource type="Curve2D" id="Curve2D_c03w2"]
@@ -14,8 +13,10 @@ point_count = 15
 
 [node name="background" type="Sprite2D" parent="." unique_id=1168079265]
 texture = ExtResource("2_7w1x0")
+centered = false
 
 [node name="Path2D" type="Path2D" parent="." unique_id=1685405095]
+position = Vector2(800, 800)
 curve = SubResource("Curve2D_c03w2")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D" unique_id=993262635]
@@ -24,10 +25,12 @@ rotation = 0.0074764965
 rotates = false
 
 [node name="rat_enemies" parent="Path2D/PathFollow2D" unique_id=893018143 instance=ExtResource("4_c03w2")]
-position = Vector2(3.0148315, 1.9776049)
+position = Vector2(8.298838, 39.939034)
 rotation = -0.0074764965
+scale = Vector2(2.9999998, 2.9999998)
 
 [node name="map borders" type="Node2D" parent="." unique_id=676834481]
+position = Vector2(800, 800)
 
 [node name="border Up L" type="StaticBody2D" parent="map borders" unique_id=1103606152]
 collision_mask = 14
@@ -55,5 +58,3 @@ collision_mask = 14
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map borders/border small" unique_id=219932162]
 position = Vector2(580, 493)
 polygon = PackedVector2Array(-570, -701, -569, -843, -669, -844, -668, -702)
-
-[node name="Player_Character" parent="." unique_id=702846183 instance=ExtResource("3_c03w2")]
