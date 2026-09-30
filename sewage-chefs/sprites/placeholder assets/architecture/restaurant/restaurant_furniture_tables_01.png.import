@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ex6agyeyaaj2"
-path="res://.godot/imported/fooddrink_architecture_door_kitchen_double_swing_01.png-1f0881b4cf467262b334941c040828fa.ctex"
+uid="uid://pdlg12lo50nb"
+path="res://.godot/imported/restaurant_furniture_tables_01.png-ddaaab76b244ffc2291104d02d686afe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/placeholder assets/architecture/fooddrink_architecture_door_kitchen_double_swing_01.png"
-dest_files=["res://.godot/imported/fooddrink_architecture_door_kitchen_double_swing_01.png-1f0881b4cf467262b334941c040828fa.ctex"]
+source_file="res://sprites/placeholder assets/architecture/restaurant/restaurant_furniture_tables_01.png"
+dest_files=["res://.godot/imported/restaurant_furniture_tables_01.png-ddaaab76b244ffc2291104d02d686afe.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bdti7d2hc0ps7"
-path="res://.godot/imported/fooddrink_architecture_wall_wainscot_restaurant_01.png-274c56bcecd866ebf8bc9cf44b7f6bbc.ctex"
+uid="uid://diyvcscyg0sfj"
+path="res://.godot/imported/restaurant_walls_01.png-753b9c08abf44daa14707fa4753255ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/placeholder assets/architecture/fooddrink_architecture_wall_wainscot_restaurant_01.png"
-dest_files=["res://.godot/imported/fooddrink_architecture_wall_wainscot_restaurant_01.png-274c56bcecd866ebf8bc9cf44b7f6bbc.ctex"]
+source_file="res://sprites/placeholder assets/architecture/restaurant/restaurant_walls_01.png"
+dest_files=["res://.godot/imported/restaurant_walls_01.png-753b9c08abf44daa14707fa4753255ab.ctex"]
 
 [params]
 
