@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 
 func instatiate_restaurant():
 	if !restaurantState:
+		print(restaurantState)
 		restaurantInstance = restaurant.instantiate()
 		restaurantInstance.z_index = 0
 		main.add_child.call_deferred(restaurantInstance)
@@ -39,22 +40,11 @@ func instatiate_restaurant():
 
 func instantiate_level():
 	if restaurantState:
-		print("toilet flushed");
-		sewerInstance = sewer.instantiate()
-		sewerInstance.z_index = 0
-		main.add_child.call_deferred(sewerInstance)
+		print(restaurantState);
+		sewerGeneration = sewer.instantiate()
+		#sewerInstance.z_index = 0
+		main.add_child.call_deferred(sewerGeneration)
 		if restaurantInstance:
 			restaurantInstance.queue_free()
 		restaurantState = false
 		pass
-
-	#var restraunt = 1
-	#
-	#if instance and is_instance_valid(instance):
-		#instance.queue_free()
-		#instance = null
-	#+
-	#instance_count += 1
-	#instance = creation_panel.instantiate()
-	#instance.name = "creationpanel%d" % instance_count
-	#UI.add_child.call_deferred(instance)
