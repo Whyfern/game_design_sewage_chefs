@@ -22,6 +22,7 @@ EventBus="*uid://di05c4xptbcgk"
 
 [display]
 
+window/size/viewport_width=1280
 window/size/viewport_height=704
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
