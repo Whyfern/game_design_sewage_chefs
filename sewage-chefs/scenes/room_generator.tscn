@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://dlplvn8mci15b"]
+[gd_scene format=3 uid="uid://doajcy7ns61qc"]
 
-[ext_resource type="Script" uid="uid://b7u2ljjxdvx1n" path="res://scripts/room_generator.gd" id="1_vnrtk"]
+[ext_resource type="Script" uid="uid://dmev4wdjp7ues" path="res://scripts/room_generator.gd" id="1_vnrtk"]
 
-[node name="RoomGenerator" type="Node2D" unique_id=1954156015]
+[node name="Room_Generator" type="Node2D" unique_id=1048065942]
 script = ExtResource("1_vnrtk")

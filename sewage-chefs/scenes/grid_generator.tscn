@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dlplvn8mci15b"]
+
+[ext_resource type="Script" uid="uid://b7u2ljjxdvx1n" path="res://scripts/grid_generator.gd" id="1_i1rgv"]
+
+[node name="GridGenerator" type="Node2D" unique_id=1954156015]
+script = ExtResource("1_i1rgv")
