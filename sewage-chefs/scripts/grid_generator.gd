@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var roomValue : int = 8
+@export var roomValue : int = 10
 @onready var levelManager : Node 
 
 var grid : Array
@@ -37,7 +37,7 @@ func create_Grid():
 	for i in range(gridHeight):
 		grid[i]=Array()
 		grid[i].resize(gridWidth)
-		grid[i].fill(0)
+		grid[i].fill(null)
 
 func create_Arrays():
 	possibilities = Array()
@@ -61,7 +61,7 @@ func generate_method_1():
 func add_tile(chosenX : int, chosenY : int, type : int):
 	toAdd = [chosenX, chosenY]
 	Currently.append(toAdd)
-	grid[chosenY][chosenX] = type
+	grid[chosenY][chosenX] = {"grid_pos": Vector2i(chosenX, chosenY), "type": type}
 	for i in Currently:
 		temp_x = i[0]
 		temp_y = i[1]

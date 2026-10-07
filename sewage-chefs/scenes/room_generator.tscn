@@ -4,3 +4,5 @@
 
 [node name="Room_Generator" type="Node2D" unique_id=1048065942]
 script = ExtResource("1_vnrtk")
+
+[node name="Map_Root" type="Node2D" parent="." unique_id=973917058]

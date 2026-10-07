@@ -1,17 +1,14 @@
 extends Node
 
-@onready var restaurant = load('res://scenes/restaurant.tscn')
-@onready var sewer = load('res://scenes/sewer.tscn')
-@onready var sewerGeneration = load("res://scenes/grid_generator.tscn")
-
 @onready var main = get_node("..")
+@onready var restaurant = load('res://scenes/restaurant.tscn')
+@onready var roomGeneration = load("res://scenes/room_generator.tscn")
 
 var restaurantInstance : Node = null
 
 var sewerInstance : Node = null
 var sewerGenerationInstance : Node = null
-
-
+var roomGenerationInstance : Node = null
 
 var restaurantState = false
 
@@ -20,7 +17,6 @@ var grid : Array
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.connect("toiletFlushed", switch_level)
-	EventBus.connect("layoutGenerated", get_grid)
 	instatiate_restaurant()
 	pass
 
@@ -49,21 +45,11 @@ func instatiate_restaurant():
 
 func instantiate_level():
 	if restaurantState:
-		sewerGenerationInstance = sewerGeneration.instantiate()
-		self.add_child.call_deferred(sewerGenerationInstance)
-		
-		await EventBus.layoutGenerated 
+		roomGenerationInstance = roomGeneration.instantiate()
+		#await get_tree().create_timer(2.0).timeout
+		self.add_child.call_deferred(roomGenerationInstance)
 		
 		if restaurantInstance:
 			restaurantInstance.queue_free()
 		restaurantState = false
 	pass
-
-func get_grid():
-	if sewerGenerationInstance:
-		grid = sewerGenerationInstance.send_grid()
-		test_print_Array()
-
-func test_print_Array():
-	for i in grid.size():
-		print(grid[i])

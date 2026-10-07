@@ -1,4 +1,5 @@
 extends Node2D
+class_name interactingComponent
 
 @onready var interactLabel: Label = $interactLabel
 var currentInteractions := []
