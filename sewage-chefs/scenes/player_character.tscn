@@ -1,11 +1,74 @@
 [gd_scene format=3 uid="uid://c36j07vxpsvvf"]
 
 [ext_resource type="Script" uid="uid://cda65libt4v4h" path="res://scripts/player_character.gd" id="1_6r27q"]
-[ext_resource type="Texture2D" uid="uid://c2x81oukkl6x2" path="res://sprites/placeholder assets/old/chef_rat.png" id="2_6r27q"]
 [ext_resource type="PackedScene" uid="uid://brwacvk7dtkmb" path="res://scenes/interacting_component.tscn" id="2_kww55"]
+[ext_resource type="Texture2D" uid="uid://bpsqa6fuf3qqf" path="res://sprites/placeholder assets/old/chef_rat_animation2.png" id="3_kww55"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
 size = Vector2(24, 24)
+
+[sub_resource type="Animation" id="Animation_4h0vy"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_uj7mf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChefRat:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2vmgx"]
+resource_name = "run"
+length = 0.39999999999999997
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChefRat:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6unfe"]
+_data = {
+&"Idle": SubResource("Animation_4h0vy"),
+&"RESET": SubResource("Animation_uj7mf"),
+&"run": SubResource("Animation_2vmgx")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pxja8"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iadup"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_herhr"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xb3ya"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7f3b"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j2fon"]
+states/idle/node = SubResource("AnimationNodeAnimation_pxja8")
+states/idle/position = Vector2(363.66666, 194)
+states/run/node = SubResource("AnimationNodeAnimation_iadup")
+states/run/position = Vector2(515.6666, 193.77777)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_herhr"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_xb3ya"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_s7f3b")]
+graph_offset = Vector2(89, 32)
 
 [node name="Player_Character" type="CharacterBody2D" unique_id=702846183]
 collision_layer = 2
@@ -13,19 +76,29 @@ collision_mask = 13
 script = ExtResource("1_6r27q")
 
 [node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
+position = Vector2(-1, -17)
+
+[node name="ChefRat" type="Sprite2D" parent="." unique_id=1828937166]
+position = Vector2(0, -17)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("3_kww55")
+hframes = 4
+vframes = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_uqykc")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
 limit_left = 0
 limit_top = 0
-limit_right = 1600
-limit_bottom = 1600
+limit_right = 6400
+limit_bottom = 3520
 position_smoothing_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
-position = Vector2(0, 24)
-shape = SubResource("RectangleShape2D_uqykc")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1047978012]
+libraries/ = SubResource("AnimationLibrary_6unfe")
 
-[node name="ChefRat" type="Sprite2D" parent="CollisionShape2D" unique_id=1828937166]
-position = Vector2(18, -31.125)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_6r27q")
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1862082549]
+tree_root = SubResource("AnimationNodeStateMachine_j2fon")
+anim_player = NodePath("../AnimationPlayer")
