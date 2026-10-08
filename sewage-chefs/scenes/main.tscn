@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b7vt4h3kigtuv"]
 
 [ext_resource type="PackedScene" uid="uid://c36j07vxpsvvf" path="res://scenes/player_character.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://d2m353m7vmd2s" path="res://scripts/character_manager.gd" id="1_tefeu"]
 [ext_resource type="Script" uid="uid://di05c4xptbcgk" path="res://scripts/event_bus.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bgrbpcamkbr14" path="res://scenes/toilet.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://cx114n0r6b7sw" path="res://scripts/level_manager.gd" id="3_sugp2"]
@@ -9,6 +10,11 @@
 [node name="Main" type="Node2D" unique_id=1174336425]
 
 [node name="character_manager" type="Node" parent="." unique_id=757642771]
+script = ExtResource("1_tefeu")
+
+[node name="Player_Character" parent="character_manager" unique_id=702846183 instance=ExtResource("1_o5qli")]
+z_index = 10
+position = Vector2(259, 277)
 
 [node name="level_manager" type="Node" parent="." unique_id=2081016786]
 script = ExtResource("3_sugp2")
@@ -17,10 +23,6 @@ script = ExtResource("3_sugp2")
 script = ExtResource("2_jyhfs")
 
 [node name="entity_manger" type="Node" parent="." unique_id=127714234]
-
-[node name="Player_Character" parent="." unique_id=702846183 instance=ExtResource("1_o5qli")]
-z_index = 10
-position = Vector2(259, 277)
 
 [node name="Toilet" parent="." unique_id=1982298826 instance=ExtResource("3_jyhfs")]
 z_index = 13

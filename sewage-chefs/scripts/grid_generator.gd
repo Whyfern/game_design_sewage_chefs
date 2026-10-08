@@ -1,11 +1,11 @@
 extends Node2D
 
-@export var roomValue : int = 10
 @onready var levelManager : Node 
 
 var grid : Array
-var gridWidth = 5
-var gridHeight = 5
+
+var roomValue : int
+var gridSize : Vector2
 
 var possibilities : Array
 var Currently : Array
@@ -33,10 +33,10 @@ func _ready() -> void:
 
 func create_Grid():
 	grid=Array()
-	grid.resize(gridHeight);
-	for i in range(gridHeight):
+	grid.resize(gridSize.y);
+	for i in range(gridSize.y):
 		grid[i]=Array()
-		grid[i].resize(gridWidth)
+		grid[i].resize(gridSize.x)
 		grid[i].fill(null)
 
 func create_Arrays():
@@ -50,8 +50,8 @@ func generate_layout(method : int):
 
 func generate_method_1():
 	create_Arrays()
-	randomWidth =  randi_range(margin, gridWidth-margin)
-	randomHeight = randi_range(margin, gridHeight-margin)
+	randomWidth =  randi_range(margin, gridSize.x-margin)
+	randomHeight = randi_range(margin, gridSize.x-margin)
 	add_tile(randomWidth, randomHeight, 1)
 	while roomValue > 0 and possibilities.size() > 0:
 		var randomSpace = possibilities.pick_random()
@@ -66,7 +66,7 @@ func add_tile(chosenX : int, chosenY : int, type : int):
 		temp_x = i[0]
 		temp_y = i[1]
 		for j in [[temp_x + 1, temp_y],[temp_x - 1, temp_y], [temp_x, temp_y + 1], [temp_x, temp_y -1]]:
-			if !(j in Currently) and !(j in possibilities) and (j[0] in range(0, gridWidth)) and (j[1] in range(0, gridHeight)) :
+			if !(j in Currently) and !(j in possibilities) and (j[0] in range(0, gridSize.x)) and (j[1] in range(0, gridSize.y)) :
 				possibilities.append(j)
 	possibilities.erase(toAdd)
 	roomValue -= 1

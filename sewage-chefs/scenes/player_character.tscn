@@ -17,8 +17,8 @@ script = ExtResource("1_6r27q")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
 limit_left = 0
 limit_top = 0
-limit_right = 1280
-limit_bottom = 704
+limit_right = 6400
+limit_bottom = 3520
 position_smoothing_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]

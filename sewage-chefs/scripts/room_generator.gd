@@ -8,11 +8,9 @@ var gridGeneratorInstance : Node = null
 var grid : Array
 var instanceGrid : Array
 
-var gridWidth = 5
-var gridHeight = 5
-var iterate = 0
-var roomSpacingHor : int = 1280
-var roomSpacingVer : int = 704
+var roomValue : int
+var gridSize : Vector2
+var roomSize : Vector2
 
 
 func _ready() -> void:
@@ -39,6 +37,8 @@ func create_grid_array():
 
 func create_grid():
 	gridGeneratorInstance = gridGenerator.instantiate()
+	gridGeneratorInstance.roomValue = roomValue
+	gridGeneratorInstance.gridSize = gridSize
 	self.add_child.call_deferred(gridGeneratorInstance)
 
 func get_grid():
@@ -58,9 +58,9 @@ func set_room_doors():
 				continue
 			var room = grid[i][j]
 			room["door_top"] = (i - 1 >= 0) and grid[i-1][j] != null
-			room["door_bot"] = (i + 1 < gridHeight - 1) and grid[i+1][j] != null
+			room["door_bot"] = (i + 1 < gridSize.y - 1) and grid[i+1][j] != null
 			room["door_left"] = (j - 1 >= 0) and grid[i][j-1] != null
-			room["door_right"] = (j + 1 < gridWidth - 1) and grid[i][j+1] != null
+			room["door_right"] = (j + 1 < gridSize.x - 1) and grid[i][j+1] != null
 
 func draw_map():
 	for i in range(grid.size()):
@@ -68,11 +68,14 @@ func draw_map():
 			if grid[i][j] == null:
 				continue
 			var room = grid[i][j]
-			var draw_pos = Vector2(room["grid_pos"].x * roomSpacingHor, room["grid_pos"].y * roomSpacingVer)
+			var draw_pos = Vector2(room["grid_pos"].x * roomSize.x, room["grid_pos"].y * roomSize.y)
 			var instance = room_scene.instantiate()
 			instance.position = draw_pos
+			instance.type = room["type"]
+			instance.grid_pos = room["grid_pos"]
 			instance.door_top = room["door_top"]
 			instance.door_bot = room["door_bot"]
 			instance.door_left = room["door_left"]
 			instance.door_right = room["door_right"]
 			mapRoot.add_child.call_deferred(instance)
+	EventBus.emit_signal("roomGenDone")
