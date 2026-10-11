@@ -12,9 +12,14 @@ var roomValue : int
 var gridSize : Vector2
 var roomSize : Vector2
 
+var boundariesFiles : Array
+var boundariesDict : Dictionary = {}
+var floorsFiles : Array
+var floors : Array
 
 func _ready() -> void:
 	EventBus.connect("layoutGenerated", get_grid)
+	load_room_elements()
 	create_grid()
 	await EventBus.layoutGenerated
 	set_room_doors()
@@ -44,7 +49,7 @@ func create_grid():
 func get_grid():
 	if gridGeneratorInstance:
 		grid = gridGeneratorInstance.send_grid()
-		test_print_Array()
+		#test_print_Array()
 
 func test_print_Array():
 	for i in grid.size():
@@ -57,10 +62,10 @@ func set_room_doors():
 			if grid[i][j] == null:
 				continue
 			var room = grid[i][j]
-			room["door_top"] = (i - 1 >= 0) and grid[i-1][j] != null
-			room["door_bot"] = (i + 1 < gridSize.y - 1) and grid[i+1][j] != null
-			room["door_left"] = (j - 1 >= 0) and grid[i][j-1] != null
-			room["door_right"] = (j + 1 < gridSize.x - 1) and grid[i][j+1] != null
+			room.door_top = ((i - 1) >= 0) and grid[i-1][j] != null
+			room.door_bot = ((i + 1) < gridSize.y) and grid[i+1][j] != null
+			room.door_left = ((j - 1) >= 0) and grid[i][j-1] != null
+			room.door_right = ((j + 1) < gridSize.x) and grid[i][j+1] != null
 
 func draw_map():
 	for i in range(grid.size()):
@@ -68,14 +73,24 @@ func draw_map():
 			if grid[i][j] == null:
 				continue
 			var room = grid[i][j]
-			var draw_pos = Vector2(room["grid_pos"].x * roomSize.x, room["grid_pos"].y * roomSize.y)
+			var draw_pos = Vector2(room.grid_pos.x * roomSize.x, room.grid_pos.y * roomSize.y)
 			var instance = room_scene.instantiate()
+			instance.boundariesDict = boundariesDict
+			instance.floors = floors
 			instance.position = draw_pos
-			instance.type = room["type"]
-			instance.grid_pos = room["grid_pos"]
-			instance.door_top = room["door_top"]
-			instance.door_bot = room["door_bot"]
-			instance.door_left = room["door_left"]
-			instance.door_right = room["door_right"]
+			instance.type = room.type
+			instance.grid_pos = room.grid_pos
+			instance.door_top = room.door_top
+			instance.door_bot = room.door_bot
+			instance.door_left = room.door_left
+			instance.door_right = room.door_right
 			mapRoot.add_child.call_deferred(instance)
 	EventBus.emit_signal("roomGenDone")
+
+func load_room_elements():
+	var dir = DirAccess.open("res://scenes/sewer rooms")
+	boundariesFiles = dir.get_files_at("res://scenes/sewer rooms/sewer room boundary/")
+	for file in boundariesFiles:
+		var loadedBoundary = load("res://scenes/sewer rooms/sewer room boundary/".path_join(file))
+		boundariesDict[file] = loadedBoundary
+	print(boundariesDict)

@@ -61,7 +61,7 @@ func generate_method_1():
 func add_tile(chosenX : int, chosenY : int, type : int):
 	toAdd = [chosenX, chosenY]
 	Currently.append(toAdd)
-	grid[chosenY][chosenX] = {"grid_pos": Vector2i(chosenX, chosenY), "type": type}
+	grid[chosenY][chosenX] = room.new(Vector2i(chosenX, chosenY), type)
 	for i in Currently:
 		temp_x = i[0]
 		temp_y = i[1]
