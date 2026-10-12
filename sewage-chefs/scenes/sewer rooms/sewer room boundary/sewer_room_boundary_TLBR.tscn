@@ -1,21 +1,9 @@
 [gd_scene format=4 uid="uid://b345mji58gv5y"]
 
 [ext_resource type="TileSet" uid="uid://bk3pfi0da4tm2" path="res://sprites/tilesets/sewer_tiles.tres" id="1_ociic"]
-[ext_resource type="Texture2D" uid="uid://b1a3ki5s2sm8p" path="res://sprites/placeholder assets/architecture/sewer assets/Boundary Tile.png" id="2_wm8s6"]
-[ext_resource type="TileSet" uid="uid://dgfuwj501nt8u" path="res://sprites/tilesets/sewer_bottom_pillar.tres" id="3_d8715"]
-[ext_resource type="TileSet" uid="uid://dbt5iv1gwq1xs" path="res://sprites/tilesets/sewer_top_pillar.tres" id="4_npstq"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ociic"]
-texture = ExtResource("2_wm8s6")
-texture_region_size = Vector2i(32, 32)
-0:1/0 = 0
-1:1/0 = 0
-1:0/0 = 0
-0:0/0 = 0
-0:0/0/texture_origin = Vector2i(8, 8)
-
-[sub_resource type="TileSet" id="TileSet_iot8v"]
-sources/1 = SubResource("TileSetAtlasSource_ociic")
+[ext_resource type="TileSet" uid="uid://cggyiqow0p0ch" path="res://sprites/tilesets/boundary_tile.tres" id="2_mtait"]
+[ext_resource type="TileSet" uid="uid://bgnkj7g5n7u7t" path="res://sprites/tilesets/sewer_bottom_pillar.tres" id="3_d8715"]
+[ext_resource type="TileSet" uid="uid://d2uwnlqyrrdhv" path="res://sprites/tilesets/sewer_top_pillar.tres" id="4_npstq"]
 
 [node name="SewerRoomBoundary00" type="Node2D" unique_id=1431436739]
 
@@ -25,7 +13,7 @@ tile_set = ExtResource("1_ociic")
 
 [node name="SewerBoundaryFloor" type="TileMapLayer" parent="SewerBoundaryWall" unique_id=1192369447]
 tile_map_data = PackedByteArray("AAAnACsAAQAAAAAAAAApACsAAQAAAAAAAABPABcAAQAAAAAAAABPABkAAQAAAAAAAAAnAAUAAQAAAAAAAAApAAUAAQAAAAAAAAApAAMAAQAAAAAAAAAnAAMAAQAAAAAAAAAnAAEAAQAAAAAAAAApAAEAAQAAAAAAAAABABcAAQAAAAAAAAABABkAAQAAAAAAAAA=")
-tile_set = SubResource("TileSet_iot8v")
+tile_set = ExtResource("2_mtait")
 rendering_quadrant_size = 32
 
 [node name="SewerBottomPillar" type="TileMapLayer" parent="SewerBoundaryWall/SewerBoundaryFloor" unique_id=2012734441]
