@@ -15,7 +15,8 @@ var roomSize : Vector2
 var boundariesFiles : Array
 var boundariesDict : Dictionary = {}
 var floorsFiles : Array
-var floors : Array
+var floorsDict : Dictionary = {}
+var exceptionList : Array = ["sewer_test.tscn","sewer_testtest.tscn"]
 
 func _ready() -> void:
 	EventBus.connect("layoutGenerated", get_grid)
@@ -76,7 +77,7 @@ func draw_map():
 			var draw_pos = Vector2(room.grid_pos.x * roomSize.x, room.grid_pos.y * roomSize.y)
 			var instance = room_scene.instantiate()
 			instance.boundariesDict = boundariesDict
-			instance.floors = floors
+			instance.floorsDict = floorsDict
 			instance.position = draw_pos
 			instance.type = room.type
 			instance.grid_pos = room.grid_pos
@@ -90,7 +91,12 @@ func draw_map():
 func load_room_elements():
 	var dir = DirAccess.open("res://scenes/sewer rooms")
 	boundariesFiles = dir.get_files_at("res://scenes/sewer rooms/sewer room boundary/")
-	for file in boundariesFiles:
-		var loadedBoundary = load("res://scenes/sewer rooms/sewer room boundary/".path_join(file))
-		boundariesDict[file] = loadedBoundary
-	print(boundariesDict)
+	for boundary in boundariesFiles:
+		var loadedBoundary = load("res://scenes/sewer rooms/sewer room boundary/".path_join(boundary))
+		boundariesDict[boundary] = loadedBoundary
+	floorsFiles = dir.get_files_at("res://scenes/sewer rooms/sewer_room_floors")
+	for floor in floorsFiles:
+		if floor not in exceptionList:
+			var loadedFloor = load("res://scenes/sewer rooms/sewer_room_floors/".path_join(floor))
+			floorsDict[floor] = loadedFloor
+	print(floorsDict)

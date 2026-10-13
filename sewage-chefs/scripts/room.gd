@@ -7,9 +7,13 @@ var boundaryInstance
 
 var boundariesDict : Dictionary
 var boundary : Object
-var floors : PackedStringArray
 
-var sewerRoomInstance
+var floorsDict : Dictionary
+var floorsKeys  : Array
+var randomKey
+var floor
+var floorInstance
+
 var grid_pos: Vector2
 var type: int
 
@@ -43,6 +47,7 @@ func set_Start_Room_Pos():
 	pass
 
 func assemble_room():
+	choose_floor()
 	choose_wall()
 
 func choose_wall():
@@ -58,13 +63,17 @@ func choose_wall():
 	var file_name = "sewer_room_boundary_" + code + ".tscn"
 	boundary = boundariesDict[file_name]
 	$Label.text = code
-	test_boundary()
+	boundaryInstance = boundary.instantiate()
+	self.add_child.call_deferred(boundaryInstance)
 
 func test_boundary():
 	print(door_top, ":top,  ", door_left, ":left,  ", door_bot, ":bot,  ", door_right, ":right")
 	print(boundary)
-	boundaryInstance = boundary.instantiate()
-	self.add_child.call_deferred(boundaryInstance)
 
 func choose_floor():
-	pass
+	floorsKeys = floorsDict.keys()
+	randomKey = floorsKeys.pick_random()
+	floor = floorsDict[randomKey]
+	floorInstance = floor.instantiate()
+	self.add_child.call_deferred(floorInstance)
+	print(floor)
