@@ -31,23 +31,22 @@ func _init(pos: Vector2 = Vector2.ZERO, room_type: int = 0) -> void:
 
 func _ready() -> void:
 	if type == 2:
-		assemble_room()
+		assemble_room(false)
 	elif type == 1:
-		assemble_room()
+		assemble_room(true)
 		set_Start_Room_Pos()
 	#$Label.text = str(door_top, ":top,  ", door_left, ":left,  ", door_bot, ":bot,  ", door_right, ":right")
 
 func set_Start_Room_Pos():
-	assemble_room()
-	#sewerRoomInstance = sewerRoom01.instantiate()
-	#self.add_child.call_deferred(sewerRoomInstance)
-	#print("this is start pos", grid_pos)
 	levelMan.startPos = grid_pos
 	EventBus.emit_signal("startRoomPos")
 	pass
 
-func assemble_room():
-	choose_floor()
+func assemble_room(start : bool):
+	if start:
+		choose_floor(true)
+	else:
+		choose_floor(false)
 	choose_wall()
 
 func choose_wall():
@@ -70,10 +69,12 @@ func test_boundary():
 	print(door_top, ":top,  ", door_left, ":left,  ", door_bot, ":bot,  ", door_right, ":right")
 	print(boundary)
 
-func choose_floor():
+func choose_floor(start : bool):
 	floorsKeys = floorsDict.keys()
 	randomKey = floorsKeys.pick_random()
-	floor = floorsDict[randomKey]
+	if start:
+		floor = load("res://scenes/sewer rooms/sewer_room_floors/sewer_room_00.tscn")
+	else :
+		floor = floorsDict[randomKey]
 	floorInstance = floor.instantiate()
 	self.add_child.call_deferred(floorInstance)
-	print(floor)

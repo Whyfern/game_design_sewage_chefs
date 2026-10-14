@@ -47,6 +47,10 @@ func create_grid():
 	gridGeneratorInstance.gridSize = gridSize
 	self.add_child.call_deferred(gridGeneratorInstance)
 
+
+func get_currently() -> Array:
+	return gridGeneratorInstance.get_currently()
+
 func get_grid():
 	if gridGeneratorInstance:
 		grid = gridGeneratorInstance.send_grid()
@@ -99,4 +103,3 @@ func load_room_elements():
 		if floor not in exceptionList:
 			var loadedFloor = load("res://scenes/sewer rooms/sewer_room_floors/".path_join(floor))
 			floorsDict[floor] = loadedFloor
-	print(floorsDict)

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bldu53h1n2y0d"]
+
+[ext_resource type="Script" uid="uid://dx53626blvsh6" path="res://scripts/sewage_manager.gd" id="1_1dpth"]
+
+[node name="sewage_manager" type="Node2D" unique_id=13746408]
+script = ExtResource("1_1dpth")

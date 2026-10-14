@@ -7,3 +7,5 @@ signal layoutGenerated
 signal roomGenDone
 
 signal startRoomPos
+
+signal gridGeneratorInstantiated

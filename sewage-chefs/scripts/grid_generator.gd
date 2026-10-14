@@ -30,6 +30,7 @@ func _ready() -> void:
 	generate_layout(1)
 	#test_print_Array()
 	EventBus.emit_signal("layoutGenerated")
+	EventBus.emit_signal("gridGeneratorInstantiated")
 
 func create_Grid():
 	grid=Array()
@@ -79,3 +80,7 @@ func test_print_Array():
 
 func send_grid():
 	return grid
+
+func get_currently() -> Array:
+	Currently.erase([randomWidth, randomHeight])
+	return Currently
