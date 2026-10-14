@@ -1,23 +1,263 @@
 [gd_scene format=3 uid="uid://cv140hv8hx2ft"]
 
-[ext_resource type="Script" uid="uid://dkovo7b3e5sxh" path="res://scripts/hud.gd" id="1_ahhtf"]
+[ext_resource type="Script" uid="uid://dkovo7b3e5sxh" path="res://scripts/HUD/hud.gd" id="1_ahhtf"]
+[ext_resource type="Texture2D" uid="uid://bssbicuo5dxc5" path="res://sprites/FloodPipe/heart-pixel-art-254x254.webp" id="2_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://ctlisv4jkkguj" path="res://SpriteFrames/Cheesurrency (1).PNG" id="2_oo0fn"]
+[ext_resource type="Script" uid="uid://cyh4bbkdnwwng" path="res://scripts/HUD/animated_sprite_2d.gd" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://cmyuegceu30q1" path="res://sprites/Rats/inventory slot.png" id="5_5pdws"]
+[ext_resource type="Script" uid="uid://dqjpubs0ulkj5" path="res://scripts/HUD/weapon_slot.gd" id="5_uo2fv"]
+[ext_resource type="Texture2D" uid="uid://cgmlrghe4tdd" path="res://sprites/Rats/spatula.png" id="6_047uy"]
+[ext_resource type="Texture2D" uid="uid://bd5yejc6j8ppb" path="res://SpriteFrames/ClockFrames/sky_24h_00.png" id="9_lvrsu"]
+[ext_resource type="Texture2D" uid="uid://bpgcm23je3gob" path="res://SpriteFrames/ClockFrames/sky_24h_01.png" id="10_ydkem"]
+[ext_resource type="Texture2D" uid="uid://q05p0rl2y2ep" path="res://SpriteFrames/ClockFrames/sky_24h_02.png" id="11_6d1ax"]
+[ext_resource type="Texture2D" uid="uid://dvomqaowwqiut" path="res://SpriteFrames/ClockFrames/sky_24h_03.png" id="12_3hv7p"]
+[ext_resource type="Texture2D" uid="uid://b4eokkw2qmfd6" path="res://SpriteFrames/ClockFrames/sky_24h_04.png" id="13_o1o2r"]
+[ext_resource type="Texture2D" uid="uid://bwc7r50jp7be0" path="res://SpriteFrames/ClockFrames/sky_24h_05.png" id="14_qn0nn"]
+[ext_resource type="Texture2D" uid="uid://bs0qeceait304" path="res://SpriteFrames/ClockFrames/sky_24h_06.png" id="15_tks7v"]
+[ext_resource type="Texture2D" uid="uid://cp30h3d6v4jn1" path="res://SpriteFrames/ClockFrames/sky_24h_07.png" id="16_cjy3n"]
+[ext_resource type="Texture2D" uid="uid://cnhrbd3gpds7u" path="res://SpriteFrames/ClockFrames/sky_24h_08.png" id="17_pwa8h"]
+[ext_resource type="Texture2D" uid="uid://de8x60e24isxk" path="res://SpriteFrames/ClockFrames/sky_24h_09.png" id="18_gxo4v"]
+[ext_resource type="Texture2D" uid="uid://dxw4xe8s2rfvp" path="res://SpriteFrames/ClockFrames/sky_24h_10.png" id="19_2l8v3"]
+[ext_resource type="Texture2D" uid="uid://ok4duik8iw6u" path="res://SpriteFrames/ClockFrames/sky_24h_11.png" id="20_66st5"]
+[ext_resource type="Texture2D" uid="uid://beecl1mcpcbxt" path="res://SpriteFrames/ClockFrames/sky_24h_12.png" id="21_1dsb4"]
+[ext_resource type="Texture2D" uid="uid://cb2t5aod610mx" path="res://SpriteFrames/ClockFrames/sky_24h_13.png" id="22_q0uyn"]
+[ext_resource type="Texture2D" uid="uid://bs586twd35gno" path="res://SpriteFrames/ClockFrames/sky_24h_14.png" id="23_ep55p"]
+[ext_resource type="Texture2D" uid="uid://b1lrbi3ra1jsd" path="res://SpriteFrames/ClockFrames/sky_24h_15.png" id="24_dbhui"]
+[ext_resource type="Texture2D" uid="uid://br0jwk4rumu45" path="res://SpriteFrames/ClockFrames/sky_24h_16.png" id="25_4hsw7"]
+[ext_resource type="Texture2D" uid="uid://hr8o33300caj" path="res://SpriteFrames/ClockFrames/sky_24h_17.png" id="26_tj8l3"]
+[ext_resource type="Texture2D" uid="uid://blqp0d7xeqsbr" path="res://SpriteFrames/ClockFrames/sky_24h_18.png" id="27_jhjt4"]
+[ext_resource type="Texture2D" uid="uid://vp402ad224dd" path="res://SpriteFrames/ClockFrames/sky_24h_19.png" id="28_d8y5i"]
+[ext_resource type="Texture2D" uid="uid://owp4l8u5fu61" path="res://SpriteFrames/ClockFrames/sky_24h_20.png" id="29_5ymiw"]
+[ext_resource type="Texture2D" uid="uid://cwb1holvflrn5" path="res://SpriteFrames/ClockFrames/sky_24h_21.png" id="30_pca12"]
+[ext_resource type="Texture2D" uid="uid://dkj3xcaqr7ij" path="res://SpriteFrames/ClockFrames/sky_24h_22.png" id="31_yu2oy"]
+[ext_resource type="Texture2D" uid="uid://bbvqfp0qdl1ph" path="res://SpriteFrames/ClockFrames/sky_24h_23.png" id="32_uud5u"]
+[ext_resource type="Texture2D" uid="uid://c8ponesnafint" path="res://SpriteFrames/ClockFrames/sky_24h_24.png" id="33_tg5fl"]
+[ext_resource type="Texture2D" uid="uid://dt7frkdbgxkqv" path="res://SpriteFrames/ClockFrames/sky_24h_25.png" id="34_3oy6q"]
+[ext_resource type="Texture2D" uid="uid://sobrxovg5tyj" path="res://SpriteFrames/ClockFrames/sky_24h_26.png" id="35_57rap"]
+[ext_resource type="Texture2D" uid="uid://cns8kwmb5qml8" path="res://SpriteFrames/ClockFrames/sky_24h_27.png" id="36_gc6e5"]
+[ext_resource type="Texture2D" uid="uid://bpjj6osoi8pnw" path="res://SpriteFrames/ClockFrames/sky_24h_28.png" id="37_trlvm"]
+[ext_resource type="Texture2D" uid="uid://c3jbdvsxq8av5" path="res://SpriteFrames/ClockFrames/sky_24h_29.png" id="38_8dgfj"]
+[ext_resource type="Texture2D" uid="uid://b8utm7mk45o66" path="res://SpriteFrames/ClockFrames/sky_24h_30.png" id="39_lk8e5"]
+[ext_resource type="Texture2D" uid="uid://g5uqpwsxfbb3" path="res://SpriteFrames/ClockFrames/sky_24h_31.png" id="40_4alk3"]
+[ext_resource type="Texture2D" uid="uid://b6cm4gejydqtw" path="res://SpriteFrames/ClockFrames/sky_24h_32.png" id="41_0y01w"]
+[ext_resource type="Texture2D" uid="uid://etelux5y33tw" path="res://SpriteFrames/ClockFrames/sky_24h_33.png" id="42_ycs2y"]
+[ext_resource type="Texture2D" uid="uid://3ltmkqjhm785" path="res://SpriteFrames/ClockFrames/sky_24h_34.png" id="43_vepe5"]
+[ext_resource type="Texture2D" uid="uid://diaqp7bagvvt" path="res://SpriteFrames/ClockFrames/sky_24h_35.png" id="44_eeue3"]
+[ext_resource type="Texture2D" uid="uid://cnm8ndafkjllg" path="res://SpriteFrames/ClockFrames/sky_24h_36.png" id="45_s6kjl"]
+[ext_resource type="Texture2D" uid="uid://c8aklipxoxx5m" path="res://SpriteFrames/ClockFrames/sky_24h_37.png" id="46_21fqs"]
+[ext_resource type="Texture2D" uid="uid://cx8ae8222dlvj" path="res://SpriteFrames/ClockFrames/sky_24h_38.png" id="47_eavr3"]
+[ext_resource type="Texture2D" uid="uid://bgyks3h8b05kq" path="res://SpriteFrames/ClockFrames/sky_24h_39.png" id="48_gggeu"]
+[ext_resource type="Texture2D" uid="uid://bvcwiyqudi1td" path="res://SpriteFrames/ClockFrames/sky_24h_40.png" id="49_ldd0d"]
+[ext_resource type="Texture2D" uid="uid://dhxcy3b88cgil" path="res://SpriteFrames/ClockFrames/sky_24h_41.png" id="50_qt8l3"]
+[ext_resource type="Texture2D" uid="uid://20ruqobu43op" path="res://SpriteFrames/ClockFrames/sky_24h_42.png" id="51_q1hcv"]
+[ext_resource type="Texture2D" uid="uid://duoi7i48hgkyx" path="res://SpriteFrames/ClockFrames/sky_24h_43.png" id="52_5vor3"]
+[ext_resource type="Texture2D" uid="uid://cug1i7vap6dvs" path="res://SpriteFrames/ClockFrames/sky_24h_44.png" id="53_at21y"]
+[ext_resource type="Texture2D" uid="uid://cs0gygd5qi6al" path="res://SpriteFrames/ClockFrames/sky_24h_45.png" id="54_o5iky"]
+[ext_resource type="Texture2D" uid="uid://bglewwgxk2bfa" path="res://SpriteFrames/ClockFrames/sky_24h_46.png" id="55_06p3l"]
+[ext_resource type="Texture2D" uid="uid://cqp8flkyu537b" path="res://SpriteFrames/ClockFrames/sky_24h_47.png" id="56_bjcuq"]
+[ext_resource type="Script" uid="uid://d0hetq58mg346" path="res://scripts/HUD/clock_sprite.gd" id="56_lvrsu"]
+[ext_resource type="Script" uid="uid://bw4avsbvs0fv0" path="res://scripts/HUD/timer_container.gd" id="57_ydkem"]
+[ext_resource type="AudioStream" uid="uid://5k15sn8ha2fj" path="res://Music/GameMusic.ogg" id="58_3hv7p"]
+[ext_resource type="Script" uid="uid://3yasfovf7aip" path="res://scripts/HUD/music.gd" id="59_o1o2r"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6r27q"]
-bg_color = Color(0.44910234, 0.64456695, 0.6229813, 1)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd3ao"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ysmq"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(0, 0, 2000, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6fi6k"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(2000, 0, 2000, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo2fv"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(0, 2000, 2000, 2000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_047uy"]
+atlas = ExtResource("2_oo0fn")
+region = Rect2(2000, 2000, 2000, 2000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q8shn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ysmq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6fi6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo2fv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_047uy")
+}],
+"loop": 1,
+"name": &"CheeseCurrency",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d5uyu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_lvrsu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ydkem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6d1ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3hv7p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_o1o2r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_qn0nn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_tks7v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_cjy3n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_pwa8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_gxo4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_2l8v3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_66st5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_1dsb4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_q0uyn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ep55p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_dbhui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_4hsw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_tj8l3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_jhjt4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_d8y5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_5ymiw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_pca12")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_yu2oy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_uud5u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_tg5fl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_3oy6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_57rap")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_gc6e5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_trlvm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_8dgfj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_lk8e5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_4alk3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_0y01w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_ycs2y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_vepe5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_eeue3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_s6kjl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_21fqs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_eavr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_gggeu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_ldd0d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_qt8l3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_q1hcv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_5vor3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("53_at21y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_o5iky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_06p3l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_bjcuq")
+}],
+"loop": 1,
+"name": &"Clock",
+"speed": 5.0
+}]
 
 [node name="HUD" type="CanvasLayer" unique_id=328106959]
 script = ExtResource("1_ahhtf")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=658600509]
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 220.0
-offset_bottom = 102.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_6r27q")
+offset_right = 210.0
+offset_bottom = 92.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hd3ao")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1694832828]
 layout_mode = 2
@@ -28,18 +268,111 @@ theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1060036836]
 layout_mode = 2
+theme_override_constants/separation = 6
 
-[node name="MoneyLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=235615117]
+[node name="CurrencyLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=235615117]
 unique_name_in_owner = true
 layout_mode = 2
-offset_transform_position = Vector2(15, 3)
+offset_transform_enabled = true
+offset_transform_position = Vector2(60, -5)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Cash: $0"
+theme_override_font_sizes/font_size = 30
 
-[node name="DebtLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=213959477]
+[node name="HealthContainer" type="HBoxContainer" parent="." unique_id=2147416919]
+offset_left = 10.0
+offset_top = 70.0
+offset_right = 251.0
+offset_bottom = 115.0
+
+[node name="Heart1" type="TextureRect" parent="HealthContainer" unique_id=359480519]
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+offset_transform_scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_6fi6k")
+
+[node name="Heart2" type="TextureRect" parent="HealthContainer" unique_id=442170369]
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+offset_transform_scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_6fi6k")
+
+[node name="Heart3" type="TextureRect" parent="HealthContainer" unique_id=1453279764]
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+offset_transform_scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_6fi6k")
+
+[node name="Heart4" type="TextureRect" parent="HealthContainer" unique_id=607744511]
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+offset_transform_scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_6fi6k")
+
+[node name="Heart5" type="TextureRect" parent="HealthContainer" unique_id=511774926]
+custom_maximum_size = Vector2(30, 30)
+layout_mode = 2
+offset_transform_scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_6fi6k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=934719073]
+position = Vector2(35, 8)
+scale = Vector2(0.06, 0.06)
+sprite_frames = SubResource("SpriteFrames_q8shn")
+animation = &"CheeseCurrency"
+frame_progress = 0.10904889
+speed_scale = 0.5
+script = ExtResource("3_5ysmq")
+
+[node name="WeaponSlot" type="TextureRect" parent="." unique_id=166747344]
+custom_minimum_size = Vector2(60, 60)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -108.0
+offset_right = -222.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_5pdws")
+expand_mode = 2
+script = ExtResource("5_uo2fv")
+
+[node name="WeaponIcon" type="TextureRect" parent="WeaponSlot" unique_id=648172156]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("6_047uy")
+expand_mode = 2
+
+[node name="ClockSprite" type="AnimatedSprite2D" parent="." unique_id=539584329]
+position = Vector2(1200, 63)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_d5uyu")
+animation = &"Clock"
+frame_progress = 0.5374217
+speed_scale = 0.1
+script = ExtResource("56_lvrsu")
+
+[node name="TimerContainer" type="VBoxContainer" parent="." unique_id=2010001848]
+offset_left = 1147.0
+offset_top = 82.0
+offset_right = 1254.0
+offset_bottom = 113.0
+script = ExtResource("57_ydkem")
+
+[node name="TimeCountdownLabel" type="Label" parent="TimerContainer" unique_id=1005907139]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 24
-text = "Mafia Debt: $50"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Due: 8:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1286519790]
+unique_name_in_owner = true
+stream = ExtResource("58_3hv7p")
+script = ExtResource("59_o1o2r")
