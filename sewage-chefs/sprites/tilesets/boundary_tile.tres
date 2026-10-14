@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" format=3 uid="uid://cggyiqow0p0ch"]
 
-[ext_resource type="Texture2D" uid="uid://cg213juuy303" path="res://sprites/placeholder assets/architecture/sewer assets/Boundary Tile.png" id="1_ofx8w"]
+[ext_resource type="Texture2D" uid="uid://b1a3ki5s2sm8p" path="res://sprites/placeholder assets/architecture/sewer assets/Boundary Tile.png" id="1_ofx8w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_csn1t"]
 texture = ExtResource("1_ofx8w")

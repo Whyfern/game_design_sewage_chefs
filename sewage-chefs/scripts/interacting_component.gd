@@ -38,6 +38,7 @@ func _sort_by_nearest(area1, area2):
 
 #for adding interactables into the array of currentInteractions
 func _on_interact_range_area_entered(area: Area2D) -> void:
+	print("AREA DETECTED: ", area.name)
 	currentInteractions.push_back(area)
 	print("has entered");
 	print(currentInteractions);

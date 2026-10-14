@@ -2,6 +2,7 @@ extends Node2D
 class_name room
 
 @onready var levelMan = get_node("../../..")
+@onready var ingredient_scene = preload("res://scenes/ingredient_collectible.tscn")
 
 var boundaryInstance
 
@@ -68,6 +69,31 @@ func choose_wall():
 func test_boundary():
 	print(door_top, ":top,  ", door_left, ":left,  ", door_bot, ":bot,  ", door_right, ":right")
 	print(boundary)
+	
+	
+	
+func spawn_ingredients():
+	print("Spawn function called!")
+	print("Floor children: ", floorInstance.get_children())
+	print("Has FoodSpawns child: ", floorInstance.has_node("FoodSpawns"))
+
+	var spawn_markers = floorInstance.find_children(
+		"FoodSpawn*",
+		"Marker2D",
+		true,
+		false
+	)
+
+	print("Markers found: ", spawn_markers.size())
+
+	for marker in spawn_markers:
+		print("Marker position: ", marker.global_position)
+
+		var ingredient = ingredient_scene.instantiate()
+		floorInstance.add_child(ingredient)
+		ingredient.global_position = marker.global_position
+
+		print("Ingredient spawned at: ", ingredient.global_position)
 
 func choose_floor(start : bool):
 	floorsKeys = floorsDict.keys()
@@ -76,5 +102,10 @@ func choose_floor(start : bool):
 		floor = load("res://scenes/sewer rooms/sewer_room_floors/sewer_room_00.tscn")
 	else :
 		floor = floorsDict[randomKey]
+	print("Is start room: ", start)
 	floorInstance = floor.instantiate()
-	self.add_child.call_deferred(floorInstance)
+	print("Loaded floor scene: ", floor.resource_path)
+	add_child(floorInstance)
+	#self.add_child.call_deferred(floorInstance)
+	
+	spawn_ingredients()

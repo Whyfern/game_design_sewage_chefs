@@ -15,3 +15,8 @@ tile_set = ExtResource("1_8251c")
 
 [node name="SewerProp" type="TileMapLayer" parent="SewerFloor/SewerSewage" unique_id=1279221097]
 tile_set = ExtResource("2_swni2")
+
+[node name="FoodSpawns" type="Node2D" parent="." unique_id=1719072829]
+
+[node name="FoodSpawn1" type="Marker2D" parent="FoodSpawns" unique_id=997596409]
+position = Vector2(410, 244)
