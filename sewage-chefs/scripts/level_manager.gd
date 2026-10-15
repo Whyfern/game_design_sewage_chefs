@@ -5,6 +5,9 @@ extends Node
 @onready var playChar = get_node("../character_manager/Player_Character")
 @onready var restaurant = load('res://scenes/restaurant.tscn')
 @onready var roomGeneration = load("res://scenes/room_generator.tscn")
+@onready var sewageMan = load("res://scenes/sewage_manager.tscn")
+
+var sewageManInstance : Node = null
 
 var restaurantInstance : Node = null
 
@@ -24,6 +27,7 @@ var startPos : Vector2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.connect("toiletFlushed", switch_level)
+	#EventBus.connect("gridGeneratorInstantiated")
 	instatiate_restaurant()
 	pass
 
@@ -52,6 +56,14 @@ func instantiate_level():
 		roomGenerationInstance.roomSize = roomSize
 		roomGenerationInstance.gridSize = gridSize
 		self.add_child.call_deferred(roomGenerationInstance)
+		
+		await EventBus.gridGeneratorInstantiated
+		sewageManInstance = sewageMan.instantiate()
+		sewageManInstance.roomValue = roomValue
+		sewageManInstance.roomSize = roomSize
+		print(roomGenerationInstance.get_currently())
+		sewageManInstance.possibilities = roomGenerationInstance.get_currently()
+		self.add_child.call_deferred(sewageManInstance)
 		
 		await EventBus.startRoomPos
 		startPos = startPos * roomSize

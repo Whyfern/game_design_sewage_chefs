@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://qxxwga55lgwi"]
+[gd_scene format=4 uid="uid://doaco3l7duj1o"]
 
 [ext_resource type="TileSet" uid="uid://bk3pfi0da4tm2" path="res://sprites/tilesets/sewer_tiles.tres" id="1_h50tk"]
 [ext_resource type="TileSet" uid="uid://bbfvjlbumf1b3" path="res://sprites/tilesets/sewer_props.tres" id="2_fbuwn"]

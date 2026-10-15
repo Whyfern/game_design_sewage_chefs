@@ -30,6 +30,7 @@ func _ready() -> void:
 	generate_layout(1)
 	#test_print_Array()
 	EventBus.emit_signal("layoutGenerated")
+	EventBus.emit_signal("gridGeneratorInstantiated")
 
 func create_Grid():
 	grid=Array()
@@ -61,7 +62,7 @@ func generate_method_1():
 func add_tile(chosenX : int, chosenY : int, type : int):
 	toAdd = [chosenX, chosenY]
 	Currently.append(toAdd)
-	grid[chosenY][chosenX] = {"grid_pos": Vector2i(chosenX, chosenY), "type": type}
+	grid[chosenY][chosenX] = room.new(Vector2i(chosenX, chosenY), type)
 	for i in Currently:
 		temp_x = i[0]
 		temp_y = i[1]
@@ -79,3 +80,7 @@ func test_print_Array():
 
 func send_grid():
 	return grid
+
+func get_currently() -> Array:
+	Currently.erase([randomWidth, randomHeight])
+	return Currently
