@@ -1,11 +1,8 @@
 extends Node2D
-class_name interactingComponent
 
 @onready var interactLabel: Label = $interactLabel
 var currentInteractions := []
 var canInteract := true
-
-
 
 #this is used to process the input for interaction.
 func _input(event: InputEvent) -> void:
@@ -40,16 +37,11 @@ func _sort_by_nearest(area1, area2):
 
 #for adding interactables into the array of currentInteractions
 func _on_interact_range_area_entered(area: Area2D) -> void:
-	print("AREA DETECTED: ", area.name)
-
-	if not "interactName" in area:
-		return
-
 	currentInteractions.push_back(area)
-	print("has entered")
-	print(currentInteractions)
-	print(area.interactName)
-	print(interactLabel.text)
+	print("has entered");
+	print(currentInteractions);
+	print(currentInteractions[0].interactName);
+	print(interactLabel.text);
 
 #for removing interactables from the array of currentInteractions
 func _on_interact_range_area_exited(area: Area2D) -> void:
