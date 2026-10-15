@@ -30,7 +30,6 @@ func _init(pos: Vector2 = Vector2.ZERO, room_type: int = 0) -> void:
 	grid_pos = pos
 	type = room_type
 
-#the ready function checks if what the room type is and starting the room position and setting the starting pos
 func _ready() -> void:
 	if type == 2:
 		assemble_room(false)
@@ -39,13 +38,11 @@ func _ready() -> void:
 		set_Start_Room_Pos()
 	#$Label.text = str(door_top, ":top,  ", door_left, ":left,  ", door_bot, ":bot,  ", door_right, ":right")
 
-#sets the point where the player starts in the sewer by sending a signal so the levelmanager
 func set_Start_Room_Pos():
 	levelMan.startPos = grid_pos
 	EventBus.emit_signal("startRoomPos")
 	pass
 
-#this puts the boundary and the floor together, while also looking at if the room is the start
 func assemble_room(start : bool):
 	if start:
 		choose_floor(true)
@@ -53,7 +50,6 @@ func assemble_room(start : bool):
 		choose_floor(false)
 	choose_wall()
 
-#by making a code from the doors that should open it makes the name of the boundary that should be used
 func choose_wall():
 	var code = ""
 	if door_top:
@@ -70,11 +66,12 @@ func choose_wall():
 	boundaryInstance = boundary.instantiate()
 	self.add_child.call_deferred(boundaryInstance)
 
-#test funtion
 func test_boundary():
 	print(door_top, ":top,  ", door_left, ":left,  ", door_bot, ":bot,  ", door_right, ":right")
 	print(boundary)
-
+	
+	
+	
 func spawn_ingredients():
 	print("Spawn function called!")
 	print("Floor children: ", floorInstance.get_children())

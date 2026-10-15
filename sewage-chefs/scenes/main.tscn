@@ -6,10 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://bgrbpcamkbr14" path="res://scenes/toilet.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://cx114n0r6b7sw" path="res://scripts/level_manager.gd" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cv140hv8hx2ft" path="res://scenes/hud.tscn" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://cqyno206tk4ih" path="res://sprites/FloodPipe/sewage_meter_under.png" id="7_choun"]
-[ext_resource type="Texture2D" uid="uid://bxwp21yo5lma4" path="res://sprites/FloodPipe/sewage_meter_over.png" id="8_ya4ey"]
-[ext_resource type="Texture2D" uid="uid://eqjsw4bv0y5w" path="res://sprites/FloodPipe/sewage_meter_progress.png" id="9_eb6dy"]
+[ext_resource type="Texture2D" uid="uid://c7f2asm1rtqtp" path="res://sprites/FloodPipe/WhatsApp_Image_2026-10-08_at_15.34.33_bg_removed.png.png" id="8_85g3d"]
+[ext_resource type="Texture2D" uid="uid://d1x0ghynvxvae" path="res://sprites/FloodPipe/WhatsApp_Image_2026-10-08_at_15.34.32_bg_removed.png.png" id="9_choun"]
 [ext_resource type="Script" uid="uid://dwcf4021puq4y" path="res://scripts/texture_progress_bar.gd" id="10_choun"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ya4ey"]
+load_path = "res://.godot/imported/WhatsApp_Image_2026-10-08_at_15.34.31_bg_removed.png.png-5b2ecd5f0bc2b75bfaf52fc06f3bb614.ctex"
 
 [node name="Main" type="Node2D" unique_id=1174336425]
 
@@ -44,7 +46,7 @@ offset_bottom = 228.00002
 scale = Vector2(7, 7)
 value = 50.0
 fill_mode = 3
-texture_under = ExtResource("7_choun")
-texture_over = ExtResource("8_ya4ey")
-texture_progress = ExtResource("9_eb6dy")
+texture_under = ExtResource("8_85g3d")
+texture_over = ExtResource("9_choun")
+texture_progress = SubResource("CompressedTexture2D_ya4ey")
 script = ExtResource("10_choun")
