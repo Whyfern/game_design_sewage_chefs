@@ -14,7 +14,7 @@ script = ExtResource("1_tefeu")
 
 [node name="Player_Character" parent="character_manager" unique_id=702846183 instance=ExtResource("1_o5qli")]
 z_index = 10
-position = Vector2(259, 277)
+position = Vector2(407, 562)
 
 [node name="level_manager" type="Node" parent="." unique_id=2081016786]
 script = ExtResource("3_sugp2")
@@ -26,6 +26,6 @@ script = ExtResource("2_jyhfs")
 
 [node name="Toilet" parent="." unique_id=1982298826 instance=ExtResource("3_jyhfs")]
 z_index = 13
-position = Vector2(207, 287)
+position = Vector2(402, 373)
 
 [node name="HUD" parent="." unique_id=328106959 instance=ExtResource("5_tbgi4")]
