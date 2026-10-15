@@ -1,14 +1,26 @@
 [gd_scene format=3 uid="uid://b7vt4h3kigtuv"]
 
 [ext_resource type="PackedScene" uid="uid://c36j07vxpsvvf" path="res://scenes/player_character.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://d2m353m7vmd2s" path="res://scripts/character_manager.gd" id="1_tefeu"]
 [ext_resource type="Script" uid="uid://di05c4xptbcgk" path="res://scripts/event_bus.gd" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://bgrbpcamkbr14" path="res://scenes/toilet.tscn" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://cx114n0r6b7sw" path="res://scripts/level_manager.gd" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cv140hv8hx2ft" path="res://scenes/hud.tscn" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://c7f2asm1rtqtp" path="res://sprites/FloodPipe/WhatsApp_Image_2026-10-08_at_15.34.33_bg_removed.png.png" id="8_85g3d"]
+[ext_resource type="Texture2D" uid="uid://d1x0ghynvxvae" path="res://sprites/FloodPipe/WhatsApp_Image_2026-10-08_at_15.34.32_bg_removed.png.png" id="9_choun"]
+[ext_resource type="Script" uid="uid://dwcf4021puq4y" path="res://scripts/texture_progress_bar.gd" id="10_choun"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ya4ey"]
+load_path = "res://.godot/imported/WhatsApp_Image_2026-10-08_at_15.34.31_bg_removed.png.png-5b2ecd5f0bc2b75bfaf52fc06f3bb614.ctex"
 
 [node name="Main" type="Node2D" unique_id=1174336425]
 
 [node name="character_manager" type="Node" parent="." unique_id=757642771]
+script = ExtResource("1_tefeu")
+
+[node name="Player_Character" parent="character_manager" unique_id=702846183 instance=ExtResource("1_o5qli")]
+z_index = 10
+position = Vector2(259, 277)
 
 [node name="level_manager" type="Node" parent="." unique_id=2081016786]
 script = ExtResource("3_sugp2")
@@ -18,12 +30,23 @@ script = ExtResource("2_jyhfs")
 
 [node name="entity_manger" type="Node" parent="." unique_id=127714234]
 
-[node name="Player_Character" parent="." unique_id=702846183 instance=ExtResource("1_o5qli")]
-z_index = 10
-position = Vector2(565, 326)
-
 [node name="Toilet" parent="." unique_id=1982298826 instance=ExtResource("3_jyhfs")]
 z_index = 13
 position = Vector2(207, 287)
 
 [node name="HUD" parent="." unique_id=328106959 instance=ExtResource("5_tbgi4")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1477431120]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=605407572]
+offset_left = 1151.0
+offset_top = 164.00002
+offset_right = 1183.0
+offset_bottom = 228.00002
+scale = Vector2(7, 7)
+value = 50.0
+fill_mode = 3
+texture_under = ExtResource("8_85g3d")
+texture_over = ExtResource("9_choun")
+texture_progress = SubResource("CompressedTexture2D_ya4ey")
+script = ExtResource("10_choun")
