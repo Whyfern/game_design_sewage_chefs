@@ -1,75 +1,58 @@
 extends Node
 
-@onready var main = get_node("..")
-@onready var charMan = get_node("../character_manager")
-@onready var playChar = get_node("../character_manager/Player_Character")
 @onready var restaurant = load('res://scenes/restaurant.tscn')
-@onready var roomGeneration = load("res://scenes/room_generator.tscn")
-@onready var sewageMan = load("res://scenes/sewage_manager.tscn")
-
-var sewageManInstance : Node = null
+@onready var sewer = load('res://scenes/sewer.tscn')
+@onready var main = get_node("..")
 
 var restaurantInstance : Node = null
-
 var sewerInstance : Node = null
-var sewerGenerationInstance : Node = null
-var roomGenerationInstance : Node = null
-
-var restaurantState = false
-
-var startPos : Vector2
-
-#starting variables for the grid can be set here
-@export var roomValue = 10
-@export var gridSize : Vector2 = Vector2(5, 5)
-@export var roomSize : Vector2 = Vector2(1280, 704)
+var restraurantState = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.connect("toiletFlushed", switch_level)
-	#EventBus.connect("gridGeneratorInstantiated")
 	instatiate_restaurant()
 	pass
 
+
 func switch_level():
-	if restaurantState:
+	if restraurantState:
 		instantiate_level()
-	elif !restaurantState:
+	elif !restraurantState:
 		instatiate_restaurant()
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
 func instatiate_restaurant():
-	if !restaurantState:
-		
+	if !restraurantState:
 		restaurantInstance = restaurant.instantiate()
 		restaurantInstance.z_index = 0
 		main.add_child.call_deferred(restaurantInstance)
-		
-		if sewerGenerationInstance:
-			sewerGenerationInstance.queue_free()
-		restaurantState = true
-	pass
+		if sewerInstance:
+			sewerInstance.queue_free()
+		restraurantState = true
+	
 
 func instantiate_level():
-	if restaurantState:
-		roomGenerationInstance = roomGeneration.instantiate()
-		roomGenerationInstance.roomValue = roomValue
-		roomGenerationInstance.roomSize = roomSize
-		roomGenerationInstance.gridSize = gridSize
-		self.add_child.call_deferred(roomGenerationInstance)
-		
-		await EventBus.gridGeneratorInstantiated
-		sewageManInstance = sewageMan.instantiate()
-		sewageManInstance.roomValue = roomValue
-		sewageManInstance.roomSize = roomSize
-		print(roomGenerationInstance.get_currently())
-		sewageManInstance.possibilities = roomGenerationInstance.get_currently()
-		self.add_child.call_deferred(sewageManInstance)
-		
-		await EventBus.startRoomPos
-		startPos = startPos * roomSize
-		startPos = startPos + 0.5 * roomSize
-		playChar.position = startPos
+	if restraurantState:
+		print("toilet flushed");
+		sewerInstance = sewer.instantiate()
+		sewerInstance.z_index = 0
+		main.add_child.call_deferred(sewerInstance)
 		if restaurantInstance:
 			restaurantInstance.queue_free()
-		restaurantState = false
-	pass
+		restraurantState = false
+		pass
+
+	#var restraunt = 1
+	#
+	#if instance and is_instance_valid(instance):
+		#instance.queue_free()
+		#instance = null
+	#+
+	#instance_count += 1
+	#instance = creation_panel.instantiate()
+	#instance.name = "creationpanel%d" % instance_count
+	#UI.add_child.call_deferred(instance)
