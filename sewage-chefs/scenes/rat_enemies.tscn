@@ -240,6 +240,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2fon"]
+radius = 11.333334
+
 [node name="rat_enemies" type="CharacterBody2D" unique_id=893018143]
 scale = Vector2(3, 3)
 collision_layer = 4
@@ -253,6 +256,15 @@ shape = SubResource("RectangleShape2D_s4kof")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=388393665]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_j2fon")
-animation = &"Attack_down"
+animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.63518524
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=390748007]
+collision_layer = 16
+collision_mask = 0
+input_pickable = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=506566346]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_j2fon")

@@ -10,12 +10,14 @@ enum State {
 @export_category("Stats")
 @export var speed: int = 120*3
 @export var attackSpeed: float = 0.5
+@export var attackDamage: int = 60
 
 var state: State = State.IDLE
 var moveDirection: Vector2 = Vector2.ZERO
 
 @onready var animationTree: AnimationTree = $AnimationTree
 @onready var AnimationPlayback: AnimationNodeStateMachinePlayback = $AnimationTree ["parameters/playback"]
+
 
 func _ready() -> void:
 	animationTree.set_active(true)
@@ -42,14 +44,14 @@ func movement_loop() -> void:
 	# Player's sprite flipping in idle / run state 
 	if state == State.IDLE or State.RUN:
 		if moveDirection.x < -0.01:
-			$Sprite2D.flip_h = true
+			$ChefRat.flip_h = true
 		elif moveDirection.x > 0.01: 
-			$Sprite2D.flip_h = false 
+			$ChefRat.flip_h = false 
 	
-	if motion != Vector2.ZERO and state == State.IDLE: #if you push input and the character is still (IDLE), it has to start movineg (RUN)
+	if motion != Vector2.ZERO and state != State.RUN: #if you push input and the character is still (IDLE), it has to start movineg (RUN)
 		state = State.RUN
 		update_animation()
-	elif motion == Vector2.ZERO and state == State.RUN: #if character is moving (RUN) with 0 movement, it means it's still (IDLE)
+	elif motion == Vector2.ZERO and state != State.IDLE: #if character is moving (RUN) with 0 movement, it means it's still (IDLE)
 		state = State.IDLE
 		update_animation()
 		
@@ -59,9 +61,9 @@ func update_animation() -> void:
 		State.IDLE:
 			AnimationPlayback.travel("Idle")
 		State.RUN:
-			AnimationPlayback.travel("run")
+			AnimationPlayback.travel("Run")
 		State.ATTACK:
-			AnimationPlayback.travel("attack")
+			AnimationPlayback.travel("Attack")
 			
 		
 		
@@ -74,11 +76,23 @@ func attack() -> void:
 	#find the attack direction and push to animationtree and blendspace2D
 	var mousePos: Vector2 = get_global_mouse_position()
 	var attackDir: Vector2 = (mousePos - global_position).normalized()
-	$Sprite2D.flip_h = attackDir.x < 0 and abs(attackDir.x) >= abs(attackDir.y)
+	$ChefRat.flip_h = attackDir.x < 0 and abs(attackDir.x) >= abs(attackDir.y)
 	animationTree.set ("parameters/Attack/BlendSpace2D/blend_position", attackDir)
 	update_animation()
 	
-	#return the palyer state after attacking
+	#wait for attack duration
 	await get_tree().create_timer(attackSpeed).timeout
-	state = State.IDLE
+	
+	# Check what the player is doing *right now* to choose the correct next state
+	var isMoving = (int(Input.is_action_pressed("press_d")) - int(Input.is_action_pressed("press_a")) != 0) or \
+					(int(Input.is_action_pressed("press_s")) - int(Input.is_action_pressed("press_w")) != 0)
+	
+	if isMoving:
+		state = State.RUN
+	else:
+		state = State.IDLE
 		
+
+#signal used for Hitboxes - hurtboxes
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	area.owner.take_damage(attackDamage)
