@@ -31,12 +31,14 @@ func _ready() -> void:
 	instatiate_restaurant()
 	pass
 
+#checks if the sewer or the restaurant should be switched to 
 func switch_level():
 	if restaurantState:
 		instantiate_level()
 	elif !restaurantState:
 		instatiate_restaurant()
 
+#used to spawn the restaurant also dewpawn the sewer
 func instatiate_restaurant():
 	if !restaurantState:
 		
@@ -49,6 +51,7 @@ func instatiate_restaurant():
 		restaurantState = true
 	pass
 
+#used to spawn the sewer while also despawning the restaurant. It works by instantiating room generatioin and sewage manager
 func instantiate_level():
 	if restaurantState:
 		roomGenerationInstance = roomGeneration.instantiate()

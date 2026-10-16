@@ -2,15 +2,15 @@
 
 [ext_resource type="Texture2D" uid="uid://bth0lb4jfyje2" path="res://sprites/ingredients_assets/onion.png" id="1_i7wdv"]
 [ext_resource type="Script" uid="uid://ds6sskyu4mhej" path="res://scripts/ingredient_collectible.gd" id="1_uw0a4"]
-[ext_resource type="Script" uid="uid://xa75f3i6mc2k" path="res://scripts/interactable.gd" id="3_myy23"]
+[ext_resource type="PackedScene" uid="uid://crttjcv3fu111" path="res://scenes/interactable.tscn" id="3_myy23"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2icpv"]
 radius = 13.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0r7o3"]
-size = Vector2(30, 27)
+[sub_resource type="CircleShape2D" id="CircleShape2D_uio72"]
+radius = 56.0357
 
-[node name="IngredientCollectible" type="Area2D" unique_id=684181485]
+[node name="IngredientCollectible" type="StaticBody2D" unique_id=1882268214]
 script = ExtResource("1_uw0a4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1104530345]
@@ -19,13 +19,9 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_i7wdv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=655054203]
-position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_2icpv")
 
-[node name="interactable_ingredient" type="Area2D" parent="." unique_id=1975655608]
-script = ExtResource("3_myy23")
-metadata/_custom_type_script = "uid://xa75f3i6mc2k"
+[node name="Interactable" parent="." unique_id=1601367178 instance=ExtResource("3_myy23")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interactable_ingredient" unique_id=1611020622]
-position = Vector2(0, -3.5)
-shape = SubResource("RectangleShape2D_0r7o3")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=2145367942]
+shape = SubResource("CircleShape2D_uio72")

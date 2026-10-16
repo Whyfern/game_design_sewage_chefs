@@ -382,10 +382,6 @@ collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_6r27q")
 
-[node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
-visible = false
-position = Vector2(-1, -17)
-
 [node name="ChefRat" type="Sprite2D" parent="." unique_id=1828937166]
 position = Vector2(0, -24)
 scale = Vector2(0.4, 0.4)
@@ -393,6 +389,9 @@ texture = ExtResource("3_kww55")
 hframes = 4
 vframes = 6
 frame = 9
+
+[node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
+position = Vector2(0, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
 position = Vector2(2.5, -19.5)
