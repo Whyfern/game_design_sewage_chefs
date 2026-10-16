@@ -11,3 +11,7 @@ signal startRoomPos
 signal intro_dialogue_finished
 
 signal gridGeneratorInstantiated
+
+signal don_parmesan_spawn_requested
+
+signal don_parmesan_leave_requested

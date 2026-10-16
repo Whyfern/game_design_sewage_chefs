@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://cx7yhlr0bvvkh"]
+
+[ext_resource type="Script" uid="uid://dhm1kmrub57st" path="res://scripts/dialogue_ui.gd" id="1_dwk8m"]
+
+[node name="DialogueUI" type="CanvasLayer" unique_id=482460926]
+script = ExtResource("1_dwk8m")
+
+[node name="DialoguePanel" type="PanelContainer" parent="." unique_id=215079364]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 150)
+offset_left = 272.0
+offset_top = 424.0
+offset_right = 1005.0
+offset_bottom = 574.0
+
+[node name="MarginContainer" type="MarginContainer" parent="DialoguePanel" unique_id=1128548890]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DialoguePanel/MarginContainer" unique_id=457922474]
+layout_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="DialoguePanel/MarginContainer/HBoxContainer" unique_id=793629599]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DialoguePanel/MarginContainer/HBoxContainer" unique_id=372688977]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="NameLabel" type="Label" parent="DialoguePanel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1593805171]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9619252, 0.95678073, 0.96766657, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="TextLabel" type="RichTextLabel" parent="DialoguePanel/MarginContainer/HBoxContainer/VBoxContainer" unique_id=611035931]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 18
+bbcode_enabled = true

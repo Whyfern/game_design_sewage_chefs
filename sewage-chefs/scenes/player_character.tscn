@@ -18,10 +18,16 @@ script = ExtResource("1_6r27q")
 [node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
 
 [node name="InteractRange" type="Area2D" parent="InteractingComponent" unique_id=1811309755]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractingComponent/InteractRange" unique_id=1819863842]
 position = Vector2(-2, 10)
 shape = SubResource("CircleShape2D_lmgjl")
+
+[node name="InteractLabel" type="Label" parent="InteractingComponent" unique_id=19308071]
+offset_right = 40.0
+offset_bottom = 23.0
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
 limit_left = 0

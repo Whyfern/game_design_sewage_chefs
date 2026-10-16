@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bjdeukfuw5b34"]
+
+[ext_resource type="Texture2D" uid="uid://crwqrax6d7eud" path="res://sprites/Rats/IMG_0016.PNG" id="1_6xvi5"]
+[ext_resource type="Script" uid="uid://c1piwqfk2gs0a" path="res://scripts/npc.gd" id="1_ktgr7"]
+[ext_resource type="PackedScene" uid="uid://crttjcv3fu111" path="res://scenes/interactable.tscn" id="2_ktgr7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jnjht"]
+size = Vector2(40.845055, 39.403786)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7pv12"]
+radius = 61.03278
+
+[node name="NPC" type="CharacterBody2D" unique_id=456873055]
+script = ExtResource("1_ktgr7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=944734359]
+position = Vector2(-5.684342e-14, 1.1368684e-13)
+scale = Vector2(1.1751728, 1.2181572)
+shape = SubResource("RectangleShape2D_jnjht")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1445205000]
+position = Vector2(8, -16)
+scale = Vector2(0.044354837, 0.044354837)
+texture = ExtResource("1_6xvi5")
+
+[node name="Interactable" parent="." unique_id=1601367178 instance=ExtResource("2_ktgr7")]
+collision_layer = 2
+interactName = "talk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=1912744389]
+visible = false
+shape = SubResource("CircleShape2D_7pv12")

@@ -13,7 +13,7 @@ func _input(event: InputEvent) -> void:
 		if currentInteractions:
 			canInteract = false
 			interactLabel.hide()
-			
+			get_viewport().set_input_as_handled()
 			#important part. calls the method interact inside of the object which your are 
 			#interacting with. and waits until it is done before it continues.
 			await currentInteractions[0].interact.call()
@@ -34,8 +34,8 @@ func _process(delta: float) -> void:
 
 #used for sorting by distance
 func _sort_by_nearest(area1, area2):
-	var areaDist1 = global_position.distance_to(area1)
-	var areaDist2 = global_position.distance_to(area2)
+	var areaDist1 = global_position.distance_to(area1.global_position)
+	var areaDist2 = global_position.distance_to(area2.global_position)
 	return areaDist1 < areaDist2
 
 #for adding interactables into the array of currentInteractions

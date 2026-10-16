@@ -2,7 +2,7 @@ extends VBoxContainer
 
 @onready var countdown_label: Label = %TimeCountdownLabel
 
-@export var day_duration_seconds: float = 480.0 # 8 minutes for a full game day
+@export var day_duration_seconds: float = 1 # 8 minutes for a full game day
 var time_elapsed: float = 0.0
 var is_active: bool = true
 var is_pulsing: bool = false
@@ -49,3 +49,4 @@ func start_pulse_effect() -> void:
 
 func _on_deadline_reached() -> void:
 	print("Time's up! Don Parmesan is here for the money.")
+	EventBus.don_parmesan_spawn_requested.emit()
