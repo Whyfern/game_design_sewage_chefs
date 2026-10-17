@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://cx7yhlr0bvvkh"]
 
-[ext_resource type="Script" uid="uid://dhm1kmrub57st" path="res://scripts/dialogue_ui.gd" id="1_dwk8m"]
+[ext_resource type="Script" uid="uid://dhm1kmrub57st" path="res://scripts/dialogue.gd" id="1_jwyou"]
 
 [node name="DialogueUI" type="CanvasLayer" unique_id=482460926]
-script = ExtResource("1_dwk8m")
+script = ExtResource("1_jwyou")
 
 [node name="DialoguePanel" type="PanelContainer" parent="." unique_id=215079364]
 unique_name_in_owner = true

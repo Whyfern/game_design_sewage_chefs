@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dd23lp2c2887x" path="res://scripts/interacting_component.gd" id="1_ofc3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uqykc"]
-radius = 9.055386
+radius = 25.96151
 
 [sub_resource type="LabelSettings" id="LabelSettings_uqykc"]
 font_size = 14
@@ -14,9 +14,8 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_ofc3v")
 
 [node name="interactRange" type="Area2D" parent="." unique_id=1723220770]
-position = Vector2(1, 9)
 collision_layer = 0
-collision_mask = 64
+collision_mask = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactRange" unique_id=55390543]
 shape = SubResource("CircleShape2D_uqykc")

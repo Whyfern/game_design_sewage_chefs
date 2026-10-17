@@ -5,11 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://txcje4jthm3e" path="res://sprites/placeholder assets/architecture/restaurant/Stardew Valley - Tilesets - Town Interiors-2x.png" id="3_55vef"]
 [ext_resource type="Script" uid="uid://q8de8lfolntq" path="res://scripts/npc_spawner.gd" id="4_0duca"]
 [ext_resource type="PackedScene" uid="uid://c2ugx7jyd17oo" path="res://scenes/don_parmesan.tscn" id="5_5scnu"]
-[ext_resource type="Script" uid="uid://cykfr254dnrqk" path="res://scripts/customer_spawner.gd" id="6_u1ary"]
-[ext_resource type="Texture2D" uid="uid://debw10wcr76q7" path="res://sprites/ingredients_assets/short ribs.png" id="8_qujyy"]
-[ext_resource type="PackedScene" uid="uid://ds0707p00m03y" path="res://scenes/customer.tscn" id="8_rwm3f"]
-[ext_resource type="Texture2D" uid="uid://bpgoavt4fnyd" path="res://sprites/ingredients_assets/brisket.png" id="9_1sijj"]
-[ext_resource type="Texture2D" uid="uid://cpeud75bhiqu5" path="res://sprites/ingredients_assets/t bone.png" id="10_0duca"]
+[ext_resource type="PackedScene" uid="uid://blqppn6em7ydt" path="res://scenes/customer_spawner.tscn" id="11_qujyy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1sijj"]
 texture = ExtResource("2_d4a0i")
@@ -143,42 +139,6 @@ _data = {
 }
 point_count = 6
 
-[sub_resource type="Curve2D" id="Curve2D_f3ktr"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1104, 976, 0, 0, 0, 0, 1104, 896, 0, 0, 0, 0, 1104, 736, 0, 0, 0, 0, 856, 736)
-}
-point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_qujyy"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 706, 0, 0, 0, 0, 856, 706, 0, 0, 0, 0, 856, 596.00006, 0, 0, 0, 0, 746.88, 596.00006)
-}
-point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_0duca"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 596.00006, 0, 0, 0, 0, 1072, 596.00006)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_5scnu"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 716, 0, 0, 0, 0, 1264, 716, 0, 0, 0, 0, 1264.0002, 786)
-}
-point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_3m6t0"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 676.00006, 0, 0, 0, 0, 688, 676.00006)
-}
-point_count = 3
-
-[sub_resource type="Curve2D" id="Curve2D_u1ary"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1103.9999, 975.9998, 0, 0, 0, 0, 1103.9999, 680.6153, 0, 0, 0, 0, 1207.9999, 680.6153, 0, 0, 0, 0, 1208, 625.23065)
-}
-point_count = 4
-
 [node name="Restaurant" type="Node2D" unique_id=476074317]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=765219709]
@@ -211,46 +171,6 @@ speed = 200.0
 [node name="DonParmesanPath" type="Path2D" parent="." unique_id=1315854500]
 curve = SubResource("Curve2D_jruaf")
 
-[node name="SpotL2" type="Path2D" parent="." unique_id=745555260]
-position = Vector2(0, 276.7997)
-scale = Vector2(1, 0.7000004)
-curve = SubResource("Curve2D_f3ktr")
-
-[node name="SpotL3" type="Path2D" parent="." unique_id=106108658]
-position = Vector2(213.67743, 179.19965)
-scale = Vector2(0.8064516, 0.8000005)
-curve = SubResource("Curve2D_qujyy")
-
-[node name="SpotB1" type="Path2D" parent="." unique_id=1731792316]
-position = Vector2(0, 199.74702)
-scale = Vector2(1, 0.77894783)
-curve = SubResource("Curve2D_0duca")
-
-[node name="SpotB3" type="Path2D" parent="." unique_id=889855185]
-position = Vector2(-55.200073, 179.19965)
-scale = Vector2(1.05, 0.8000005)
-curve = SubResource("Curve2D_5scnu")
-
-[node name="SpotL1" type="Path2D" parent="." unique_id=1454537790]
-position = Vector2(0, 205.22618)
-scale = Vector2(1, 0.7733339)
-curve = SubResource("Curve2D_3m6t0")
-
-[node name="SpotB2" type="Path2D" parent="." unique_id=420400536]
-position = Vector2(84.92297, 114.13336)
-scale = Vector2(0.923077, 0.86666673)
-curve = SubResource("Curve2D_u1ary")
-
-[node name="CustomerSpawner" type="Node2D" parent="." unique_id=1901069465 node_paths=PackedStringArray("entrance_paths")]
-position = Vector2(0, 7.6293945e-06)
-scale = Vector2(0.99999994, 0.99999994)
-script = ExtResource("6_u1ary")
-customer_scene = ExtResource("8_rwm3f")
-entrance_paths = [NodePath("../SpotL1"), NodePath("../SpotL2"), NodePath("../SpotL3"), NodePath("../SpotB1"), NodePath("../SpotB2"), NodePath("../SpotB3")]
-min_spawn_time = 1.0
-max_spawn_time = 3.0
-order_icons = Array[Texture2D]([ExtResource("8_qujyy"), ExtResource("9_1sijj"), ExtResource("10_0duca")])
-max_customers = 10
-
-[node name="SpawnTimer" type="Timer" parent="CustomerSpawner" unique_id=517561899]
-one_shot = true
+[node name="CustomerSpawner" parent="." unique_id=1173114822 instance=ExtResource("11_qujyy")]
+min_spawn_time = 2.0
+max_spawn_time = 5.0

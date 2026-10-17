@@ -20,7 +20,7 @@ script = ExtResource("1_tefeu")
 
 [node name="Player_Character" parent="character_manager" unique_id=702846183 instance=ExtResource("1_o5qli")]
 z_index = 10
-position = Vector2(407, 562)
+position = Vector2(382, 619)
 
 [node name="level_manager" type="Node" parent="." unique_id=2081016786]
 script = ExtResource("3_sugp2")

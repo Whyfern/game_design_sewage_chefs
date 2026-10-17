@@ -19,8 +19,8 @@ config/icon="res://sprites/placeholder assets/old/icon.svg"
 
 GameManager="*uid://3sdfpv4e0e5c"
 EventBus="*uid://di05c4xptbcgk"
-DialogueUI="*uid://cx7yhlr0bvvkh"
 TimerContainer="*uid://bw4avsbvs0fv0"
+Dialogue="*uid://cx7yhlr0bvvkh"
 
 [display]
 

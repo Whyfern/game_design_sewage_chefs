@@ -30,4 +30,4 @@ func talk() -> void:
 			"portrait": npc_portrait
 		})
 
-	await DialogueUI.show_dialogue(lines)
+	await Dialogue.show_dialogue(lines)

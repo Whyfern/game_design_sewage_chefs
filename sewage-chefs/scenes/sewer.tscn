@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://s1wc36ipkarp"]
 
 [ext_resource type="Texture2D" uid="uid://b4qykjirqhvxk" path="res://sprites/placeholder assets/architecture/sewer assets/MockUp-01.png" id="2_7w1x0"]
+[ext_resource type="PackedScene" uid="uid://c36j07vxpsvvf" path="res://scenes/player_character.tscn" id="3_7w1x0"]
 [ext_resource type="PackedScene" uid="uid://7f2crjg8qw6u" path="res://scenes/rat_enemies.tscn" id="4_c03w2"]
 
 [sub_resource type="Curve2D" id="Curve2D_c03w2"]
@@ -58,3 +59,6 @@ collision_mask = 14
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="map borders/border small" unique_id=219932162]
 position = Vector2(580, 493)
 polygon = PackedVector2Array(-570, -701, -569, -843, -669, -844, -668, -702)
+
+[node name="Player_Character" parent="." unique_id=702846183 instance=ExtResource("3_7w1x0")]
+position = Vector2(386, 344)

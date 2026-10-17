@@ -2,11 +2,62 @@
 
 [ext_resource type="Texture2D" uid="uid://i7kcc2h81onu" path="res://sprites/placeholder assets/Rat - Warrior/Death/Death-Sheet.png" id="1_c0iws"]
 [ext_resource type="Script" uid="uid://ne1ggywnxtao" path="res://scripts/rat_enemies.gd" id="1_i8cp6"]
+[ext_resource type="Texture2D" uid="uid://v21rb7wphedc" path="res://sprites/placeholder assets/Rat - Warrior/Attack/Attack_down.png" id="2_ert3p"]
 [ext_resource type="Texture2D" uid="uid://4jtqrpjsfpnh" path="res://sprites/placeholder assets/Rat - Warrior/Idle/Idle-Sheet.png" id="2_oc0h0"]
+[ext_resource type="Texture2D" uid="uid://drmp3m1rr7501" path="res://sprites/placeholder assets/Rat - Warrior/Attack/attack_right.png" id="3_00heb"]
 [ext_resource type="Texture2D" uid="uid://ccxqhcsovmxt7" path="res://sprites/placeholder assets/Rat - Warrior/Run/Run-Sheet.png" id="3_s7xfa"]
+[ext_resource type="Texture2D" uid="uid://bchmbfr0u4gm8" path="res://sprites/placeholder assets/Rat - Warrior/Attack/attack_up.png" id="4_wl1vj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4kof"]
 size = Vector2(25, 27.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ik12"]
+atlas = ExtResource("2_ert3p")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li6aj"]
+atlas = ExtResource("2_ert3p")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8oxv"]
+atlas = ExtResource("2_ert3p")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dit0l"]
+atlas = ExtResource("2_ert3p")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbqid"]
+atlas = ExtResource("3_00heb")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwxto"]
+atlas = ExtResource("3_00heb")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxy7l"]
+atlas = ExtResource("3_00heb")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odgpd"]
+atlas = ExtResource("3_00heb")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s1diw"]
+atlas = ExtResource("4_wl1vj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2guu"]
+atlas = ExtResource("4_wl1vj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f8h8"]
+atlas = ExtResource("4_wl1vj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urfcd"]
+atlas = ExtResource("4_wl1vj")
+region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fi13k"]
 atlas = ExtResource("1_c0iws")
@@ -76,6 +127,57 @@ region = Rect2(320, 0, 64, 64)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_5ik12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li6aj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8oxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dit0l")
+}],
+"loop": 1,
+"name": &"Attack_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbqid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwxto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxy7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odgpd")
+}],
+"loop": 1,
+"name": &"Attack_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s1diw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2guu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f8h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urfcd")
+}],
+"loop": 1,
+"name": &"Attack_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_fi13k")
 }, {
 "duration": 1.0,
@@ -138,6 +240,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2fon"]
+radius = 11.333334
+
 [node name="rat_enemies" type="CharacterBody2D" unique_id=893018143]
 scale = Vector2(3, 3)
 collision_layer = 4
@@ -153,3 +258,13 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_j2fon")
 animation = &"Idle"
 autoplay = "Idle"
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=390748007]
+collision_layer = 16
+collision_mask = 0
+input_pickable = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=506566346]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_j2fon")
