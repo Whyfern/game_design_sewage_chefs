@@ -42,14 +42,22 @@ func update_sprite() -> void:
 		"Red Bell Pepper": "res://sprites/ingredients_assets/bell pepper red.png",
 		"Pumpkin": "res://sprites/ingredients_assets/pumpkin.png",
 		"Cucumber": "res://sprites/ingredients_assets/cucumber.png",
-		"Duck breast": "res://sprites/ingredients_assets/duck breast.png",
+		"Duck Breast": "res://sprites/ingredients_assets/duck breast.png",
 		"Corn": "res://sprites/ingredients_assets/corn.png",
 		"Dragonfruit": "res://sprites/ingredients_assets/dragonfruit.png",
 		"Lettuce": "res://sprites/ingredients_assets/lettuce.png",
 		"Mango": "res://sprites/ingredients_assets/mango.png",
 		"Potato": "res://sprites/ingredients_assets/potato.png",
-		"Cheese mozarella": "res://sprites/ingredients_assets/cheese mozarella.png",
-		"Tomato": "res://sprites/ingredients_assets/tomato.png"
+		"Cheese Mozzarella": "res://sprites/ingredients_assets/cheese mozzarella.png",
+		"Tomato": "res://sprites/ingredients_assets/tomato.png",
+		"Lobster": "res://sprites/ingredients_assets/lobster.png",
+		"Short Ribs": "res://sprites/ingredients_assets/short ribs.png",
+		"Carrot": "res://sprites/ingredients_assets/carrot.png",
+		"Asparagus": "res://sprites/ingredients_assets/asparagus.png",
+		"Parsnip": "res://sprites/ingredients_assets/parsnip.png",
+		"Radish": "res://sprites/ingredients_assets/radish.png",
+		"Garlic": "res://sprites/ingredients_assets/garlic.png",
+		"New York Strip": "res://sprites/ingredients_assets/new york strip.png"
 	}
 
 	if sprite_paths.has(ingredient_name):

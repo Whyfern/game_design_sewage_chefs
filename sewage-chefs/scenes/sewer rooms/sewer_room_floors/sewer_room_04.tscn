@@ -20,3 +20,39 @@ tile_set = ExtResource("2_o6dkk")
 
 [node name="FoodSpawn1" type="Marker2D" parent="FoodSpawns" unique_id=1005054300]
 position = Vector2(638, 382)
+
+[node name="FoodSpawn2" type="Marker2D" parent="FoodSpawns" unique_id=1335174064]
+position = Vector2(385, 157)
+
+[node name="FoodSpawn3" type="Marker2D" parent="FoodSpawns" unique_id=898068079]
+position = Vector2(121, 171)
+
+[node name="FoodSpawn4" type="Marker2D" parent="FoodSpawns" unique_id=1598424498]
+position = Vector2(118, 392)
+
+[node name="FoodSpawn5" type="Marker2D" parent="FoodSpawns" unique_id=855900527]
+position = Vector2(371, 588)
+
+[node name="FoodSpawn6" type="Marker2D" parent="FoodSpawns" unique_id=1180469301]
+position = Vector2(394, 407)
+
+[node name="FoodSpawn7" type="Marker2D" parent="FoodSpawns" unique_id=636509250]
+position = Vector2(135, 599)
+
+[node name="FoodSpawn8" type="Marker2D" parent="FoodSpawns" unique_id=799727297]
+position = Vector2(1162, 154)
+
+[node name="FoodSpawn9" type="Marker2D" parent="FoodSpawns" unique_id=1370261520]
+position = Vector2(898, 168)
+
+[node name="FoodSpawn10" type="Marker2D" parent="FoodSpawns" unique_id=12837076]
+position = Vector2(1030, 273)
+
+[node name="FoodSpawn11" type="Marker2D" parent="FoodSpawns" unique_id=63009666]
+position = Vector2(901, 583)
+
+[node name="FoodSpawn12" type="Marker2D" parent="FoodSpawns" unique_id=1889366094]
+position = Vector2(1165, 595)
+
+[node name="FoodSpawn13" type="Marker2D" parent="FoodSpawns" unique_id=159686409]
+position = Vector2(1035, 452)

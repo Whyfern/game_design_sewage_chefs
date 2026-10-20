@@ -47,3 +47,9 @@ position = Vector2(361, 629)
 
 [node name="FoodSpawn11" type="Marker2D" parent="FoodSpawns" unique_id=1715129581]
 position = Vector2(1125, 607)
+
+[node name="FoodSpawn2" type="Marker2D" parent="FoodSpawns" unique_id=2052401773]
+position = Vector2(1116, 412)
+
+[node name="FoodSpawn12" type="Marker2D" parent="FoodSpawns" unique_id=326687931]
+position = Vector2(164, 183)
