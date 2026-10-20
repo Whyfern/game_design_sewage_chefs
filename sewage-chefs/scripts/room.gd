@@ -73,9 +73,27 @@ func test_boundary():
 	
 	
 func spawn_ingredients():
-	print("Spawn function called!")
-	print("Floor children: ", floorInstance.get_children())
-	print("Has FoodSpawns child: ", floorInstance.has_node("FoodSpawns"))
+	var ingredient_options = [
+		"Apple",
+		"Green Bell Pepper",
+		"Onion",
+		"Brisket",
+		"Cheese Brie",
+		"Tuna Steak",
+		"T Bone",
+		"Cherries",
+		"Red Bell Pepper",
+		"Pumpkin",
+		"Cucumber",
+		"Duck breast",
+		"Corn",
+		"Dragonfruit",
+		"Lettuce",
+		"Mango",
+		"Potato",
+		"Cheese mozarella",
+		"Tomato"
+	]
 
 	var spawn_markers = floorInstance.find_children(
 		"FoodSpawn*",
@@ -84,16 +102,14 @@ func spawn_ingredients():
 		false
 	)
 
-	print("Markers found: ", spawn_markers.size())
-
 	for marker in spawn_markers:
-		print("Marker position: ", marker.global_position)
-
 		var ingredient = ingredient_scene.instantiate()
+
+		# Choose the ingredient before adding it to the scene.
+		ingredient.ingredient_name = ingredient_options.pick_random()
+
 		floorInstance.add_child(ingredient)
 		ingredient.global_position = marker.global_position
-
-		print("Ingredient spawned at: ", ingredient.global_position)
 
 func choose_floor(start : bool):
 	floorsKeys = floorsDict.keys()

@@ -21,6 +21,7 @@ GameManager="*uid://3sdfpv4e0e5c"
 EventBus="*uid://di05c4xptbcgk"
 TimerContainer="*uid://bw4avsbvs0fv0"
 Dialogue="*uid://cx7yhlr0bvvkh"
+InventoryManager="*uid://ybbri20uwopi"
 
 [display]
 
