@@ -4,8 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://brwacvk7dtkmb" path="res://scenes/interacting_component.tscn" id="2_kww55"]
 [ext_resource type="Texture2D" uid="uid://bpsqa6fuf3qqf" path="res://sprites/placeholder assets/old/chef_rat_animation2.png" id="3_kww55"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lmgjl"]
+radius = 37.48333
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
-size = Vector2(33, 39)
+size = Vector2(21, 14)
 
 [sub_resource type="Animation" id="Animation_pxja8"]
 resource_name = "Idle"
@@ -382,6 +385,14 @@ collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_6r27q")
 
+[node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
+position = Vector2(-1, -17)
+
+[node name="InteractRange" type="Area2D" parent="InteractingComponent" unique_id=928180136]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractingComponent/InteractRange" unique_id=175099700]
+shape = SubResource("CircleShape2D_lmgjl")
+
 [node name="ChefRat" type="Sprite2D" parent="." unique_id=1828937166]
 position = Vector2(0, -24)
 scale = Vector2(0.4, 0.4)
@@ -389,13 +400,6 @@ texture = ExtResource("3_kww55")
 hframes = 4
 vframes = 6
 frame = 9
-
-[node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
-position = Vector2(0, -12)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
-position = Vector2(2.5, -19.5)
-shape = SubResource("RectangleShape2D_uqykc")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
 limit_left = 0
@@ -423,4 +427,6 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1043307051]
 shape = SubResource("CapsuleShape2D_j2fon")
 
+[connection signal="area_entered" from="InteractingComponent/InteractRange" to="InteractingComponent" method="_on_interact_range_area_entered"]
+[connection signal="area_exited" from="InteractingComponent/InteractRange" to="InteractingComponent" method="_on_interact_range_area_exited"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

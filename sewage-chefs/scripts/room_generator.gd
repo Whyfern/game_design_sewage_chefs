@@ -24,6 +24,7 @@ func _ready() -> void:
 	create_grid()
 	await EventBus.layoutGenerated
 	set_room_doors()
+	calculate_room_depths()
 	draw_map()
 	pass
 
@@ -71,6 +72,50 @@ func set_room_doors():
 			room.door_bot = ((i + 1) < gridSize.y) and grid[i+1][j] != null
 			room.door_left = ((j - 1) >= 0) and grid[i][j-1] != null
 			room.door_right = ((j + 1) < gridSize.x) and grid[i][j+1] != null
+			
+			
+func calculate_room_depths():
+	var queue: Array = []
+	var visited: Dictionary = {}
+
+	# Find the starting room.
+	for i in range(grid.size()):
+		for j in range(grid[i].size()):
+			if grid[i][j] != null and grid[i][j].type == 1:
+				queue.append({"pos": Vector2i(i, j), "depth": 0})
+				visited[Vector2i(i, j)] = true
+
+	# Explore connected rooms, one step at a time.
+	while not queue.is_empty():
+		var current = queue.pop_front()
+		var pos: Vector2i = current["pos"]
+		var depth: int = current["depth"]
+
+		var room = grid[pos.x][pos.y]
+		room.depth = depth
+
+		var neighbors = [
+			Vector2i(pos.x - 1, pos.y),
+			Vector2i(pos.x + 1, pos.y),
+			Vector2i(pos.x, pos.y - 1),
+			Vector2i(pos.x, pos.y + 1)
+		]
+
+		for neighbor in neighbors:
+			if neighbor.x < 0 or neighbor.x >= grid.size():
+				continue
+			if neighbor.y < 0 or neighbor.y >= grid[neighbor.x].size():
+				continue
+			if grid[neighbor.x][neighbor.y] == null:
+				continue
+			if visited.has(neighbor):
+				continue
+
+			visited[neighbor] = true
+			queue.append({
+				"pos": neighbor,
+				"depth": depth + 1
+			})
 
 func draw_map():
 	for i in range(grid.size()):
@@ -85,6 +130,7 @@ func draw_map():
 			instance.position = draw_pos
 			instance.type = room.type
 			instance.grid_pos = room.grid_pos
+			instance.depth = room.depth
 			instance.door_top = room.door_top
 			instance.door_bot = room.door_bot
 			instance.door_left = room.door_left

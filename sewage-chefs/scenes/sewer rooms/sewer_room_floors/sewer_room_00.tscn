@@ -22,7 +22,16 @@ tile_set = ExtResource("2_63ckx")
 position = Vector2(137, 580)
 
 [node name="FoodSpawn2" type="Marker2D" parent="FoodSpawns" unique_id=380443151]
-position = Vector2(1114, 383)
+position = Vector2(1137, 202)
 
-[node name="FoodSpawn3" type="Marker2D" parent="FoodSpawns" unique_id=1833512566]
-position = Vector2(376, 205)
+[node name="FoodSpawn4" type="Marker2D" parent="FoodSpawns" unique_id=381920218]
+position = Vector2(154, 210)
+
+[node name="FoodSpawn8" type="Marker2D" parent="FoodSpawns" unique_id=1541187941]
+position = Vector2(649, 590)
+
+[node name="FoodSpawn9" type="Marker2D" parent="FoodSpawns" unique_id=841397237]
+position = Vector2(637, 202)
+
+[node name="FoodSpawn12" type="Marker2D" parent="FoodSpawns" unique_id=1697226839]
+position = Vector2(1119, 589)

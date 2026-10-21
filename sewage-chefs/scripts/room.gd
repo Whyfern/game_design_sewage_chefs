@@ -17,6 +17,7 @@ var floorInstance
 
 var grid_pos: Vector2
 var type: int
+var depth: int = 0
 
 #True means open
 var door_top: bool
@@ -73,9 +74,40 @@ func test_boundary():
 	
 	
 func spawn_ingredients():
-	print("Spawn function called!")
-	print("Floor children: ", floorInstance.get_children())
-	print("Has FoodSpawns child: ", floorInstance.has_node("FoodSpawns"))
+	var common_ingredients = [
+		"Apple",
+		"Onion",
+		"Cucumber",
+		"Mango",
+		"Tomato",
+		"Dragonfruit",
+		"Cherries",
+		#"Green Bell Pepper",
+		#"Red Bell Pepper"
+	]
+
+	var uncommon_ingredients = [
+		"Cheese Mozarella",
+		"Cheese Brie",
+		"Pumpkin",
+		"Radish",
+		"Parsnip",
+		"Asparagus",
+		"Carrot",
+		"Potato",
+		"Corn",
+		"Lettuce"
+	]
+
+	var rare_ingredients = [
+		"Brisket",
+		"Tuna Steak",
+		"T Bone",
+		"Duck Breast",
+		"New York Strip",
+		"Short Ribs",
+		"Lobster"
+	]
 
 	var spawn_markers = floorInstance.find_children(
 		"FoodSpawn*",
@@ -84,16 +116,30 @@ func spawn_ingredients():
 		false
 	)
 
-	print("Markers found: ", spawn_markers.size())
-
 	for marker in spawn_markers:
-		print("Marker position: ", marker.global_position)
+		# Keep the existing 40% spawn chance.
+		if randf() > 0.4:
+			continue
+
+		var ingredient_options = common_ingredients
+
+		# Deeper rooms have better odds of uncommon and rare food.
+		var rarity_roll = randf()
+
+		if depth >= 3 and rarity_roll < 0.90:
+			ingredient_options = rare_ingredients
+		elif depth >= 2 and rarity_roll < 0.70:
+			ingredient_options = uncommon_ingredients
+		elif depth >= 2 and rarity_roll < 0.40:
+			ingredient_options = rare_ingredients
+		elif depth >= 1 and rarity_roll < 0.20:
+			ingredient_options = uncommon_ingredients
 
 		var ingredient = ingredient_scene.instantiate()
+		ingredient.ingredient_name = ingredient_options.pick_random()
+
 		floorInstance.add_child(ingredient)
 		ingredient.global_position = marker.global_position
-
-		print("Ingredient spawned at: ", ingredient.global_position)
 
 func choose_floor(start : bool):
 	floorsKeys = floorsDict.keys()
