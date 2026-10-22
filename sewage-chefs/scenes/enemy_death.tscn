@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b6xw3hj0thg4l"]
+
+[ext_resource type="Script" uid="uid://th7ed2mbbpvv" path="res://scripts/enemy_death.gd" id="1_5o8jb"]
+[ext_resource type="Texture2D" uid="uid://i7kcc2h81onu" path="res://sprites/placeholder assets/Rat - Warrior/Death/Death-Sheet.png" id="1_217mc"]
+
+[sub_resource type="Animation" id="Animation_5o8jb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_w8rse"]
+resource_name = "enemy_death"
+length = 0.6
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3, 0.39999998, 0.49999997),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lwfox"]
+_data = {
+&"RESET": SubResource("Animation_5o8jb"),
+&"enemy_death": SubResource("Animation_w8rse")
+}
+
+[node name="enemy_death" type="Node2D" unique_id=1505900030]
+script = ExtResource("1_5o8jb")
+
+[node name="death_anim" type="Sprite2D" parent="." unique_id=109173414]
+position = Vector2(0, -96)
+scale = Vector2(3, 3)
+texture = ExtResource("1_217mc")
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1033788176]
+root_node = NodePath("../death_anim")
+libraries/ = SubResource("AnimationLibrary_lwfox")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
