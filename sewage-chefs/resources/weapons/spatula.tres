@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/weapon_data.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cgmlrghe4tdd" path="res://sprites/Rats/spatula.png" id="2_icon"]
+
+[resource]
+script = ExtResource("1_script")
+weaponName = "Spatula"
+icon = ExtResource("2_icon")
+damage = 60
+attackSpeed = 0.5

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="sewage chefs"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/menus/loading_screen.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://sprites/placeholder assets/old/icon.svg"
 
@@ -22,6 +22,7 @@ EventBus="*uid://di05c4xptbcgk"
 TimerContainer="*uid://bw4avsbvs0fv0"
 Dialogue="*uid://cx7yhlr0bvvkh"
 InventoryManager="*uid://ybbri20uwopi"
+WeaponInventory="*res://scripts/weapons/weapon_inventory.gd"
 
 [display]
 
