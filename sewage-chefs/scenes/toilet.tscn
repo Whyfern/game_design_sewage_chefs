@@ -11,6 +11,8 @@ size = Vector2(20.42253, 26)
 radius = 61.03278
 
 [node name="Toilet" type="StaticBody2D" unique_id=1982298826]
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_5rkpo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1295751465]

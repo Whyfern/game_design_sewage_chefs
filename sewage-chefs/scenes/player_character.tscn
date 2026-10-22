@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://cda65libt4v4h" path="res://scripts/player_character.gd" id="1_6r27q"]
 [ext_resource type="PackedScene" uid="uid://brwacvk7dtkmb" path="res://scenes/interacting_component.tscn" id="2_kww55"]
 [ext_resource type="Texture2D" uid="uid://bpsqa6fuf3qqf" path="res://sprites/placeholder assets/old/chef_rat_animation2.png" id="3_kww55"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_lmgjl"]
-radius = 37.48333
+[ext_resource type="Script" uid="uid://cjq0fy7da8kp3" path="res://scripts/playerCamera.gd" id="4_4h0vy"]
 
 [sub_resource type="Animation" id="Animation_pxja8"]
 resource_name = "Idle"
@@ -441,6 +439,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2vmgx"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qwq0k"]
 
@@ -473,11 +472,6 @@ script = ExtResource("1_6r27q")
 [node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
 position = Vector2(0, -17)
 
-[node name="InteractRange" type="Area2D" parent="InteractingComponent" unique_id=928180136]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractingComponent/InteractRange" unique_id=175099700]
-shape = SubResource("CircleShape2D_lmgjl")
-
 [node name="ChefRat" type="Sprite2D" parent="." unique_id=1828937166]
 position = Vector2(0, -24)
 scale = Vector2(0.4, 0.4)
@@ -487,11 +481,13 @@ vframes = 6
 frame = 9
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
+top_level = true
 limit_left = 0
 limit_top = 0
 limit_right = 6400
 limit_bottom = 3520
 position_smoothing_enabled = true
+script = ExtResource("4_4h0vy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1047978012]
 libraries/ = SubResource("AnimationLibrary_pxja8")
@@ -532,6 +528,4 @@ shape = SubResource("CapsuleShape2D_j2fon")
 position = Vector2(0, -17)
 shape = SubResource("CapsuleShape2D_j2fon")
 
-[connection signal="area_entered" from="InteractingComponent/InteractRange" to="InteractingComponent" method="_on_interact_range_area_entered"]
-[connection signal="area_exited" from="InteractingComponent/InteractRange" to="InteractingComponent" method="_on_interact_range_area_exited"]
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

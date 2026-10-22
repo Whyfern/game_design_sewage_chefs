@@ -57,7 +57,7 @@ func calculate_random_decreasing_intervals():
 
 
 func spawn_sewage():
-	print(possibilities)
+	#print(possibilities)
 	var chosenRoom = possibilities.pick_random()
 	possibilities.erase(chosenRoom)
 	sewageAreaInstance = sewageArea.instantiate()
@@ -70,8 +70,8 @@ func _process(delta: float) -> void:
 	if !intervals.is_empty() and (sewageTimer.time_left <= intervals.front()):
 		spawn_sewage()
 		intervals.pop_front()
-	print(currentTime, " ", intervals)
-	print(sewageTimer.time_left)
+	#print(currentTime, " ", intervals)
+	#print(sewageTimer.time_left)
 
 func calculate_Next_Interval():
 	while totalIntervals >= 1:

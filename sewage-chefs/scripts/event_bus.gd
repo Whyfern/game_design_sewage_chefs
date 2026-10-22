@@ -16,5 +16,7 @@ signal don_parmesan_spawn_requested
 
 signal don_parmesan_leave_requested
 
+signal switchCameraState(state : String)
+
 # emitted when the player pays Don Parmesan (a new day starts)
 signal debt_paid

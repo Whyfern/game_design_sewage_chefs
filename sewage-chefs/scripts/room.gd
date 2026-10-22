@@ -3,6 +3,7 @@ class_name room
 
 @onready var levelMan = get_node("../../..")
 @onready var ingredient_scene = preload("res://scenes/ingredient_collectible.tscn")
+@onready var toilet = load("res://scenes/toilet.tscn")
 
 var boundaryInstance
 
@@ -47,6 +48,7 @@ func set_Start_Room_Pos():
 func assemble_room(start : bool):
 	if start:
 		choose_floor(true)
+		place_toilet()
 	else:
 		choose_floor(false)
 	choose_wall()
@@ -66,6 +68,11 @@ func choose_wall():
 	$Label.text = code
 	boundaryInstance = boundary.instantiate()
 	self.add_child.call_deferred(boundaryInstance)
+
+func place_toilet():
+	var toiletInstance = toilet.instantiate()
+	toiletInstance.position = Vector2(1280/2, 704/2)
+	self.add_child.call_deferred(toiletInstance)
 
 func test_boundary():
 	print(door_top, ":top,  ", door_left, ":left,  ", door_bot, ":bot,  ", door_right, ":right")

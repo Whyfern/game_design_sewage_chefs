@@ -24,6 +24,9 @@ var startPos : Vector2
 @export var gridSize : Vector2 = Vector2(5, 5)
 @export var roomSize : Vector2 = Vector2(1280, 704)
 
+#place where the player starts in the restaurant
+@export var charStartRest : Vector2 = Vector2(400, 430)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	EventBus.connect("toiletFlushed", switch_level)
@@ -34,7 +37,7 @@ func _ready() -> void:
 #checks if the sewer or the restaurant should be switched to 
 func switch_level():
 	if restaurantState:
-		instantiate_level()
+		instantiate_sewer()
 	elif !restaurantState:
 		instatiate_restaurant()
 
@@ -46,13 +49,21 @@ func instatiate_restaurant():
 		restaurantInstance.z_index = 0
 		main.add_child.call_deferred(restaurantInstance)
 		
-		if sewerGenerationInstance:
-			sewerGenerationInstance.queue_free()
+		startPos = charStartRest
+		playChar.position = startPos
+		sewageBar.isFlooding = false
+		
+		EventBus.emit_signal("switchCameraState", "restaurant")
+		
+		if roomGenerationInstance:
+			roomGenerationInstance.queue_free()
+			sewageManInstance.queue_free()
+			sewageBar.visible = false
 		restaurantState = true
 	pass
 
 #used to spawn the sewer while also despawning the restaurant. It works by instantiating room generatioin and sewage manager
-func instantiate_level():
+func instantiate_sewer():
 	if restaurantState:
 		roomGenerationInstance = roomGeneration.instantiate()
 		roomGenerationInstance.roomValue = roomValue
@@ -71,6 +82,8 @@ func instantiate_level():
 		sewageBar.sewageMan = sewageManInstance
 		sewageBar.set_parameters()
 		sewageBar.visible = true
+		
+		EventBus.emit_signal("switchCameraState", "sewer")
 		
 		await EventBus.startRoomPos
 		startPos = startPos * roomSize
