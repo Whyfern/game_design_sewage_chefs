@@ -33,7 +33,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -12), Vector2(0, -12)]
+"values": [Vector2(0, -26), Vector2(0, -26)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -96,7 +96,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_4h0vy"]
@@ -173,10 +173,10 @@ tracks/1/path = NodePath("Hitbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -188,7 +188,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-20, -35.000004), Vector2(3.0000005, -3), Vector2(17, -19), Vector2(-15.000001, -35)]
+"values": [Vector2(-20, -44), Vector2(3.0000005, -3), Vector2(24, -19), Vector2(-15.000001, -46.000004)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -240,7 +240,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(8, -17), Vector2(12, -38), Vector2(-17, -41), Vector2(14, -20)]
+"values": [Vector2(8, -17), Vector2(12, -46), Vector2(-17, -51), Vector2(14, -20)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -252,7 +252,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.0, -0.62831855]
+"values": [-0.5235988, 0.0, 0.0, -0.62831855]
 }
 
 [sub_resource type="Animation" id="Animation_6unfe"]
@@ -293,7 +293,19 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(4.7683716e-07, -12), Vector2(9.536743e-07, -12)]
+"values": [Vector2(0, -26), Vector2(0, -26)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_iadup"]
@@ -322,7 +334,19 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -12.000002), Vector2(0, -12.000002)]
+"values": [Vector2(0, -25), Vector2(0, -26)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_herhr"]
@@ -352,6 +376,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, -12), Vector2(0, -12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pxja8"]
@@ -407,32 +443,32 @@ node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"BlendSpace2D"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pxja8"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2vlw4"]
-animation = &"attack_up"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_joi77"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kww55"]
 animation = &"run_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_br6ma"]
-animation = &"attack_right"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4h0vy"]
+animation = &"run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xc70a"]
-animation = &"attack_right"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uj7mf"]
+animation = &"run_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2vmgx"]
+animation = &"run"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2w5w8"]
 blend_mode = 1
-blend_point_0/node = SubResource("AnimationNodeAnimation_2vlw4")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_0/name = &"attack_up"
-blend_point_1/node = SubResource("AnimationNodeAnimation_joi77")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_1/name = &"run_down"
-blend_point_2/node = SubResource("AnimationNodeAnimation_br6ma")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_2/name = &"attack_right"
-blend_point_3/node = SubResource("AnimationNodeAnimation_xc70a")
+blend_point_0/node = SubResource("AnimationNodeAnimation_kww55")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"run_down"
+blend_point_1/node = SubResource("AnimationNodeAnimation_4h0vy")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_1/name = &"run"
+blend_point_2/node = SubResource("AnimationNodeAnimation_uj7mf")
+blend_point_2/pos = Vector2(0, -1)
+blend_point_2/name = &"run_up"
+blend_point_3/node = SubResource("AnimationNodeAnimation_2vmgx")
 blend_point_3/pos = Vector2(1, 0)
-blend_point_3/name = &"attack_right 2"
+blend_point_3/name = &"run 2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_herhr"]
 advance_mode = 2
@@ -448,6 +484,8 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kww55"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6unfe"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j2fon"]
 states/Attack/node = SubResource("AnimationNodeBlendTree_br6ma")
 states/Attack/position = Vector2(390.99997, 313.33337)
@@ -455,7 +493,7 @@ states/Idle/node = SubResource("AnimationNodeAnimation_pxja8")
 states/Idle/position = Vector2(330.3333, 178)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_2w5w8")
 states/Run/position = Vector2(520, 178.51852)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_herhr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_uj7mf"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_2vmgx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_qwq0k"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_eomf4"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_kww55")]
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_herhr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_uj7mf"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_2vmgx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_qwq0k"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_eomf4"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_kww55"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_6unfe")]
 graph_offset = Vector2(116, 113)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kww55"]
@@ -521,11 +559,12 @@ position = Vector2(-15.000001, -27.000002)
 scale = Vector2(0.45, 0.45)
 collision_layer = 0
 collision_mask = 16
+monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1043307051]
-position = Vector2(0, -17.77778)
-scale = Vector2(1.7, 1.7)
+position = Vector2(2.1192766e-06, 20.000013)
+scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_j2fon")
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

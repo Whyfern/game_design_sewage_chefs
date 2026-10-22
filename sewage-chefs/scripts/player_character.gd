@@ -47,7 +47,7 @@ func movement_loop() -> void:
 		animationTree.set("parameters/Run/blend_position", moveDirection)
 	
 	# Player's sprite flipping in idle / run state 
-	if state == State.IDLE or State.RUN:
+	if state == State.IDLE or state == State.RUN:
 		if moveDirection.x < -0.01:
 			$ChefRat.flip_h = true
 		elif moveDirection.x > 0.01: 
