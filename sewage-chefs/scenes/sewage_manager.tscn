@@ -4,3 +4,6 @@
 
 [node name="sewage_manager" type="Node2D" unique_id=13746408]
 script = ExtResource("1_1dpth")
+
+[node name="sewage_timer" type="Timer" parent="." unique_id=848318283]
+one_shot = true

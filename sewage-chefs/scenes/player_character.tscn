@@ -7,9 +7,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_lmgjl"]
 radius = 37.48333
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
-size = Vector2(21, 14)
-
 [sub_resource type="Animation" id="Animation_pxja8"]
 resource_name = "Idle"
 length = 0.4
@@ -378,7 +375,7 @@ graph_offset = Vector2(-78, 27)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2fon"]
 radius = 13.333333
-height = 53.33333
+height = 34.0
 
 [node name="Player_Character" type="CharacterBody2D" unique_id=702846183]
 collision_layer = 2
@@ -386,7 +383,7 @@ collision_mask = 13
 script = ExtResource("1_6r27q")
 
 [node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
-position = Vector2(-1, -17)
+position = Vector2(0, -17)
 
 [node name="InteractRange" type="Area2D" parent="InteractingComponent" unique_id=928180136]
 
@@ -425,6 +422,10 @@ collision_mask = 16
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1043307051]
+shape = SubResource("CapsuleShape2D_j2fon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=857181560]
+position = Vector2(0, -17)
 shape = SubResource("CapsuleShape2D_j2fon")
 
 [connection signal="area_entered" from="InteractingComponent/InteractRange" to="InteractingComponent" method="_on_interact_range_area_entered"]
