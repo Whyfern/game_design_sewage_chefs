@@ -4,7 +4,7 @@ extends Node2D
 @onready var sewageTimer : Timer = $sewage_timer
 var sewageAreaInstance : Node
 
-var maxTime : float = 5  # 1000 is for msec
+var maxTime : float = 60  # 1000 is for msec
 var startingTime : float
 var currentTime : float = 0
 var totalTime : float = 0
