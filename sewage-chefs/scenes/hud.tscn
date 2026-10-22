@@ -59,6 +59,7 @@
 [ext_resource type="Script" uid="uid://bw4avsbvs0fv0" path="res://scripts/HUD/timer_container.gd" id="57_ydkem"]
 [ext_resource type="AudioStream" uid="uid://5k15sn8ha2fj" path="res://Music/GameMusic.ogg" id="58_3hv7p"]
 [ext_resource type="Script" uid="uid://3yasfovf7aip" path="res://scripts/HUD/music.gd" id="59_o1o2r"]
+[ext_resource type="PackedScene" path="res://scenes/HUD/weapon_bar.tscn" id="60_weaponbar"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd3ao"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -323,29 +324,7 @@ frame_progress = 0.10904889
 speed_scale = 0.5
 script = ExtResource("3_5ysmq")
 
-[node name="WeaponSlot" type="TextureRect" parent="." unique_id=166747344]
-custom_minimum_size = Vector2(60, 60)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -350.0
-offset_top = -108.0
-offset_right = -222.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("5_5pdws")
-expand_mode = 2
-script = ExtResource("5_uo2fv")
-
-[node name="WeaponIcon" type="TextureRect" parent="WeaponSlot" unique_id=648172156]
-layout_mode = 0
-offset_right = 128.0
-offset_bottom = 128.0
-texture = ExtResource("6_047uy")
-expand_mode = 2
+[node name="WeaponBar" parent="." instance=ExtResource("60_weaponbar")]
 
 [node name="ClockSprite" type="AnimatedSprite2D" parent="." unique_id=539584329]
 position = Vector2(1200, 63)

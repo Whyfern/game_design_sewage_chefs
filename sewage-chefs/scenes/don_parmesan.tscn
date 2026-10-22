@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bjdeukfuw5b34" path="res://scenes/npc.tscn" id="1_8esca"]
 [ext_resource type="Texture2D" uid="uid://xwlvqm6cmah5" path="res://sprites/Rats/MafiaRat.PNG" id="1_mj8ym"]
+[ext_resource type="Script" path="res://scripts/don_parmesan.gd" id="2_donscript"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_422qx"]
 size = Vector2(61.26759, 26.269188)
@@ -10,6 +11,7 @@ size = Vector2(61.26759, 26.269188)
 radius = 56.0
 
 [node name="NPC" unique_id=456873055 instance=ExtResource("1_8esca")]
+script = ExtResource("2_donscript")
 npc_name = "Don Parmesan"
 dialogue = "It is time for your payment...
 You surely have not forgotten that, right?
