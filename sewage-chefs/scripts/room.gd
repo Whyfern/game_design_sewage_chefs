@@ -67,6 +67,7 @@ func choose_wall():
 	boundary = boundariesDict[file_name]
 	$Label.text = code
 	boundaryInstance = boundary.instantiate()
+	boundaryInstance.z_index = -2
 	self.add_child.call_deferred(boundaryInstance)
 
 func place_toilet():
@@ -157,6 +158,7 @@ func choose_floor(start : bool):
 		floor = floorsDict[randomKey]
 	#print("Is start room: ", start)
 	floorInstance = floor.instantiate()
+	floorInstance.z_index = -3
 	#print("Loaded floor scene: ", floor.resource_path)
 	add_child(floorInstance)
 	#self.add_child.call_deferred(floorInstance)

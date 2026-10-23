@@ -327,6 +327,8 @@ radius = 9.876543
 height = 19.753086
 
 [node name="rat_enemies" type="CharacterBody2D" unique_id=893018143]
+z_index = 10
+z_as_relative = false
 y_sort_enabled = true
 scale = Vector2(3, 3)
 collision_layer = 4

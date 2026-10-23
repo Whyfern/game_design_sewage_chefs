@@ -11,6 +11,8 @@ radius = 13.0
 radius = 56.0357
 
 [node name="IngredientCollectible" type="StaticBody2D" unique_id=1882268214]
+z_index = 5
+z_as_relative = false
 collision_layer = 0
 script = ExtResource("1_uw0a4")
 
