@@ -148,4 +148,5 @@ func load_room_elements():
 	for floor in floorsFiles:
 		if floor not in exceptionList:
 			var loadedFloor = load("res://scenes/sewer rooms/sewer_room_floors/".path_join(floor))
+			
 			floorsDict[floor] = loadedFloor

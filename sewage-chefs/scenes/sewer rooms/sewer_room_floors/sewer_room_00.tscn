@@ -47,4 +47,4 @@ position = Vector2(637, 202)
 position = Vector2(1119, 589)
 
 [node name="rat_enemies" parent="." unique_id=893018143 instance=ExtResource("4_2q3fe")]
-position = Vector2(344, 248)
+position = Vector2(273, 278)

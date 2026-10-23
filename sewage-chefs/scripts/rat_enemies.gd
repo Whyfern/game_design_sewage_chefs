@@ -36,6 +36,7 @@ func _ready() -> void:
 
 	
 func _physics_process(delta: float) -> void:
+
 	if state == State.DEAD or state == State.ATTACK:
 		return
 		
