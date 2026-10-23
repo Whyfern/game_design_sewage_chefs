@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0f4ohocjtfut"
-path="res://.godot/imported/WhatsApp Image 2026-10-08 at 15.34.31.jpeg-ce54c724a66467d76323e87398a0c619.ctex"
+uid="uid://cqyno206tk4ih"
+path="res://.godot/imported/sewage_meter_under.png-4c2b519c6b1450b7c0b280bcefe032ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/FloodPipe/WhatsApp Image 2026-10-08 at 15.34.31.jpeg"
-dest_files=["res://.godot/imported/WhatsApp Image 2026-10-08 at 15.34.31.jpeg-ce54c724a66467d76323e87398a0c619.ctex"]
+source_file="res://sprites/FloodPipe/sewage_meter_under.png"
+dest_files=["res://.godot/imported/sewage_meter_under.png-4c2b519c6b1450b7c0b280bcefe032ab.ctex"]
 
 [params]
 

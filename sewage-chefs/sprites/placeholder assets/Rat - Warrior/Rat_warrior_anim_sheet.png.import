@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1x0ghynvxvae"
-path="res://.godot/imported/WhatsApp_Image_2026-10-08_at_15.34.32_bg_removed.png.png-124bab75ba314fed49d8d3ebf41de3b0.ctex"
+uid="uid://bcxqio7sw0edy"
+path="res://.godot/imported/Rat_warrior_anim_sheet.png-a5b276551824ca1693c0897c4ded6029.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/FloodPipe/WhatsApp_Image_2026-10-08_at_15.34.32_bg_removed.png.png"
-dest_files=["res://.godot/imported/WhatsApp_Image_2026-10-08_at_15.34.32_bg_removed.png.png-124bab75ba314fed49d8d3ebf41de3b0.ctex"]
+source_file="res://sprites/placeholder assets/Rat - Warrior/Rat_warrior_anim_sheet.png"
+dest_files=["res://.godot/imported/Rat_warrior_anim_sheet.png-a5b276551824ca1693c0897c4ded6029.ctex"]
 
 [params]
 

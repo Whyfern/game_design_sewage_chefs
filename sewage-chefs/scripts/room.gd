@@ -148,9 +148,9 @@ func choose_floor(start : bool):
 		floor = load("res://scenes/sewer rooms/sewer_room_floors/sewer_room_00.tscn")
 	else :
 		floor = floorsDict[randomKey]
-	print("Is start room: ", start)
+	#print("Is start room: ", start)
 	floorInstance = floor.instantiate()
-	print("Loaded floor scene: ", floor.resource_path)
+	#print("Loaded floor scene: ", floor.resource_path)
 	add_child(floorInstance)
 	#self.add_child.call_deferred(floorInstance)
 	

@@ -1,9 +1,11 @@
 extends Node2D
 
 @onready var sewageArea = load("res://scenes/sewage.tscn")
+@onready var sewageTimer : Timer = $sewage_timer
 var sewageAreaInstance : Node
 
-var maxTime : float = 100 * 1000
+var maxTime : float = 60  # 1000 is for msec
+var startingTime : float
 var currentTime : float = 0
 var totalTime : float = 0
 var intervalRate : float = 0.85
@@ -17,9 +19,11 @@ var possibilities : Array = []
 var roomValue : int = 10
 
 func _ready() -> void:
+	sewageTimer.set_wait_time(maxTime)
+	sewageTimer.start()
+	
 	totalIntervals = roomValue - 1
 	calculate_random_decreasing_intervals()
-	print(maxTime)
 
 
 #itteration 3
@@ -30,7 +34,6 @@ func calculate_random_decreasing_intervals():
 	for i in range(totalIntervals):
 		# 1. Genereer een puur willekeurige basis (bijv. tussen 0.5 en 1.5)
 		var base_random : float = randf_range(0.5, 1.5)
-		
 		# 2. Bereken de afname-factor (i neemt toe, dus pow() neemt exponentieel af)
 		# Gebruik een waarde zoals 0.75 of 0.8 voor een mooie curve
 		var trend_factor : float = pow(0.75, i)
@@ -44,12 +47,13 @@ func calculate_random_decreasing_intervals():
 	# Stap 2: Schaal de gewichten zodat ze samen exact maxTime vormen
 	var step_count : int = 1
 	for weight in raw_weights:
-		interval = ((weight / total_weight) * maxTime)
-		intervals.append(totalTime)
+		print("weight=", weight, "   total_weight=", total_weight)
+		interval = ((weight / total_weight) * (maxTime))
+		intervals.append(maxTime - totalTime)
 		totalTime += interval
 		print("Interval ", step_count, " | Duur: ", interval, " | Totale tijd: ", totalTime)
 		step_count += 1
-	intervals.erase(0.0)
+	intervals.erase(maxTime)
 
 
 func spawn_sewage():
@@ -63,11 +67,11 @@ func spawn_sewage():
 	pass
 
 func _process(delta: float) -> void:
-	currentTime = Time.get_ticks_msec()
-	if !intervals.is_empty() and (currentTime >= intervals.front()):
+	if !intervals.is_empty() and (sewageTimer.time_left <= intervals.front()):
 		spawn_sewage()
 		intervals.pop_front()
-	print(currentTime, " ", intervals)
+	#print(currentTime, " ", intervals)
+	#print(sewageTimer.time_left)
 
 func calculate_Next_Interval():
 	while totalIntervals >= 1:

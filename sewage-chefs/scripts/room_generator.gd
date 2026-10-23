@@ -57,9 +57,9 @@ func get_grid():
 		grid = gridGeneratorInstance.send_grid()
 		#test_print_Array()
 
-func test_print_Array():
-	for i in grid.size():
-		print(grid[i])
+#func test_print_Array():
+	#for i in grid.size():
+		#print(grid[i])
 
 func set_room_doors():
 	# Set door connections for each room based on neighboring rooms

@@ -7,12 +7,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_lmgjl"]
 radius = 37.48333
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
-size = Vector2(21, 14)
-
 [sub_resource type="Animation" id="Animation_pxja8"]
 resource_name = "Idle"
 length = 0.4
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -298,6 +296,64 @@ tracks/2/keys = {
 "values": [Vector2(4.7683716e-07, -12), Vector2(9.536743e-07, -12)]
 }
 
+[sub_resource type="Animation" id="Animation_iadup"]
+resource_name = "run_down"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChefRat:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -12.000002), Vector2(0, -12.000002)]
+}
+
+[sub_resource type="Animation" id="Animation_herhr"]
+resource_name = "run_up"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ChefRat:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -12), Vector2(0, -12)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pxja8"]
 _data = {
 &"Idle": SubResource("Animation_pxja8"),
@@ -305,7 +361,9 @@ _data = {
 &"attack_down": SubResource("Animation_4h0vy"),
 &"attack_right": SubResource("Animation_uj7mf"),
 &"attack_up": SubResource("Animation_2vmgx"),
-&"run": SubResource("Animation_6unfe")
+&"run": SubResource("Animation_6unfe"),
+&"run_down": SubResource("Animation_iadup"),
+&"run_up": SubResource("Animation_herhr")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_herhr"]
@@ -321,6 +379,7 @@ animation = &"attack_up"
 animation = &"attack_down"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2vlw4"]
+blend_mode = 1
 blend_point_0/node = SubResource("AnimationNodeAnimation_herhr")
 blend_point_0/pos = Vector2(-1, 0)
 blend_point_0/name = &"attack_right"
@@ -337,10 +396,10 @@ blend_point_3/name = &"attack_down"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_joi77"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_br6ma"]
-graph_offset = Vector2(53.333332, 14)
+graph_offset = Vector2(30.805399, 54.53485)
 nodes/output/position = Vector2(960, 160)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_2vlw4")
-nodes/BlendSpace2D/position = Vector2(200, 146.66667)
+nodes/BlendSpace2D/position = Vector2(280, 173.33333)
 nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_joi77")
 nodes/TimeScale/position = Vector2(570.9344, 227.45073)
 node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"BlendSpace2D"]
@@ -348,45 +407,72 @@ node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"BlendSpace2D"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pxja8"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iadup"]
-animation = &"run"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2vlw4"]
+animation = &"attack_up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_joi77"]
+animation = &"run_down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_br6ma"]
+animation = &"attack_right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xc70a"]
+animation = &"attack_right"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2w5w8"]
+blend_mode = 1
+blend_point_0/node = SubResource("AnimationNodeAnimation_2vlw4")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_0/name = &"attack_up"
+blend_point_1/node = SubResource("AnimationNodeAnimation_joi77")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_1/name = &"run_down"
+blend_point_2/node = SubResource("AnimationNodeAnimation_br6ma")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_2/name = &"attack_right"
+blend_point_3/node = SubResource("AnimationNodeAnimation_xc70a")
+blend_point_3/pos = Vector2(1, 0)
+blend_point_3/name = &"attack_right 2"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_herhr"]
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kww55"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4h0vy"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uj7mf"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2vmgx"]
 switch_mode = 2
-advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6unfe"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qwq0k"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_eomf4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kww55"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j2fon"]
 states/Attack/node = SubResource("AnimationNodeBlendTree_br6ma")
 states/Attack/position = Vector2(390.99997, 313.33337)
 states/Idle/node = SubResource("AnimationNodeAnimation_pxja8")
-states/Idle/position = Vector2(325.66666, 174)
-states/Run/node = SubResource("AnimationNodeAnimation_iadup")
-states/Run/position = Vector2(515.6666, 193.77777)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_herhr"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_kww55"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_4h0vy"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_uj7mf"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_2vmgx"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_6unfe")]
-graph_offset = Vector2(-78, 27)
+states/Idle/position = Vector2(330.3333, 178)
+states/Run/node = SubResource("AnimationNodeBlendSpace2D_2w5w8")
+states/Run/position = Vector2(520, 178.51852)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_herhr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_uj7mf"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_2vmgx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_qwq0k"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_eomf4"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_kww55")]
+graph_offset = Vector2(116, 113)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kww55"]
+radius = 11.333334
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2fon"]
 radius = 13.333333
-height = 53.33333
+height = 34.0
 
-[node name="Player_Character" type="CharacterBody2D" unique_id=702846183]
+[node name="Player_Character" type="CharacterBody2D" unique_id=702846183 groups=["player"]]
+y_sort_enabled = true
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_6r27q")
 
 [node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
-position = Vector2(-1, -17)
+position = Vector2(0, -17)
 
 [node name="InteractRange" type="Area2D" parent="InteractingComponent" unique_id=928180136]
 
@@ -401,10 +487,6 @@ hframes = 4
 vframes = 6
 frame = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
-position = Vector2(1.5, 0)
-shape = SubResource("RectangleShape2D_uqykc")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
 limit_left = 0
 limit_top = 0
@@ -418,8 +500,22 @@ libraries/ = SubResource("AnimationLibrary_pxja8")
 [node name="AnimationTree" type="AnimationTree" parent="." unique_id=1862082549]
 tree_root = SubResource("AnimationNodeStateMachine_j2fon")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Attack/BlendSpace2D/blend_position = Vector2(0, 0)
+parameters/Attack/BlendSpace2D/blend_position = Vector2(-0.98758465, -0.027522922)
 parameters/Attack/TimeScale/scale = 1.0
+parameters/Run/blend_position = Vector2(0, 0)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=420801457]
+position = Vector2(0, -12)
+scale = Vector2(0.45, 0.45)
+collision_layer = 32
+collision_mask = 0
+input_pickable = false
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1012890038]
+position = Vector2(0, -15)
+scale = Vector2(3, 3)
+shape = SubResource("CapsuleShape2D_kww55")
 
 [node name="Hitbox" type="Area2D" parent="." unique_id=1553282588]
 position = Vector2(-15.000001, -27.000002)
@@ -429,6 +525,12 @@ collision_mask = 16
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1043307051]
+position = Vector2(0, -17.77778)
+scale = Vector2(1.7, 1.7)
+shape = SubResource("CapsuleShape2D_j2fon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=857181560]
+position = Vector2(0, -17)
 shape = SubResource("CapsuleShape2D_j2fon")
 
 [connection signal="area_entered" from="InteractingComponent/InteractRange" to="InteractingComponent" method="_on_interact_range_area_entered"]

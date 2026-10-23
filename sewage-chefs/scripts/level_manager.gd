@@ -3,6 +3,7 @@ extends Node
 @onready var main = get_node("..")
 @onready var charMan = get_node("../character_manager")
 @onready var playChar = get_node("../character_manager/Player_Character")
+@onready var sewageBar = get_node("../CanvasLayer/TextureProgressBar")
 @onready var restaurant = load('res://scenes/restaurant.tscn')
 @onready var roomGeneration = load("res://scenes/room_generator.tscn")
 @onready var sewageMan = load("res://scenes/sewage_manager.tscn")
@@ -14,7 +15,6 @@ var restaurantInstance : Node = null
 var sewerInstance : Node = null
 var sewerGenerationInstance : Node = null
 var roomGenerationInstance : Node = null
-
 var restaurantState = false
 
 var startPos : Vector2
@@ -31,12 +31,14 @@ func _ready() -> void:
 	instatiate_restaurant()
 	pass
 
+#checks if the sewer or the restaurant should be switched to 
 func switch_level():
 	if restaurantState:
 		instantiate_level()
 	elif !restaurantState:
 		instatiate_restaurant()
 
+#used to spawn the restaurant also dewpawn the sewer
 func instatiate_restaurant():
 	if !restaurantState:
 		
@@ -49,6 +51,7 @@ func instatiate_restaurant():
 		restaurantState = true
 	pass
 
+#used to spawn the sewer while also despawning the restaurant. It works by instantiating room generatioin and sewage manager
 func instantiate_level():
 	if restaurantState:
 		roomGenerationInstance = roomGeneration.instantiate()
@@ -64,6 +67,10 @@ func instantiate_level():
 		print(roomGenerationInstance.get_currently())
 		sewageManInstance.possibilities = roomGenerationInstance.get_currently()
 		self.add_child.call_deferred(sewageManInstance)
+		
+		sewageBar.sewageMan = sewageManInstance
+		sewageBar.set_parameters()
+		sewageBar.visible = true
 		
 		await EventBus.startRoomPos
 		startPos = startPos * roomSize

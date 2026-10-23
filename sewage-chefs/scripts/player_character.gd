@@ -11,6 +11,7 @@ enum State {
 @export var speed: int = 120*3
 @export var attackSpeed: float = 0.5
 @export var attackDamage: int = 60
+@export var hitpoints: int = 150
 
 var state: State = State.IDLE
 var moveDirection: Vector2 = Vector2.ZERO
@@ -50,6 +51,10 @@ func movement_loop() -> void:
 	var motion: Vector2 = moveDirection.normalized() * speed
 	set_velocity(motion)
 	move_and_slide()
+	
+	# Player's up / down Run animation  
+	if moveDirection != Vector2.ZERO:
+		animationTree.set("parameters/Run/blend_position", moveDirection)
 	
 	# Player's sprite flipping in idle / run state 
 	if state == State.IDLE or State.RUN:
@@ -101,7 +106,17 @@ func attack() -> void:
 		state = State.RUN
 	else:
 		state = State.IDLE
+	update_animation()
+
+
+func take_damage(damage_taken: int) -> void:
+	hitpoints -= damage_taken
+	if hitpoints <= 0:
+		death()
 		
+
+func death() -> void:
+	print ("I died")
 
 #signal used for Hitboxes - hurtboxes
 func _on_hitbox_area_entered(area: Area2D) -> void:

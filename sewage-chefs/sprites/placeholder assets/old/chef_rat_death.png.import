@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://baywjx8s5g0s4"
-path="res://.godot/imported/WhatsApp Image 2026-10-08 at 15.34.33.jpeg-302abd9344f55cf2c4f4c1fd66ada58e.ctex"
+uid="uid://cj64nyjo1nvni"
+path="res://.godot/imported/chef_rat_death.png-69380702dd22ca464f53b98a5aeff643.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/FloodPipe/WhatsApp Image 2026-10-08 at 15.34.33.jpeg"
-dest_files=["res://.godot/imported/WhatsApp Image 2026-10-08 at 15.34.33.jpeg-302abd9344f55cf2c4f4c1fd66ada58e.ctex"]
+source_file="res://sprites/placeholder assets/old/chef_rat_death.png"
+dest_files=["res://.godot/imported/chef_rat_death.png-69380702dd22ca464f53b98a5aeff643.ctex"]
 
 [params]
 
