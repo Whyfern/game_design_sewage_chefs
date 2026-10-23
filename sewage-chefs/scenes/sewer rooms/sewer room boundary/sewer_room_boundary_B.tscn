@@ -1,9 +1,10 @@
 [gd_scene format=4 uid="uid://d3mvb0517dted"]
 
 [ext_resource type="TileSet" uid="uid://cggyiqow0p0ch" path="res://sprites/tilesets/boundary_tile.tres" id="2_or10x"]
-[ext_resource type="TileSet" uid="uid://bgnkj7g5n7u7t" path="res://sprites/tilesets/sewer_bottom_pillar.tres" id="3_gspj1"]
-[ext_resource type="TileSet" uid="uid://d2uwnlqyrrdhv" path="res://sprites/tilesets/sewer_top_pillar.tres" id="4_8xnt3"]
+[ext_resource type="TileSet" uid="uid://dgfuwj501nt8u" path="res://sprites/tilesets/sewer_bottom_pillar.tres" id="3_gspj1"]
+[ext_resource type="TileSet" uid="uid://dbt5iv1gwq1xs" path="res://sprites/tilesets/sewer_top_pillar.tres" id="4_8xnt3"]
 [ext_resource type="TileSet" uid="uid://bk3pfi0da4tm2" path="res://sprites/tilesets/sewer_tiles.tres" id="4_glpq6"]
+[ext_resource type="TileSet" uid="uid://c5upxi051oivg" path="res://sprites/tilesets/navigation.tres" id="5_gspj1"]
 
 [node name="SewerRoomBoundary23" type="Node2D" unique_id=137582204]
 
@@ -23,3 +24,7 @@ tile_set = ExtResource("3_gspj1")
 [node name="SewerTopPillar" type="TileMapLayer" parent="SewerBoundaryWall/SewerBoundaryFloor" unique_id=884052036]
 tile_map_data = PackedByteArray("AAAFAAYAAAAAAAAAAAANAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAdAAYAAAAAAAAAAAAlAAYAAAAAAAAAAAArAAYAAAAAAAAAAAAzAAYAAAAAAAAAAAA7AAYAAAAAAAAAAABDAAYAAAAAAAAAAABLAAYAAAAAAAAAAAA=")
 tile_set = ExtResource("4_8xnt3")
+
+[node name="Navigation" type="TileMapLayer" parent="." unique_id=1692317183]
+tile_map_data = PackedByteArray("AAAmACoAAAAAAAAAAAAnACoAAAAAAAAAAAAoACoAAAAAAAAAAAApACoAAAAAAAAAAAApACsAAAAAAAAAAAAoACsAAAAAAAAAAAAnACsAAAAAAAAAAAAmACsAAAAAAAAAAAA=")
+tile_set = ExtResource("5_gspj1")

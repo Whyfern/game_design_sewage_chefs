@@ -32,13 +32,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func _physics_process(_delta: float) -> void:
 	
 	# can not move during dialogue
-	if Dialogue.is_active:
-		velocity = Vector2.ZERO
-		
-		state = State.IDLE
-		update_animation()
-		
-		return
+	#if Dialogue.is_active:
+		#velocity = Vector2.ZERO
+		#
+		#state = State.IDLE
+		#update_animation()
+		#
+		#return
 		
 	if not state == State.ATTACK:
 		movement_loop()

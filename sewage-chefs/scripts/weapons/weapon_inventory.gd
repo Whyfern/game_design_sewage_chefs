@@ -79,8 +79,6 @@ func cycle_slot(direction: int) -> void:
 # Slot switching: number keys 1-3 and the mouse wheel.
 # Handled here so the player script does not need to change for now.
 func _unhandled_input(event: InputEvent) -> void:
-	if Dialogue.is_active:
-		return
 
 	if event is InputEventKey and event.pressed and not event.echo:
 		var keyIndex: int = event.physical_keycode - KEY_1

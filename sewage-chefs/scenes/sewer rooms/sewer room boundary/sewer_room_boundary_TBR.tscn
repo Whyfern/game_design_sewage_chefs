@@ -2,8 +2,9 @@
 
 [ext_resource type="TileSet" uid="uid://bk3pfi0da4tm2" path="res://sprites/tilesets/sewer_tiles.tres" id="1_rq4mh"]
 [ext_resource type="TileSet" uid="uid://cggyiqow0p0ch" path="res://sprites/tilesets/boundary_tile.tres" id="2_nyoog"]
-[ext_resource type="TileSet" uid="uid://bgnkj7g5n7u7t" path="res://sprites/tilesets/sewer_bottom_pillar.tres" id="3_kofan"]
-[ext_resource type="TileSet" uid="uid://d2uwnlqyrrdhv" path="res://sprites/tilesets/sewer_top_pillar.tres" id="4_36i7a"]
+[ext_resource type="TileSet" uid="uid://dgfuwj501nt8u" path="res://sprites/tilesets/sewer_bottom_pillar.tres" id="3_kofan"]
+[ext_resource type="TileSet" uid="uid://dbt5iv1gwq1xs" path="res://sprites/tilesets/sewer_top_pillar.tres" id="4_36i7a"]
+[ext_resource type="TileSet" uid="uid://c5upxi051oivg" path="res://sprites/tilesets/navigation.tres" id="5_ss8j8"]
 
 [node name="SewerRoomBoundary04" type="Node2D" unique_id=1022838243]
 
@@ -23,3 +24,7 @@ tile_set = ExtResource("3_kofan")
 [node name="SewerTopPillar" type="TileMapLayer" parent="SewerBoundaryWall/SewerBoundaryFloor" unique_id=288550374]
 tile_map_data = PackedByteArray("AAAFAAYAAAAAAAAAAAANAAYAAAAAAAAAAAAVAAYAAAAAAAAAAAAdAAYAAAAAAAAAAAAlAAYAAAAAAAAAAAArAAYAAAAAAAAAAAAzAAYAAAAAAAAAAAA7AAYAAAAAAAAAAABDAAYAAAAAAAAAAABLAAYAAAAAAAAAAAA=")
 tile_set = ExtResource("4_36i7a")
+
+[node name="Navigation" type="TileMapLayer" parent="." unique_id=1817011002]
+tile_map_data = PackedByteArray("AAAmAAAAAAAAAAAAAAAnAAAAAAAAAAAAAAAnAAEAAAAAAAAAAAAmAAEAAAAAAAAAAAAmAAIAAAAAAAAAAAAnAAIAAAAAAAAAAAAnAAMAAAAAAAAAAAAmAAMAAAAAAAAAAAAmAAQAAAAAAAAAAAAnAAQAAAAAAAAAAAAnAAUAAAAAAAAAAAAmAAUAAAAAAAAAAAAoAAUAAAAAAAAAAAApAAUAAAAAAAAAAAApAAQAAAAAAAAAAAAoAAQAAAAAAAAAAAAoAAMAAAAAAAAAAAApAAMAAAAAAAAAAAAoAAIAAAAAAAAAAAApAAIAAAAAAAAAAAApAAEAAAAAAAAAAAAoAAEAAAAAAAAAAAApAAAAAAAAAAAAAAAoAAAAAAAAAAAAAABOABYAAAAAAAAAAABPABYAAAAAAAAAAABPABcAAAAAAAAAAABOABcAAAAAAAAAAABOABgAAAAAAAAAAABPABgAAAAAAAAAAABPABkAAAAAAAAAAABOABkAAAAAAAAAAAAmACoAAAAAAAAAAAAmACsAAAAAAAAAAAAnACsAAAAAAAAAAAAnACoAAAAAAAAAAAAoACoAAAAAAAAAAAAoACsAAAAAAAAAAAApACsAAAAAAAAAAAApACoAAAAAAAAAAAA=")
+tile_set = ExtResource("5_ss8j8")
