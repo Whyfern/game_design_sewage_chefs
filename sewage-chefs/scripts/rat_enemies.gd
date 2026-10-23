@@ -13,7 +13,7 @@ enum State {
 @export var enemyatkdmg: int = 10
 @export var enemyatkspd: float = 1.0
 @export var hitpoints:int = 180
-@export var aggrorange: float = 256
+@export var aggrorange: float = 512
 @export var atkrange: float = 80
 @export_category("Related scenes")
 @export var deathPacked: PackedScene
@@ -29,9 +29,14 @@ var state: State = State.IDLE
 
 func _ready() -> void:
 	animationtree.set_active(true)
+	
+	await get_tree().physics_frame
+	await get_tree().physics_frame
 
 
+	
 func _physics_process(delta: float) -> void:
+
 	if state == State.DEAD or state == State.ATTACK:
 		return
 		
@@ -63,6 +68,7 @@ func move() -> void:
 		navagent.target_position = spawnpoint
 		
 	var nextpathposition: Vector2 = navagent.get_next_path_position()
+
 	
 	# CORRETTO: = invece di -
 	velocity = global_position.direction_to(nextpathposition) * enemyspeed

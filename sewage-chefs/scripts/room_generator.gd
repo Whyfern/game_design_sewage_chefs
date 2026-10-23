@@ -57,9 +57,9 @@ func get_grid():
 		grid = gridGeneratorInstance.send_grid()
 		#test_print_Array()
 
-func test_print_Array():
-	for i in grid.size():
-		print(grid[i])
+#func test_print_Array():
+	#for i in grid.size():
+		#print(grid[i])
 
 func set_room_doors():
 	# Set door connections for each room based on neighboring rooms
@@ -148,4 +148,5 @@ func load_room_elements():
 	for floor in floorsFiles:
 		if floor not in exceptionList:
 			var loadedFloor = load("res://scenes/sewer rooms/sewer_room_floors/".path_join(floor))
+			
 			floorsDict[floor] = loadedFloor
