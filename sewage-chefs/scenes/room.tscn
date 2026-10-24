@@ -9,6 +9,7 @@ font_size = 64
 script = ExtResource("1_36trf")
 
 [node name="Label" type="Label" parent="." unique_id=910722392]
+visible = false
 offset_left = 65.0
 offset_top = 235.0
 offset_right = 506.0

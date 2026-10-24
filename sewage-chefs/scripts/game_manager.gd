@@ -7,6 +7,11 @@ var money: int = 0
 var mafia_debt: int = 50
 var debt_increase_daily: int = 25
 
+#list of print messages that can be turned on by switching these variables
+var interactPrint : bool = false
+var sewageAreaOverlap : bool = true
+
+
 func add_money(amount: int) -> void:
 	money += amount
 	stats_changed.emit()

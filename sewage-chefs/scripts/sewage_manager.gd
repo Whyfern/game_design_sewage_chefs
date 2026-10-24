@@ -3,6 +3,7 @@ extends Node2D
 @onready var sewageArea = load("res://scenes/sewage.tscn")
 @onready var sewageTimer : Timer = $sewage_timer
 var sewageAreaInstance : Node
+var sewageInstanceCount : int = 0
 
 var maxTime : float = 1  # 1000 is for msec
 var startingTime : float
@@ -63,7 +64,9 @@ func spawn_sewage():
 	sewageAreaInstance = sewageArea.instantiate()
 	sewageAreaInstance.z_index = 3
 	sewageAreaInstance.position = Vector2(chosenRoom[0], chosenRoom[1])*roomSize
+	sewageAreaInstance.name = str("sewage@Area2D", sewageInstanceCount) 
 	self.add_child.call_deferred(sewageAreaInstance)
+	sewageInstanceCount += 1
 	#print(intervals)
 	pass
 

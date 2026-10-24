@@ -17,7 +17,6 @@
 script = ExtResource("1_tefeu")
 
 [node name="Player_Character" parent="character_manager" unique_id=702846183 instance=ExtResource("1_o5qli")]
-z_index = 10
 position = Vector2(400, 430)
 
 [node name="level_manager" type="Node" parent="." unique_id=2081016786]
@@ -37,11 +36,11 @@ position = Vector2(400, 370)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1477431120]
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" unique_id=605407572]
-offset_left = 1151.0
-offset_top = 164.00002
-offset_right = 1183.0
-offset_bottom = 228.00002
-scale = Vector2(7, 7)
+offset_left = 1211.0
+offset_top = 439.0
+offset_right = 1243.0
+offset_bottom = 503.0
+scale = Vector2(4, 4)
 max_value = 10.0
 step = 0.1
 value = 1.0

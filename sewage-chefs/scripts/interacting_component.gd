@@ -40,19 +40,24 @@ func _sort_by_nearest(area1, area2):
 
 #for adding interactables into the array of currentInteractions
 func _on_interact_range_area_entered(area: Area2D) -> void:
-	print("AREA DETECTED: ", area.name)
+	if GameManager.interactPrint:
+		print("AREA DETECTED: ", area.name)
 
 	if not "interactName" in area:
 		return
 
 	currentInteractions.push_back(area)
-	print("has entered")
-	print(currentInteractions)
-	print(area.interactName)
-	print(interactLabel.text)
+	if GameManager.interactPrint:
+		print("has entered")
+		print(currentInteractions)
+		print(area.interactName)
+		print(interactLabel.text)
+	pass
+
 
 #for removing interactables from the array of currentInteractions
 func _on_interact_range_area_exited(area: Area2D) -> void:
 	currentInteractions.erase(area)
-	print("has exited");
-	print(currentInteractions);
+	if GameManager.interactPrint:
+		print("has exited");
+		print(currentInteractions);

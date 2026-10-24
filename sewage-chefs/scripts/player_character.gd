@@ -19,6 +19,13 @@ var moveDirection: Vector2 = Vector2.ZERO
 @onready var animationTree: AnimationTree = $AnimationTree
 @onready var AnimationPlayback: AnimationNodeStateMachinePlayback = $AnimationTree ["parameters/playback"]
 
+var poisonedProg : float = 0
+var poisonedProgMax : int = 3
+var poisonedprogSpeed : int = 4
+var poisonedStatus : bool = false
+var poisonedDamage : int = 1
+var damageTimer : float = 0.0
+var damageInterval = 0.5
 
 func _ready() -> void:
 	animationTree.set_active(true)
@@ -30,8 +37,23 @@ func _unhandled_input(event: InputEvent) -> void:
 		attack()
 		
 		
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	
+	if poisonedStatus:
+		poisonedProg = min(poisonedProg + (poisonedprogSpeed * delta), poisonedProgMax)
+		#print(poisonedProg)
+	else:
+		poisonedProg = max(poisonedProg - (poisonedprogSpeed * delta), 0.0)
+	
+	if poisonedProg >= poisonedProgMax and poisonedStatus:
+		damageTimer += delta
+		if damageTimer >= damageInterval:
+			take_damage(poisonedDamage)
+			damageTimer = 0.0 
+	else:
+		damageTimer = 0.0
+		
+		
 	# can not move during dialogue
 	#if Dialogue.is_active:
 		#velocity = Vector2.ZERO
@@ -111,8 +133,9 @@ func attack() -> void:
 
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
-	if hitpoints <= 0:
-		death()
+	print(hitpoints)
+	#if hitpoints <= 0:
+		#death()
 		
 
 func death() -> void:
@@ -120,4 +143,19 @@ func death() -> void:
 
 #signal used for Hitboxes - hurtboxes
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	area.owner.take_damage(attackDamage)
+	#area.owner.take_damage(attackDamage)
+	pass
+
+
+func _on_environbox_area_entered(area: Area2D) -> void:
+	if GameManager.sewageAreaOverlap:
+		print("entered ", area.name.to_lower())
+	if "sewage_area2d" in area.name.to_lower():
+		poisonedStatus = true
+
+
+func _on_environbox_area_exited(area: Area2D) -> void:
+	if GameManager.sewageAreaOverlap:
+		print("left ", area.name)
+	if "sewage@Area2D" in area.name.to_lower():
+		poisonedStatus = false
