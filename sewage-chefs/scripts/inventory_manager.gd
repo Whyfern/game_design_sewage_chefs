@@ -2,7 +2,7 @@ extends Node
 
 signal inventory_changed
 
-var max_ingredients: int = 15
+var max_ingredients: int = 5
 var ingredients: Array[String] = []
 
 func add_ingredient(ingredient_name: String) -> bool:
