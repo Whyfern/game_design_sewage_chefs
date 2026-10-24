@@ -24,11 +24,22 @@ func _ready() -> void:
 	
 	var possible_orders: Array[String] = []
 
-	possible_orders.append_array(GameManager.get_ingredients_with_rarity("common"))
-	possible_orders.append_array(GameManager.get_ingredients_with_rarity("uncommon"))
-	possible_orders.append_array(GameManager.get_ingredients_with_rarity("rare"))
+	#possible_orders.append_array(GameManager.get_ingredients_with_rarity("common"))
+	#possible_orders.append_array(GameManager.get_ingredients_with_rarity("uncommon"))
+	#possible_orders.append_array(GameManager.get_ingredients_with_rarity("rare"))
 
-	requested_dish = possible_orders.pick_random()
+	#requested_dish = possible_orders.pick_random()
+	var roll := randf()
+	
+	if roll < 0.45:
+		possible_orders.append_array(GameManager.get_ingredients_with_rarity("common"))
+	elif roll < 0.80:
+		possible_orders.append_array(GameManager.get_ingredients_with_rarity("uncommon"))
+	else:
+		possible_orders.append_array(GameManager.get_ingredients_with_rarity("rare"))
+	if not possible_orders.is_empty():
+		requested_dish = possible_orders.pick_random()
+		
 
 	
 	interactable.interactName = "Serve " + requested_dish
