@@ -63,11 +63,20 @@ func spawn_customer() -> bool:
 
 	var customer: Customer = customer_scene.instantiate()
 
-	if not order_icons.is_empty():
-		customer.requested_item_icon = order_icons.pick_random()
-
+	
 	path_follow.add_child(customer)
 	occupied_paths.append(selected_path)
 
+	customer.departed.connect(_on_customer_departed)
+
 	customer.start_walking()
 	return true
+	
+	
+	
+func _on_customer_departed(path: Path2D) -> void:
+	occupied_paths.erase(path)
+	spawned_customers = maxi(0, spawned_customers - 1)
+
+	if spawn_timer.is_stopped() and spawned_customers < max_customers and not get_available_paths().is_empty():
+		schedule_next_customer()

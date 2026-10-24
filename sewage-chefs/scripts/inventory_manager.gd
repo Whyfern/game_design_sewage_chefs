@@ -17,3 +17,17 @@ func add_ingredient(ingredient_name: String) -> bool:
 	print("Ingredients: ", ingredients.size(), "/", max_ingredients)
 
 	return true
+
+
+func has_ingredient(ingredient_name: String) -> bool:
+	return ingredients.has(ingredient_name)
+
+
+func remove_ingredient(ingredient_name: String) -> bool:
+	if not has_ingredient(ingredient_name):
+		return false
+
+	ingredients.erase(ingredient_name)
+	inventory_changed.emit()
+
+	return true

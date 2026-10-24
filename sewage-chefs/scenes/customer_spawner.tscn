@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://blqppn6em7ydt"]
+[gd_scene format=3 uid="uid://ckk4avvdvfjl5"]
 
 [ext_resource type="Script" uid="uid://cykfr254dnrqk" path="res://scripts/customer_spawner.gd" id="1_k4eeq"]
-[ext_resource type="PackedScene" uid="uid://ds0707p00m03y" path="res://scenes/customer.tscn" id="2_gpite"]
+[ext_resource type="PackedScene" uid="uid://c1elifmafstf0" path="res://scenes/customer.tscn" id="2_gpite"]
 [ext_resource type="Texture2D" uid="uid://cpeud75bhiqu5" path="res://sprites/ingredients_assets/t bone.png" id="3_6kly0"]
 [ext_resource type="Texture2D" uid="uid://bpgoavt4fnyd" path="res://sprites/ingredients_assets/brisket.png" id="4_t5ghw"]
 [ext_resource type="Texture2D" uid="uid://debw10wcr76q7" path="res://sprites/ingredients_assets/short ribs.png" id="5_unr6x"]
@@ -46,7 +46,10 @@ point_count = 4
 script = ExtResource("1_k4eeq")
 customer_scene = ExtResource("2_gpite")
 entrance_paths = [NodePath("SpotL1"), NodePath("SpotL2"), NodePath("SpotL3"), NodePath("SpotB1"), NodePath("SpotB2"), NodePath("SpotB3")]
+min_spawn_time = null
+max_spawn_time = null
 order_icons = Array[Texture2D]([ExtResource("3_6kly0"), ExtResource("4_t5ghw"), ExtResource("5_unr6x")])
+max_customers = null
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1911987601]
 one_shot = true
