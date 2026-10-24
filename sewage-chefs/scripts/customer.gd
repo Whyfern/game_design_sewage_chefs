@@ -11,6 +11,7 @@ class_name Customer
 @onready var order_icon: TextureRect = $OrderBubble/MarginContainer/OrderIcon
 @onready var interactable: Area2D = $Interactable
 @onready var serve_sound: AudioStreamPlayer = $AudioStreamPlayer
+@onready var rarity_label: Label = $RarityLabel
 
 signal departed(path: Path2D)
 
@@ -20,6 +21,7 @@ var is_walking: bool = false
 
 func _ready() -> void:
 	order_bubble.hide()
+	rarity_label.hide()
 	interactable.set_deferred("monitorable", false)
 	
 	var possible_orders: Array[String] = []
@@ -39,6 +41,11 @@ func _ready() -> void:
 		possible_orders.append_array(GameManager.get_ingredients_with_rarity("rare"))
 	if not possible_orders.is_empty():
 		requested_dish = possible_orders.pick_random()
+	var rarity := GameManager.get_ingredient_rarity(requested_dish)
+	rarity_label.text = rarity.capitalize()
+	rarity_label.add_theme_font_size_override("font_size", 13)
+	#rarity_label.position.y = -80
+	#order_icon.position.y += 50
 		
 
 	
@@ -77,11 +84,13 @@ func show_order() -> void:
 		return
 
 	order_icon.texture = icon
+	rarity_label.show()
 	order_bubble.show()
 	interactable.set_deferred("monitorable", true)
 
 func complete_order() -> void:
 	order_bubble.hide()
+	rarity_label.hide()
 	
 	
 
