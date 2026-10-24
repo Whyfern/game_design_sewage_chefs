@@ -10,6 +10,7 @@ class_name Customer
 @onready var order_bubble: PanelContainer = $OrderBubble
 @onready var order_icon: TextureRect = $OrderBubble/MarginContainer/OrderIcon
 @onready var interactable: Area2D = $Interactable
+@onready var serve_sound: AudioStreamPlayer = $AudioStreamPlayer
 
 signal departed(path: Path2D)
 
@@ -78,6 +79,9 @@ func serve_customer() -> void:
 		return
 
 	if InventoryManager.remove_ingredient(requested_dish):
+		serve_sound.play(8.0)
+		#await get_tree().create_timer(2.0).timeout
+		#serve_sound.stop()
 		print("Order completed: ", requested_dish)
 
 		var payment: int = GameManager.get_ingredient_price(requested_dish)

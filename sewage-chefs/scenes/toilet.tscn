@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://yqdcpdrjtqry" path="res://scripts/toilet.gd" id="1_5rkpo"]
 [ext_resource type="Texture2D" uid="uid://4qtww7gk5het" path="res://sprites/placeholder assets/old/toilet_1.png" id="1_yyxms"]
 [ext_resource type="PackedScene" uid="uid://crttjcv3fu111" path="res://scenes/interactable.tscn" id="2_5rkpo"]
+[ext_resource type="AudioStream" uid="uid://bum8xkv1fprp5" path="res://Music/792460__hz37__toilet-flushing-sound.wav" id="4_jh3ps"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
 size = Vector2(20.42253, 26)
@@ -28,3 +29,7 @@ interactName = "flush"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=2037374777]
 shape = SubResource("CircleShape2D_uqykc")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1837462211]
+stream = ExtResource("4_jh3ps")
+volume_db = 7.0

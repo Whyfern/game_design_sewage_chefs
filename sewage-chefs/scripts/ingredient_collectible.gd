@@ -2,6 +2,8 @@ extends StaticBody2D
 
 @onready var interactable : Area2D = $Interactable
 @export var ingredient_name: String = "Onion"
+@onready var pickup_sound: AudioStreamPlayer = $AudioStreamPlayer
+#pickup_sound.volume_db = 6.0
 
 #@onready var interactable = get_node_or_null("interactable_ingredient")
 @onready var sprite: Sprite2D = $Sprite2D
@@ -19,6 +21,8 @@ func _ready() -> void:
 	interactable.interactName = "Collect " + ingredient_name + " (press e)"
 	interactable.interact = _on_interact
 	
+	pickup_sound.volume_db = 0.0
+	
 
 func _on_interact() -> void:
 	#print("Collected: ", ingredient_name)
@@ -26,6 +30,10 @@ func _on_interact() -> void:
 	var collected_ingredient = InventoryManager.add_ingredient(ingredient_name)
 	if collected_ingredient:
 		print("Collected: ", ingredient_name)
+		print("Playing pickup sound!")
+		pickup_sound.play()
+		print("Sound playing: ", pickup_sound.playing)
+		await pickup_sound.finished
 		queue_free()
 
 func update_sprite() -> void:

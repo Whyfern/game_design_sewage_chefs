@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bth0lb4jfyje2" path="res://sprites/ingredients_assets/onion.png" id="1_i7wdv"]
 [ext_resource type="Script" uid="uid://ds6sskyu4mhej" path="res://scripts/ingredient_collectible.gd" id="1_uw0a4"]
 [ext_resource type="PackedScene" uid="uid://crttjcv3fu111" path="res://scenes/interactable.tscn" id="3_myy23"]
+[ext_resource type="AudioStream" uid="uid://b7waf6qxq250y" path="res://Music/39026__wildweasel__keypickup.wav" id="4_0r7o3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2icpv"]
 radius = 13.0
@@ -26,3 +27,6 @@ shape = SubResource("CircleShape2D_2icpv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=2145367942]
 shape = SubResource("CircleShape2D_uio72")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1951756001]
+stream = ExtResource("4_0r7o3")

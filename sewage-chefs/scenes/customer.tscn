@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://crwqrax6d7eud" path="res://sprites/Rats/IMG_0016.PNG" id="2_rjbu2"]
 [ext_resource type="Texture2D" uid="uid://cs0424ok5d2hg" path="res://sprites/ingredients_assets/peach.png" id="3_qqxhk"]
 [ext_resource type="PackedScene" uid="uid://crttjcv3fu111" path="res://scenes/interactable.tscn" id="4_rjbu2"]
+[ext_resource type="AudioStream" uid="uid://cfyano2vybfee" path="res://Music/698768__ienba__game-pickup.wav" id="5_qqxhk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_54vks"]
 size = Vector2(41, 20)
@@ -42,3 +43,7 @@ texture = ExtResource("3_qqxhk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable" unique_id=993275897]
 position = Vector2(1, -10)
 shape = SubResource("CapsuleShape2D_54vks")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=416620472]
+stream = ExtResource("5_qqxhk")
+volume_db = 11.0
