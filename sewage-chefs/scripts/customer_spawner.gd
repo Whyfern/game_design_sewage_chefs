@@ -9,7 +9,7 @@ extends Node
 @export var order_icons: Array[Texture2D] = []
 
 @onready var spawn_timer: Timer = $SpawnTimer
-@export var max_customers: int = 5
+@export var max_customers: int = 8
 
 var spawned_customers: int = 0
 var occupied_paths: Array[Path2D] = []
