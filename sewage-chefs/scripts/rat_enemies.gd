@@ -141,7 +141,7 @@ func death() -> void:
 	state = State.DEAD # Imposta lo stato a morto per sicurezza
 	var deathscene: Node2D = deathPacked.instantiate()
 	deathscene.position = global_position 
-	%Effects.add_child(deathscene)
+	self.add_child(deathscene)
 	queue_free()
 
 
