@@ -5,7 +5,7 @@ extends Node2D
 var sewageAreaInstance : Node
 var sewageInstanceCount : int = 0
 
-var maxTime : float = 1  # 1000 is for msec
+var maxTime : float = 60  # 1000 is for msec
 var startingTime : float
 var currentTime : float = 0
 var totalTime : float = 0
