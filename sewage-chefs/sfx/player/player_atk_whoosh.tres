@@ -1,0 +1,11 @@
+[gd_resource type="AudioStreamRandomizer" format=3 uid="uid://cgftfby2jsd3a"]
+
+[ext_resource type="AudioStream" uid="uid://dvrqenn7hdqfu" path="res://sfx/player/fast_whoosh2.mp3" id="1_6nb8y"]
+[ext_resource type="AudioStream" uid="uid://dl830uw50p0j5" path="res://sfx/player/fast_whoosh.mp3" id="2_uaxxs"]
+
+[resource]
+random_pitch = 1.1892071
+random_volume_offset_db = 0.8
+streams_count = 2
+stream_0/stream = ExtResource("1_6nb8y")
+stream_1/stream = ExtResource("2_uaxxs")

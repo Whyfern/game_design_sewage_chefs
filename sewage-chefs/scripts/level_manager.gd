@@ -65,6 +65,7 @@ func instatiate_restaurant():
 			sewageManInstance.queue_free()
 			sewageBar.visible = false
 		restaurantState = true
+		EventBus.locationChanged.emit("restaurant")
 	pass
 
 #used to spawn the sewer while also despawning the restaurant. It works by instantiating room generatioin and sewage manager
@@ -99,5 +100,5 @@ func instantiate_sewer():
 			main.remove_child.call_deferred(restaurantInstance)
 
 		restaurantState = false
-
+		EventBus.locationChanged.emit("sewer")
 	pass

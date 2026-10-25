@@ -22,3 +22,9 @@ signal HUDloaded(hpBar: TextureProgressBar)
 
 # emitted when the player pays Don Parmesan (a new day starts)
 signal debt_paid
+
+# Announces which location the player has entered.
+signal locationChanged(location: String)
+
+# Announces the final minute before the payment deadline.
+signal deadlineApproaching

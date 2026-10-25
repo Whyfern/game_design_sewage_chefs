@@ -14,17 +14,20 @@ enum State {
 @export var enemyatkspd: float = 1.0
 @export var hitpoints:int = 180
 @export var aggrorange: float = 512
-@export var atkrange: float = 80
+# Keep attacks reachable above the rat's tall body collider, too.
+@export var atkrange: float = 96
 @export_category("Related scenes")
 @export var deathPacked: PackedScene
 
 var state: State = State.IDLE
+var hitTargets: Array[Node] = []
 
 @onready var spawnpoint: Vector2 = global_position
 @onready var animationtree: AnimationTree = $AnimationTree
 @onready var animationplayback: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player") 
 @onready var navagent: NavigationAgent2D = $NavigationAgent2D
+@onready var attackPivot: Node2D = $AttackPivot
 
 
 func _ready() -> void:
@@ -109,14 +112,18 @@ func update_animation() -> void:
 func attack() -> void:
 	if player == null:
 		return
+	hitTargets.clear()
 		
 	var playerposition: Vector2 = player.global_position
 	var atkdirection: Vector2 = (playerposition - global_position).normalized()
 	$Sprite2D.flip_h = atkdirection.x < 0 and abs(atkdirection.x) >= abs(atkdirection.y)
+	# Sprite flipping only changes the picture. Mirror the animated hitbox too.
+	attackPivot.scale = Vector2(-1.0 if $Sprite2D.flip_h else 1.0, 1.0)
 	
 	# Assicurati che il percorso del BlendSpace2D sia corretto
 	animationtree.set("parameters/atk/blend_position", atkdirection)
-	update_animation()
+	# Restart the swing even if the previous attack has not transitioned to idle yet.
+	animationplayback.start("atk", true)
 	
 	await get_tree().create_timer(enemyatkspd).timeout
 	
@@ -139,5 +146,11 @@ func death() -> void:
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area.owner.has_method("take_damage"): # Controllo per evitare crash se l'area non ha il metodo
-		area.owner.take_damage(enemyatkdmg)
+	# A moving hitbox can enter the same hurtbox several times during a swing.
+	# Damage each target only once, and only while attacking.
+	if state != State.ATTACK:
+		return
+	var target = area.owner
+	if is_instance_valid(target) and target.has_method("take_damage") and target not in hitTargets:
+		hitTargets.append(target)
+		target.take_damage(enemyatkdmg)

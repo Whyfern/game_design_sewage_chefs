@@ -19,6 +19,10 @@ var moveDirection: Vector2 = Vector2.ZERO
 
 @onready var animationTree: AnimationTree = $AnimationTree
 @onready var AnimationPlayback: AnimationNodeStateMachinePlayback = $AnimationTree ["parameters/playback"]
+@onready var hurtSound: AudioStreamPlayer = $Sounds/HurtSound
+@onready var attackSound: AudioStreamPlayer = $Sounds/AttackSound
+@onready var stepSound: AudioStreamPlayer = $Sounds/StepsSound
+@onready var hitSound: AudioStreamPlayer = $Sounds/HitSound
 
 var poisonedProg : float = 0
 var poisonedProgMax : int = 3
@@ -87,7 +91,7 @@ func movement_loop() -> void:
 		animationTree.set("parameters/Run/blend_position", moveDirection)
 	
 	# Player's sprite flipping in idle / run state 
-	if state == State.IDLE or State.RUN:
+	if state == State.IDLE or state == State.RUN:
 		if moveDirection.x < -0.01:
 			$ChefRat.flip_h = true
 		elif moveDirection.x > 0.01: 
@@ -109,7 +113,6 @@ func update_animation() -> void:
 			AnimationPlayback.travel("Run")
 		State.ATTACK:
 			AnimationPlayback.travel("Attack")
-			
 		
 		
 func attack() -> void:
@@ -139,20 +142,37 @@ func attack() -> void:
 	update_animation()
 
 
+# Called by an animation key when Pip swings his pan.
+func play_attack_whoosh() -> void:
+	attackSound.play()
+	
+	
+# Called whenever a foot lands during a walking animation.
+func play_footstep() -> void:
+	if state == State.RUN:
+		stepSound.play()
+		
+		
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
+	hurtSound.play() # Play mouse squeak whenever player takes damage.
 	print(hitpoints)
-	#if hitpoints <= 0:
-		#death()
+	if hitpoints <= 0:
+		death()
 		
 
 func death() -> void:
 	print ("I died")
 
 #signal used for Hitboxes - hurtboxes
+# Called when Pip's attack hitbox touches another area.
 func _on_hitbox_area_entered(area: Area2D) -> void:
-	#area.owner.take_damage(attackDamage)
-	pass
+	if state != State.ATTACK: # Only deal damage during an attack.
+		return
+	var target = area.owner
+	if is_instance_valid(target) and target.has_method("take_damage"): # Check that the target can receive damage.
+		hitSound.play()
+		target.take_damage(attackDamage)
 
 
 func _on_environbox_area_entered(area: Area2D) -> void:
