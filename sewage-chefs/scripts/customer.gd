@@ -103,7 +103,7 @@ func complete_order() -> void:
 	
 
 func serve_customer() -> void:
-	if is_walking or not order_bubble.visible:
+	if is_walking or not order_bubble.visible or GameManager.time_is_up:
 		return
 
 	if InventoryManager.remove_ingredient(requested_dish):

@@ -53,6 +53,7 @@ func _physics_process(delta: float) -> void:
 		#print(poisonedProg)
 	else:
 		poisonedProg = max(poisonedProg - (poisonedprogSpeed * delta), 0.0)
+		damageTimer = 0
 	
 	if poisonedProg >= poisonedProgMax and poisonedStatus:
 		damageTimer += delta

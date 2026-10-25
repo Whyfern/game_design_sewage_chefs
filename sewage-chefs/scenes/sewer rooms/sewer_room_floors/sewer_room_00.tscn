@@ -3,7 +3,6 @@
 [ext_resource type="TileSet" uid="uid://bk3pfi0da4tm2" path="res://sprites/tilesets/sewer_tiles.tres" id="1_u173x"]
 [ext_resource type="TileSet" uid="uid://bbfvjlbumf1b3" path="res://sprites/tilesets/sewer_props.tres" id="2_63ckx"]
 [ext_resource type="TileSet" uid="uid://c5upxi051oivg" path="res://sprites/tilesets/navigation.tres" id="3_2xev1"]
-[ext_resource type="PackedScene" uid="uid://7f2crjg8qw6u" path="res://scenes/rat_enemies.tscn" id="4_2q3fe"]
 
 [node name="SewerRoom00" type="Node2D" unique_id=579902684]
 y_sort_enabled = true
@@ -46,5 +45,16 @@ position = Vector2(637, 202)
 [node name="FoodSpawn12" type="Marker2D" parent="FoodSpawns" unique_id=1697226839]
 position = Vector2(1119, 589)
 
-[node name="rat_enemies" parent="." unique_id=893018143 instance=ExtResource("4_2q3fe")]
-position = Vector2(273, 278)
+[node name="EnemySpawns" type="Node2D" parent="." unique_id=234978435]
+
+[node name="EnemySpawn1" type="Marker2D" parent="EnemySpawns" unique_id=82793932]
+position = Vector2(272, 466)
+
+[node name="EnemySpawn2" type="Marker2D" parent="EnemySpawns" unique_id=624128013]
+position = Vector2(119, 310)
+
+[node name="EnemySpawn3" type="Marker2D" parent="EnemySpawns" unique_id=1409932070]
+position = Vector2(895, 590)
+
+[node name="EnemySpawn4" type="Marker2D" parent="EnemySpawns" unique_id=182740794]
+position = Vector2(1067, 333)

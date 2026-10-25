@@ -2,7 +2,7 @@ extends VBoxContainer
 
 @onready var countdown_label: Label = %TimeCountdownLabel
 
-@export var day_duration_seconds: float = 10 # 8 minutes for a full game day
+@export var day_duration_seconds: float = 30 # 8 minutes for a full game day
 var time_elapsed: float = 0.0
 var is_active: bool = true
 var is_pulsing: bool = false
@@ -62,6 +62,7 @@ func start_pulse_effect() -> void:
 
 func _on_deadline_reached() -> void:
 	print("Time's up! Don Parmesan is here for the money.")
+	GameManager.time_is_up = true
 	EventBus.don_parmesan_spawn_requested.emit()
 
 # restarts the clock for a new day (called when the debt is paid)
@@ -69,6 +70,7 @@ func reset_day() -> void:
 	time_elapsed = 0.0
 	is_active = true
 	is_pulsing = false
+	GameManager.time_is_up = false
 	if pulse_tween:
 		pulse_tween.kill()
 	if countdown_label:

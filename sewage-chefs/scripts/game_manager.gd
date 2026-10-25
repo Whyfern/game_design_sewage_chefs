@@ -6,6 +6,7 @@ var current_day: int = 1
 var money: int = 50
 var mafia_debt: int = 50
 var debt_increase_daily: int = 25
+var time_is_up: bool = false
 
 #list of print messages that can be turned on by switching these variables
 var interactPrint : bool = false

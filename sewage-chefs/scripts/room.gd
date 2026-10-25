@@ -4,6 +4,8 @@ class_name room
 @onready var levelMan = get_node("../../..")
 @onready var ingredient_scene = preload("res://scenes/ingredient_collectible.tscn")
 @onready var toilet = load("res://scenes/toilet.tscn")
+@onready var enemy_scene = preload("res://scenes/rat_enemies.tscn")
+@export_range(0.0, 1.0, 0.05) var enemy_spawn_chance: float = 0.3
 
 var boundaryInstance
 
@@ -97,7 +99,7 @@ func spawn_ingredients():
 
 	for marker in spawn_markers:
 		# Keep the existing 40% spawn chance.
-		if randf() > 0.4:
+		if randf() > 0.3:
 			continue
 
 		var ingredient_options = common_ingredients
@@ -120,6 +122,7 @@ func spawn_ingredients():
 		floorInstance.add_child(ingredient)
 		ingredient.global_position = marker.global_position
 
+
 func choose_floor(start : bool):
 	floorsKeys = floorsDict.keys()
 	randomKey = floorsKeys.pick_random()
@@ -135,3 +138,28 @@ func choose_floor(start : bool):
 	#self.add_child.call_deferred(floorInstance)
 	
 	spawn_ingredients()
+	#spawn_enemies()
+	if not start:
+		spawn_enemies()
+
+
+
+func spawn_enemies() -> void:
+	var enemy_spawn_root = floorInstance.find_child("EnemySpawns", true, false)
+
+	if enemy_spawn_root == null:
+		return
+
+	var spawn_markers = enemy_spawn_root.get_children()
+
+	for marker in spawn_markers:
+		if not marker is Marker2D:
+			continue
+
+		if randf() > enemy_spawn_chance:
+			continue
+
+		var enemy = enemy_scene.instantiate()
+
+		enemy.position = to_local(marker.global_position)
+		add_child(enemy)
