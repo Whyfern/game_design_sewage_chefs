@@ -187,3 +187,8 @@ func _on_environbox_area_exited(area: Area2D) -> void:
 		print("left ", area.name)
 	if "sewage@Area2D" in area.name.to_lower():
 		poisonedStatus = false
+		
+func refill_health() -> void:
+	hitpoints = maxHitPoints
+	if hpBar:
+		hpBar.value = hitpoints

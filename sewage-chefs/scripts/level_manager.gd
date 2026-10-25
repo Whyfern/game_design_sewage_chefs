@@ -40,6 +40,7 @@ func switch_level():
 		instantiate_sewer()
 	elif !restaurantState:
 		instatiate_restaurant()
+		playChar.refill_health()
 
 #used to spawn the restaurant also dewpawn the sewer
 func instatiate_restaurant():

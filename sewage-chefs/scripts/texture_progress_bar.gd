@@ -1,6 +1,7 @@
 extends TextureProgressBar
 
 @export var fill_duration: float = 120.0 # 2 minutes in seconds
+@onready var sewageBar: TextureProgressBar = get_node("/root/Main/CanvasLayer/TextureProgressBar")
 var sewageMan : Node = null
 var time_elapsed: float = 0.0
 var isFlooding: bool = false
@@ -10,6 +11,7 @@ func _ready() -> void:
 	min_value = 0.0
 	max_value = 100.0
 	value = 0.0 
+	sewageBar.position.y -= 80
 	
 	# Hide the progress bar when the game starts
 	visible = false
