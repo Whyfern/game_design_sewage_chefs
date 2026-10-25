@@ -41,6 +41,11 @@ func spawn_npc() -> void:
 	path_follow, "progress", path_length, path_length / speed
 	)
 	
+	await movement_tween.finished
+
+	if is_instance_valid(npc) and npc.has_method("enable_dialogue"):
+		npc.call("enable_dialogue")
+	
 	
 func leave_npc() -> void:
 	if not is_instance_valid(path_follow):

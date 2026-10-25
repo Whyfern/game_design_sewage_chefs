@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://blqppn6em7ydt"]
+[gd_scene format=3 uid="uid://ckk4avvdvfjl5"]
 
 [ext_resource type="Script" uid="uid://cykfr254dnrqk" path="res://scripts/customer_spawner.gd" id="1_k4eeq"]
-[ext_resource type="PackedScene" uid="uid://ds0707p00m03y" path="res://scenes/customer.tscn" id="2_gpite"]
+[ext_resource type="PackedScene" uid="uid://c1elifmafstf0" path="res://scenes/customer.tscn" id="2_gpite"]
 [ext_resource type="Texture2D" uid="uid://cpeud75bhiqu5" path="res://sprites/ingredients_assets/t bone.png" id="3_6kly0"]
 [ext_resource type="Texture2D" uid="uid://bpgoavt4fnyd" path="res://sprites/ingredients_assets/brisket.png" id="4_t5ghw"]
 [ext_resource type="Texture2D" uid="uid://debw10wcr76q7" path="res://sprites/ingredients_assets/short ribs.png" id="5_unr6x"]
@@ -42,10 +42,22 @@ _data = {
 }
 point_count = 4
 
+[sub_resource type="Curve2D" id="Curve2D_eyldg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1103, 960, 0, 0, 0, 0, 1104, 703, 0, 0, 0, 0, 1417.2625, 704.1542, 0, 0, -4.496808, 13.028135, 1417.2625, 641.7036)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_25334"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1102, 960, 0, 0, 0, 0, 1103, 703, 0, 0, 0, 0, 1463, 705, 0, 0, 0, 0, 1463, 787)
+}
+point_count = 4
+
 [node name="CustomerSpawner" type="Node2D" unique_id=1173114822 node_paths=PackedStringArray("entrance_paths")]
 script = ExtResource("1_k4eeq")
 customer_scene = ExtResource("2_gpite")
-entrance_paths = [NodePath("SpotL1"), NodePath("SpotL2"), NodePath("SpotL3"), NodePath("SpotB1"), NodePath("SpotB2"), NodePath("SpotB3")]
+entrance_paths = [NodePath("SpotL1"), NodePath("SpotL2"), NodePath("SpotL3"), NodePath("SpotB1"), NodePath("SpotB2"), NodePath("SpotB3"), NodePath("PathB4")]
 order_icons = Array[Texture2D]([ExtResource("3_6kly0"), ExtResource("4_t5ghw"), ExtResource("5_unr6x")])
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1911987601]
@@ -80,3 +92,11 @@ curve = SubResource("Curve2D_5pq87")
 position = Vector2(84.92297, 114.13336)
 scale = Vector2(0.923077, 0.86666673)
 curve = SubResource("Curve2D_hg1rr")
+
+[node name="PathB4" type="Path2D" parent="." unique_id=1974341452]
+position = Vector2(0.92077637, 6.9259033)
+scale = Vector2(0.9991652, 0.9927855)
+curve = SubResource("Curve2D_eyldg")
+
+[node name="SpotB5" type="Path2D" parent="." unique_id=1419980494]
+curve = SubResource("Curve2D_25334")

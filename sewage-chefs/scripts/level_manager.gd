@@ -45,9 +45,14 @@ func switch_level():
 func instatiate_restaurant():
 	if !restaurantState:
 		
-		restaurantInstance = restaurant.instantiate()
-		restaurantInstance.z_index = 0
-		main.add_child.call_deferred(restaurantInstance)
+		
+		if not is_instance_valid(restaurantInstance):
+			restaurantInstance = restaurant.instantiate()
+			restaurantInstance.z_index = 0
+
+		if restaurantInstance.get_parent() == null:
+			main.add_child.call_deferred(restaurantInstance)
+
 		
 		startPos = charStartRest
 		playChar.position = startPos
@@ -89,7 +94,10 @@ func instantiate_sewer():
 		startPos = startPos * roomSize
 		startPos = startPos + 0.5 * roomSize
 		playChar.position = startPos
-		if restaurantInstance:
-			restaurantInstance.queue_free()
+		
+		if is_instance_valid(restaurantInstance) and restaurantInstance.get_parent() == main:
+			main.remove_child.call_deferred(restaurantInstance)
+
 		restaurantState = false
+
 	pass

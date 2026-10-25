@@ -59,6 +59,7 @@
 [ext_resource type="Script" uid="uid://d0hetq58mg346" path="res://scripts/HUD/clock_sprite.gd" id="56_lvrsu"]
 [ext_resource type="Script" uid="uid://bw4avsbvs0fv0" path="res://scripts/HUD/timer_container.gd" id="57_ydkem"]
 [ext_resource type="AudioStream" uid="uid://5k15sn8ha2fj" path="res://Music/GameMusic.ogg" id="58_3hv7p"]
+[ext_resource type="Script" uid="uid://dlfuguwuk08id" path="res://scenes/ingredient_bar.gd" id="58_6d1ax"]
 [ext_resource type="Script" uid="uid://3yasfovf7aip" path="res://scripts/HUD/music.gd" id="59_o1o2r"]
 [ext_resource type="PackedScene" path="res://scenes/HUD/weapon_bar.tscn" id="60_weaponbar"]
 
@@ -339,7 +340,15 @@ frame_progress = 0.10904889
 speed_scale = 0.5
 script = ExtResource("3_5ysmq")
 
-[node name="WeaponBar" parent="." unique_id=1021032704 instance=ExtResource("60_weaponbar")]
+[node name="WeaponBar" parent="." unique_id=1842673135 instance=ExtResource("60_weaponbar")]
+anchors_preset = 2
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = -88.0
+offset_right = 280.0
+offset_bottom = 0.0
+grow_horizontal = 1
 
 [node name="ClockSprite" type="AnimatedSprite2D" parent="." unique_id=539584329]
 position = Vector2(1200, 63)
@@ -370,3 +379,15 @@ vertical_alignment = 1
 unique_name_in_owner = true
 stream = ExtResource("58_3hv7p")
 script = ExtResource("59_o1o2r")
+
+[node name="IngredientBar" type="HBoxContainer" parent="." unique_id=420412584]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("58_6d1ax")

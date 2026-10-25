@@ -82,40 +82,11 @@ func test_boundary():
 	
 	
 func spawn_ingredients():
-	var common_ingredients = [
-		"Apple",
-		"Onion",
-		"Cucumber",
-		"Mango",
-		"Tomato",
-		"Dragonfruit",
-		"Cherries",
-		#"Green Bell Pepper",
-		#"Red Bell Pepper"
-	]
+	
+	var common_ingredients = GameManager.get_ingredients_with_rarity("common")
+	var uncommon_ingredients = GameManager.get_ingredients_with_rarity("uncommon")
+	var rare_ingredients = GameManager.get_ingredients_with_rarity("rare")
 
-	var uncommon_ingredients = [
-		"Cheese Mozarella",
-		"Cheese Brie",
-		"Pumpkin",
-		"Radish",
-		"Parsnip",
-		"Asparagus",
-		"Carrot",
-		"Potato",
-		"Corn",
-		"Lettuce"
-	]
-
-	var rare_ingredients = [
-		"Brisket",
-		"Tuna Steak",
-		"T Bone",
-		"Duck Breast",
-		"New York Strip",
-		"Short Ribs",
-		"Lobster"
-	]
 
 	var spawn_markers = floorInstance.find_children(
 		"FoodSpawn*",
