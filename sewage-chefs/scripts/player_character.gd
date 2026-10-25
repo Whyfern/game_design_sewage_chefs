@@ -26,6 +26,8 @@ var moveDirection: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	animationTree.set_active(true)
+	# Hear positional enemy sounds from Pip, even when the camera is offset.
+	$AudioListener2D.make_current()
 	
 	
 #user's mouse input management (activate only if the game is active)

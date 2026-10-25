@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://ne1ggywnxtao" path="res://scripts/rat_enemies.gd" id="1_i8cp6"]
 [ext_resource type="PackedScene" uid="uid://b6xw3hj0thg4l" path="res://scenes/enemy_death.tscn" id="2_00heb"]
 [ext_resource type="Texture2D" uid="uid://bcxqio7sw0edy" path="res://sprites/placeholder assets/Rat - Warrior/Rat_warrior_anim_sheet.png" id="3_wl1vj"]
+[ext_resource type="AudioStream" uid="uid://bgbx5rdkldkda" path="res://sfx/enemy/stesp_big2.wav" id="4_00heb"]
+[ext_resource type="AudioStream" uid="uid://by3mhdmjt205y" path="res://sfx/enemy/stesp_big1.wav" id="5_wl1vj"]
+[ext_resource type="AudioStream" uid="uid://c4sjfrdmony5u" path="res://sfx/enemy/big_whoosh.wav" id="6_00heb"]
+[ext_resource type="AudioStream" uid="uid://dlllhbctq2dnc" path="res://sfx/enemy/groan_8bit.wav" id="7_li6aj"]
+[ext_resource type="AudioStream" uid="uid://bo8f6iwokg1qt" path="res://sfx/enemy/groan2_8bit.wav" id="8_y8oxv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4kof"]
 size = Vector2(25, 27.5)
@@ -110,6 +115,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_enemy_atk"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_y8oxv"]
 resource_name = "atk_right"
@@ -163,6 +182,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, true, false]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_enemy_atk"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_dit0l"]
 resource_name = "atk_up"
@@ -215,6 +248,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_enemy_atk"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_ert3p"]
@@ -323,6 +370,23 @@ tracks/3/keys = {
 "update": 1,
 "values": [false, false]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_enemy_footstep"
+}, {
+"args": [],
+"method": &"play_enemy_footstep"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_00heb"]
 _data = {
@@ -399,6 +463,23 @@ radius = 11.333334
 radius = 9.876543
 height = 19.753086
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j2fon"]
+random_pitch = 1.0779822
+streams_count = 2
+stream_0/stream = ExtResource("4_00heb")
+stream_1/stream = ExtResource("5_wl1vj")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s4kof"]
+random_pitch = 1.0905077
+streams_count = 1
+stream_0/stream = ExtResource("6_00heb")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_supdw"]
+random_pitch = 1.0779822
+streams_count = 2
+stream_0/stream = ExtResource("7_li6aj")
+stream_1/stream = ExtResource("8_y8oxv")
+
 [node name="rat_enemies" type="CharacterBody2D" unique_id=893018143]
 scale = Vector2(3, 3)
 collision_layer = 4
@@ -443,7 +524,7 @@ monitoring = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_j2fon")
 
-[node name="AttackPivot" type="Node2D" parent="."]
+[node name="AttackPivot" type="Node2D" parent="." unique_id=1057692708]
 
 [node name="Hitbox" type="Area2D" parent="AttackPivot" unique_id=1303339524]
 position = Vector2(0, -12)
@@ -458,5 +539,24 @@ monitorable = false
 scale = Vector2(1.8, 1.2)
 shape = SubResource("CapsuleShape2D_mjdbt")
 
+[node name="SoundManager" type="Node2D" parent="." unique_id=1973927151]
+
+[node name="enStepsSound" type="AudioStreamPlayer" parent="SoundManager" unique_id=1218117707]
+stream = SubResource("AudioStreamRandomizer_j2fon")
+
+[node name="enAtkSound" type="AudioStreamPlayer" parent="SoundManager" unique_id=482813707]
+stream = SubResource("AudioStreamRandomizer_s4kof")
+volume_db = -6.0
+
+[node name="enGroanSound" type="AudioStreamPlayer2D" parent="SoundManager" unique_id=804460814]
+stream = SubResource("AudioStreamRandomizer_supdw")
+volume_db = -10.0
+max_distance = 1000.0
+
+[node name="IdleGroanTimer" type="Timer" parent="SoundManager" unique_id=1983517963]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="area_entered" from="AttackPivot/Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="timeout" from="SoundManager/IdleGroanTimer" to="." method="play_idle_groan"]

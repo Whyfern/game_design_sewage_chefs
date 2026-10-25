@@ -650,6 +650,8 @@ frame = 9
 position = Vector2(2.5, -19.5)
 shape = SubResource("RectangleShape2D_uqykc")
 
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
 limit_left = 0
 limit_top = 0

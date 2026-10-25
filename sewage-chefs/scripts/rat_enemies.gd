@@ -18,6 +18,9 @@ enum State {
 @export var atkrange: float = 96
 @export_category("Related scenes")
 @export var deathPacked: PackedScene
+@export_category("Idle audio")
+@export_range(0.1, 60.0, 0.1) var idleGroanMinDelay: float = 3.0
+@export_range(0.1, 60.0, 0.1) var idleGroanMaxDelay: float = 7.0
 
 var state: State = State.IDLE
 var hitTargets: Array[Node] = []
@@ -28,6 +31,10 @@ var hitTargets: Array[Node] = []
 @onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player") 
 @onready var navagent: NavigationAgent2D = $NavigationAgent2D
 @onready var attackPivot: Node2D = $AttackPivot
+@onready var enemyStepSound: AudioStreamPlayer = $SoundManager/enStepsSound
+@onready var enemyAtkSound: AudioStreamPlayer = $SoundManager/enAtkSound
+@onready var enemyGroanSound: AudioStreamPlayer2D = $SoundManager/enGroanSound
+@onready var idleGroanTimer: Timer = $SoundManager/IdleGroanTimer
 
 
 func _ready() -> void:
@@ -36,6 +43,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if state == State.DEAD or state == State.ATTACK:
+		_update_idle_groan()
 		return
 		
 	if distance_to_player() <= atkrange:
@@ -50,7 +58,28 @@ func _physics_process(delta: float) -> void:
 	elif state != State.IDLE:
 		state = State.IDLE
 		update_animation()
+	_update_idle_groan()
 	
+
+func _update_idle_groan() -> void:
+	# Cancel the waiting period and any groan as soon as the rat stops being idle.
+	if state != State.IDLE:
+		idleGroanTimer.stop()
+		enemyGroanSound.stop()
+		return
+
+	# Finish the current sound, then schedule a fresh random pause.
+	if enemyGroanSound.playing or not idleGroanTimer.is_stopped():
+		return
+	var maxDelay = maxf(idleGroanMinDelay, idleGroanMaxDelay)
+	idleGroanTimer.start(randf_range(idleGroanMinDelay, maxDelay))
+
+
+func play_idle_groan() -> void:
+	# The state might have changed since the timer was started.
+	if state == State.IDLE:
+		enemyGroanSound.play()
+
 
 func distance_to_player() -> float:
 	# Piccolo controllo di sicurezza nel caso il player non esista ancora o sia morto
@@ -102,29 +131,37 @@ func update_animation() -> void:
 		State.ATTACK:
 			animationplayback.travel("atk")
 		
-
+		
+# called by animation when sprite touches ground
+func play_enemy_footstep() -> void:
+	if state != State.CHASE: # steps only when charge state
+		return
+	if get_real_velocity().length() < 5.0: 
+		return
+	enemyStepSound.play()
+	
+	
 func attack() -> void:
 	if player == null:
 		return
 	hitTargets.clear()
-		
 	var playerposition: Vector2 = player.global_position
 	var atkdirection: Vector2 = (playerposition - global_position).normalized()
 	$Sprite2D.flip_h = atkdirection.x < 0 and abs(atkdirection.x) >= abs(atkdirection.y)
 	# Sprite flipping only changes the picture. Mirror the animated hitbox too.
 	attackPivot.scale = Vector2(-1.0 if $Sprite2D.flip_h else 1.0, 1.0)
-	
-	# Assicurati che il percorso del BlendSpace2D sia corretto
 	animationtree.set("parameters/atk/blend_position", atkdirection)
 	# Restart the swing even if the previous attack has not transitioned to idle yet.
 	animationplayback.start("atk", true)
-	
 	await get_tree().create_timer(enemyatkspd).timeout
-	
 	state = State.IDLE
-	update_animation() # CORRETTO: Aggiunto per evitare che si blocchi sull'attacco
+	update_animation() # No blocking during Atk
 	
-
+	
+func play_enemy_atk() -> void:
+	enemyAtkSound.play()
+	
+	
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
 	if hitpoints <= 0:
