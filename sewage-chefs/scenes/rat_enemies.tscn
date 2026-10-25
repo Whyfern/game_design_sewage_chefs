@@ -24,7 +24,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:position")
+tracks/1/path = NodePath("AttackPivot/Hitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -36,7 +36,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/path = NodePath("AttackPivot/Hitbox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -45,10 +45,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [1.5707964]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackPivot/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_li6aj"]
 resource_name = "atk_down"
-length = 0.39999999999999997
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -65,7 +77,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:position")
+tracks/1/path = NodePath("AttackPivot/Hitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -77,7 +89,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/path = NodePath("AttackPivot/Hitbox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -86,10 +98,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0, 0.0, 1.5707964, 1.5707964]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackPivot/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_y8oxv"]
 resource_name = "atk_right"
-length = 0.39999999999999997
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -106,7 +130,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:position")
+tracks/1/path = NodePath("AttackPivot/Hitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -118,7 +142,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/path = NodePath("AttackPivot/Hitbox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -127,10 +151,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackPivot/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_dit0l"]
 resource_name = "atk_up"
-length = 0.39999999999999997
+length = 0.4
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -147,7 +183,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:rotation")
+tracks/1/path = NodePath("AttackPivot/Hitbox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -159,7 +195,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:position")
+tracks/2/path = NodePath("AttackPivot/Hitbox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -168,10 +204,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(2.2737368e-13, -5.666667), Vector2(19.333336, -15.333332), Vector2(10, -26.333332), Vector2(-5.6666656, -30.333332), Vector2(-5.6666656, -30.333332)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackPivot/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_ert3p"]
 resource_name = "idle"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -188,7 +236,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:position")
+tracks/1/path = NodePath("AttackPivot/Hitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -200,7 +248,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/path = NodePath("AttackPivot/Hitbox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -209,10 +257,22 @@ tracks/2/keys = {
 "update": 0,
 "values": [0.0, 0.0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackPivot/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
 
 [sub_resource type="Animation" id="Animation_hbqid"]
 resource_name = "run"
-length = 0.39999999999999997
+length = 0.4
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -230,7 +290,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox:position")
+tracks/1/path = NodePath("AttackPivot/Hitbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -242,7 +302,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox:rotation")
+tracks/2/path = NodePath("AttackPivot/Hitbox:rotation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -250,6 +310,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AttackPivot/Hitbox:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_00heb"]
@@ -308,6 +380,8 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j30f6"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mjdbt"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j2fon"]
 states/atk/node = SubResource("AnimationNodeBlendSpace2D_g2guu")
 states/atk/position = Vector2(386.33337, 218.33334)
@@ -315,7 +389,7 @@ states/idle/node = SubResource("AnimationNodeAnimation_5f8h8")
 states/idle/position = Vector2(312.3333, 122.66666)
 states/run/node = SubResource("AnimationNodeAnimation_urfcd")
 states/run/position = Vector2(457.6667, 121.77776)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_kji43"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_6qjm8"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_40qkb"), "atk", "idle", SubResource("AnimationNodeStateMachineTransition_jypqp"), "idle", "atk", SubResource("AnimationNodeStateMachineTransition_ucxkx"), "run", "atk", SubResource("AnimationNodeStateMachineTransition_j30f6")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_kji43"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_6qjm8"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_40qkb"), "atk", "idle", SubResource("AnimationNodeStateMachineTransition_jypqp"), "idle", "atk", SubResource("AnimationNodeStateMachineTransition_ucxkx"), "run", "atk", SubResource("AnimationNodeStateMachineTransition_j30f6"), "atk", "run", SubResource("AnimationNodeStateMachineTransition_mjdbt")]
 graph_offset = Vector2(129, 65)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2fon"]
@@ -369,7 +443,9 @@ monitoring = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_j2fon")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=1303339524]
+[node name="AttackPivot" type="Node2D" parent="."]
+
+[node name="Hitbox" type="Area2D" parent="AttackPivot" unique_id=1303339524]
 position = Vector2(0, -12)
 rotation = 1.5707964
 scale = Vector2(0.45, 0.45)
@@ -378,9 +454,9 @@ collision_mask = 32
 monitoring = false
 monitorable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=608599767]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPivot/Hitbox" unique_id=608599767]
 scale = Vector2(1.8, 1.2)
 shape = SubResource("CapsuleShape2D_mjdbt")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="AttackPivot/Hitbox" to="." method="_on_hitbox_area_entered"]

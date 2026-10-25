@@ -3,6 +3,16 @@
 [ext_resource type="Script" uid="uid://cda65libt4v4h" path="res://scripts/player_character.gd" id="1_6r27q"]
 [ext_resource type="PackedScene" uid="uid://brwacvk7dtkmb" path="res://scenes/interacting_component.tscn" id="2_kww55"]
 [ext_resource type="Texture2D" uid="uid://bpsqa6fuf3qqf" path="res://sprites/placeholder assets/old/chef_rat_animation2.png" id="3_kww55"]
+[ext_resource type="AudioStream" uid="uid://cja8n76ugdwgt" path="res://sfx/player/mouse_squeeck1.wav" id="4_6unfe"]
+[ext_resource type="AudioStream" uid="uid://cshxukrhrs00i" path="res://sfx/player/mouse_squeeck2.wav" id="5_pxja8"]
+[ext_resource type="AudioStream" uid="uid://gejm24i1j6o2" path="res://sfx/player/mouse_squeeck3.wav" id="6_iadup"]
+[ext_resource type="AudioStream" uid="uid://cqkb5wdta5gft" path="res://sfx/player/mouse_squeeck4.wav" id="7_herhr"]
+[ext_resource type="AudioStream" uid="uid://cgftfby2jsd3a" path="res://sfx/player/player_atk_whoosh.tres" id="8_pxja8"]
+[ext_resource type="AudioStream" uid="uid://cg0muctx11qje" path="res://sfx/player/stesp_small1.wav" id="9_s7f3b"]
+[ext_resource type="AudioStream" uid="uid://byj6u3qmbvrah" path="res://sfx/player/stesp_small2.wav" id="10_c4hvp"]
+[ext_resource type="AudioStream" uid="uid://cii60qpadpfsl" path="res://sfx/player/stesp_small3.wav" id="11_2vlw4"]
+[ext_resource type="AudioStream" uid="uid://1lnlv0ubo4ua" path="res://sfx/player/stesp_small4.wav" id="12_joi77"]
+[ext_resource type="AudioStream" uid="uid://4yx48a2s4bsp" path="res://sfx/player/pan_hit.mp3" id="13_c4hvp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
 size = Vector2(33, 39)
@@ -150,6 +160,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true, false]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_attack_whoosh"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_uj7mf"]
 resource_name = "attack_right"
@@ -201,6 +225,20 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -1.0471976, 1.5707964, 0.0]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_attack_whoosh"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_2vmgx"]
@@ -254,6 +292,20 @@ tracks/3/keys = {
 "update": 0,
 "values": [0.0, 0.0, 0.0, -0.62831855]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_attack_whoosh"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_6unfe"]
 resource_name = "run"
@@ -295,6 +347,23 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(4.7683716e-07, -12), Vector2(9.536743e-07, -12)]
 }
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_iadup"]
 resource_name = "run_down"
@@ -324,6 +393,23 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, -12.000002), Vector2(0, -12.000002)]
 }
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_herhr"]
 resource_name = "run_up"
@@ -352,6 +438,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, -12), Vector2(0, -12)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_footstep"
+}, {
+"args": [],
+"method": &"play_footstep"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pxja8"]
@@ -396,7 +499,7 @@ blend_point_3/name = &"attack_down"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_joi77"]
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_br6ma"]
-graph_offset = Vector2(30.805399, 54.53485)
+graph_offset = Vector2(184, 169)
 nodes/output/position = Vector2(960, 160)
 nodes/BlendSpace2D/node = SubResource("AnimationNodeBlendSpace2D_2vlw4")
 nodes/BlendSpace2D/position = Vector2(280, 173.33333)
@@ -407,32 +510,32 @@ node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"BlendSpace2D"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pxja8"]
 animation = &"Idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2vlw4"]
-animation = &"attack_up"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_joi77"]
 animation = &"run_down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_br6ma"]
-animation = &"attack_right"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6unfe"]
+animation = &"run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xc70a"]
-animation = &"attack_right"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iadup"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2vlw4"]
+animation = &"run_up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2w5w8"]
 blend_mode = 1
-blend_point_0/node = SubResource("AnimationNodeAnimation_2vlw4")
-blend_point_0/pos = Vector2(0, -1)
-blend_point_0/name = &"attack_up"
-blend_point_1/node = SubResource("AnimationNodeAnimation_joi77")
-blend_point_1/pos = Vector2(0, 1)
-blend_point_1/name = &"run_down"
-blend_point_2/node = SubResource("AnimationNodeAnimation_br6ma")
-blend_point_2/pos = Vector2(-1, 0)
-blend_point_2/name = &"attack_right"
-blend_point_3/node = SubResource("AnimationNodeAnimation_xc70a")
-blend_point_3/pos = Vector2(1, 0)
-blend_point_3/name = &"attack_right 2"
+blend_point_0/node = SubResource("AnimationNodeAnimation_joi77")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_0/name = &"run_down"
+blend_point_1/node = SubResource("AnimationNodeAnimation_6unfe")
+blend_point_1/pos = Vector2(-1, 0)
+blend_point_1/name = &"run"
+blend_point_2/node = SubResource("AnimationNodeAnimation_iadup")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_2/name = &"run 2"
+blend_point_3/node = SubResource("AnimationNodeAnimation_2vlw4")
+blend_point_3/pos = Vector2(0, -1)
+blend_point_3/name = &"run_up"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_herhr"]
 advance_mode = 2
@@ -448,15 +551,17 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kww55"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_joi77"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_j2fon"]
 states/Attack/node = SubResource("AnimationNodeBlendTree_br6ma")
-states/Attack/position = Vector2(390.99997, 313.33337)
+states/Attack/position = Vector2(388.99997, 298.33337)
 states/Idle/node = SubResource("AnimationNodeAnimation_pxja8")
 states/Idle/position = Vector2(330.3333, 178)
 states/Run/node = SubResource("AnimationNodeBlendSpace2D_2w5w8")
 states/Run/position = Vector2(520, 178.51852)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_herhr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_uj7mf"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_2vmgx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_qwq0k"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_eomf4"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_kww55")]
-graph_offset = Vector2(116, 113)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_herhr"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_uj7mf"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_2vmgx"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_qwq0k"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_eomf4"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_kww55"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_joi77")]
+graph_offset = Vector2(85, 85)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kww55"]
 radius = 11.333334
@@ -464,6 +569,29 @@ radius = 11.333334
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2fon"]
 radius = 13.333333
 height = 53.33333
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j2fon"]
+random_pitch = 1.0594631
+random_volume_offset_db = 1.0
+streams_count = 4
+stream_0/stream = ExtResource("4_6unfe")
+stream_1/stream = ExtResource("5_pxja8")
+stream_2/stream = ExtResource("6_iadup")
+stream_3/stream = ExtResource("7_herhr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_s4kof"]
+random_pitch = 1.0717734
+random_volume_offset_db = 1.0
+streams_count = 4
+stream_0/stream = ExtResource("9_s7f3b")
+stream_1/stream = ExtResource("10_c4hvp")
+stream_2/stream = ExtResource("11_2vlw4")
+stream_3/stream = ExtResource("12_joi77")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_supdw"]
+random_pitch = 1.2599211
+streams_count = 1
+stream_0/stream = ExtResource("13_c4hvp")
 
 [node name="Player_Character" type="CharacterBody2D" unique_id=702846183 groups=["player"]]
 collision_layer = 2
@@ -527,5 +655,21 @@ monitorable = false
 position = Vector2(0, -17.77778)
 scale = Vector2(1.7, 1.7)
 shape = SubResource("CapsuleShape2D_j2fon")
+
+[node name="Sounds" type="Node" parent="." unique_id=612526113]
+
+[node name="HurtSound" type="AudioStreamPlayer" parent="Sounds" unique_id=363168101]
+stream = SubResource("AudioStreamRandomizer_j2fon")
+
+[node name="AttackSound" type="AudioStreamPlayer" parent="Sounds" unique_id=428120540]
+stream = ExtResource("8_pxja8")
+
+[node name="StepsSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1950206340]
+stream = SubResource("AudioStreamRandomizer_s4kof")
+volume_db = -20.0
+
+[node name="HitSound" type="AudioStreamPlayer" parent="Sounds" unique_id=319973689]
+stream = SubResource("AudioStreamRandomizer_supdw")
+volume_db = -10.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

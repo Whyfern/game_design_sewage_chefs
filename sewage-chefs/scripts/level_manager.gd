@@ -47,7 +47,9 @@ func instatiate_restaurant():
 		if sewerGenerationInstance:
 			sewerGenerationInstance.queue_free()
 		restaurantState = true
+		EventBus.locationChanged.emit("restaurant")
 	pass
+
 
 func instantiate_level():
 	if restaurantState:
@@ -72,4 +74,5 @@ func instantiate_level():
 		if restaurantInstance:
 			restaurantInstance.queue_free()
 		restaurantState = false
+		EventBus.locationChanged.emit("sewer")
 	pass
