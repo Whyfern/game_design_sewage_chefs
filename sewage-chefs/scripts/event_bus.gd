@@ -18,5 +18,7 @@ signal don_parmesan_leave_requested
 
 signal switchCameraState(state : String)
 
+signal HUDloaded(hpBar: TextureProgressBar)
+
 # emitted when the player pays Don Parmesan (a new day starts)
 signal debt_paid

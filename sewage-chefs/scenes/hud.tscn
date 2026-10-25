@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dkovo7b3e5sxh" path="res://scripts/HUD/hud.gd" id="1_ahhtf"]
 [ext_resource type="Texture2D" uid="uid://bssbicuo5dxc5" path="res://sprites/FloodPipe/heart-pixel-art-254x254.webp" id="2_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://codqfio5inmii" path="res://sprites/hpbar/hp_bar_pipe_under.png" id="2_o1o2r"]
 [ext_resource type="Texture2D" uid="uid://ctlisv4jkkguj" path="res://SpriteFrames/Cheesurrency (1).PNG" id="2_oo0fn"]
 [ext_resource type="Script" uid="uid://cyh4bbkdnwwng" path="res://scripts/HUD/animated_sprite_2d.gd" id="3_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://bhsq5uyv3whrn" path="res://sprites/hpbar/hp_bar_pipe_over.png" id="3_qn0nn"]
+[ext_resource type="Texture2D" uid="uid://c786j6jes1rsr" path="res://sprites/hpbar/hp_bar_pipe_progress.png" id="4_tks7v"]
+[ext_resource type="Script" uid="uid://c8j5dmgsg5nhk" path="res://scripts/HUD/health_bar.gd" id="5_qn0nn"]
 [ext_resource type="Texture2D" uid="uid://bd5yejc6j8ppb" path="res://SpriteFrames/ClockFrames/sky_24h_00.png" id="9_lvrsu"]
 [ext_resource type="Texture2D" uid="uid://bpgcm23je3gob" path="res://SpriteFrames/ClockFrames/sky_24h_01.png" id="10_ydkem"]
 [ext_resource type="Texture2D" uid="uid://q05p0rl2y2ep" path="res://SpriteFrames/ClockFrames/sky_24h_02.png" id="11_6d1ax"]
@@ -276,9 +280,19 @@ offset_transform_position = Vector2(60, -5)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=280637852]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=280637852]
+offset_left = 7.0
+offset_top = 87.0
+offset_right = 135.0
+offset_bottom = 127.0
+scale = Vector2(1.5, 1.5)
+max_value = 150.0
+value = 150.0
+texture_under = ExtResource("2_o1o2r")
+texture_over = ExtResource("3_qn0nn")
+texture_progress = ExtResource("4_tks7v")
+texture_progress_offset = Vector2(16.01, 0)
+script = ExtResource("5_qn0nn")
 
 [node name="HealthContainer" type="HBoxContainer" parent="." unique_id=2147416919]
 offset_left = 10.0

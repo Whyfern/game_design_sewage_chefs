@@ -11,6 +11,7 @@ enum State {
 @export var speed: int = 120*3
 @export var attackSpeed: float = 0.5
 @export var attackDamage: int = 60
+@export var maxHitPoints : int = 150
 @export var hitpoints: int = 150
 
 var state: State = State.IDLE
@@ -27,10 +28,14 @@ var poisonedDamage : int = 1
 var damageTimer : float = 0.0
 var damageInterval = 0.5
 
+@onready var HUD : CanvasLayer = get_node("../HUD")
+var hpBar : Node
+
 func _ready() -> void:
 	animationTree.set_active(true)
-	
-	
+	hpBar = await EventBus.HUDloaded
+	hpBar.max_value = maxHitPoints
+
 #user's mouse input management (activate only if the game is active)
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -52,7 +57,10 @@ func _physics_process(delta: float) -> void:
 			damageTimer = 0.0 
 	else:
 		damageTimer = 0.0
-		
+	
+	if hpBar:
+		hpBar.value = hitpoints
+	
 		
 	# can not move during dialogue
 	#if Dialogue.is_active:
