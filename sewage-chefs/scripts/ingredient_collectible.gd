@@ -64,7 +64,25 @@ func update_sprite() -> void:
 		"Parsnip": "res://sprites/ingredients_assets/parsnip.png",
 		"Radish": "res://sprites/ingredients_assets/radish.png",
 		"Garlic": "res://sprites/ingredients_assets/garlic.png",
-		"New York Strip": "res://sprites/ingredients_assets/new york strip.png"
+		"New York Strip": "res://sprites/ingredients_assets/new york strip.png",
+		
+		"Garlic Bread": "res://sprites/ingredients_assets/49_garlicbread_dish.png",
+		"Hotdog": "res://sprites/ingredients_assets/56_hotdog_dish.png",
+		"Bagel": "res://sprites/ingredients_assets/21_bagel_dish.png",
+		"Fried egg": "res://sprites/ingredients_assets/39_friedegg_dish.png",
+		"French fries": "res://sprites/ingredients_assets/45_frenchfries_dish.png",
+		"Taco": "res://sprites/ingredients_assets/100_taco_dish.png",
+		"Pizza": "res://sprites/ingredients_assets/82_pizza_dish.png",
+		"Apple pie": "res://sprites/ingredients_assets/06_apple_pie_dish.png",
+		"Burger": "res://sprites/ingredients_assets/16_burger_dish.png",
+		"Burrito": "res://sprites/ingredients_assets/19_burrito_dish.png",
+		"Cheesecake": "res://sprites/ingredients_assets/23_cheesecake_dish.png",
+		"Chocolate cake": "res://sprites/ingredients_assets/31_chocolatecake_dish.png",
+		"Roasted chicken": "res://sprites/ingredients_assets/86_roastedchicken_dish.png",
+		"Salmon": "res://sprites/ingredients_assets/89_salmon_dish.png",
+		"Spaghetti Bolognese": "res://sprites/ingredients_assets/94_spaghetti.png",
+		"Steak": "res://sprites/ingredients_assets/96_steak_dish.png",
+		"Sushi": "res://sprites/ingredients_assets/98_sushi_dish.png"
 	}
 
 	if sprite_paths.has(ingredient_name):

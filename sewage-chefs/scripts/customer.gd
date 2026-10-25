@@ -23,34 +23,41 @@ func _ready() -> void:
 	order_bubble.hide()
 	rarity_label.hide()
 	interactable.set_deferred("monitorable", false)
-	
+
 	var possible_orders: Array[String] = []
 
-	#possible_orders.append_array(GameManager.get_ingredients_with_rarity("common"))
-	#possible_orders.append_array(GameManager.get_ingredients_with_rarity("uncommon"))
-	#possible_orders.append_array(GameManager.get_ingredients_with_rarity("rare"))
-
-	#requested_dish = possible_orders.pick_random()
 	var roll := randf()
-	
+
 	if roll < 0.45:
 		possible_orders.append_array(GameManager.get_ingredients_with_rarity("common"))
 	elif roll < 0.80:
 		possible_orders.append_array(GameManager.get_ingredients_with_rarity("uncommon"))
 	else:
 		possible_orders.append_array(GameManager.get_ingredients_with_rarity("rare"))
+
 	if not possible_orders.is_empty():
 		requested_dish = possible_orders.pick_random()
-	var rarity := GameManager.get_ingredient_rarity(requested_dish)
-	rarity_label.text = rarity.capitalize()
-	rarity_label.add_theme_font_size_override("font_size", 13)
-	#rarity_label.position.y = -80
-	#order_icon.position.y += 50
-		
 
-	
+	var rarity := GameManager.get_ingredient_rarity(requested_dish)
+	var price := GameManager.get_ingredient_price(requested_dish)
+
+	rarity_label.text = "$" + str(price)
+	rarity_label.add_theme_font_size_override("font_size", 16)
+	rarity_label.add_theme_font_size_override("font_size", 16)
+	rarity_label.add_theme_color_override("font_outline_color", Color.BLACK)
+	rarity_label.add_theme_constant_override("outline_size", 3)
+
+	match rarity:
+		"common":
+			rarity_label.add_theme_color_override("font_color", Color.GREEN)
+		"uncommon":
+			rarity_label.add_theme_color_override("font_color", Color.DODGER_BLUE)
+		"rare":
+			rarity_label.add_theme_color_override("font_color", Color.MEDIUM_PURPLE)
+
 	interactable.interactName = "Serve " + requested_dish
 	interactable.interact = serve_customer
+
 func start_walking() -> void:
 	path_follow.progress = 0.0
 	is_walking = true
@@ -84,6 +91,7 @@ func show_order() -> void:
 		return
 
 	order_icon.texture = icon
+	#order_icon.scale = Vector2(0.7, 0.7)
 	rarity_label.show()
 	order_bubble.show()
 	interactable.set_deferred("monitorable", true)
