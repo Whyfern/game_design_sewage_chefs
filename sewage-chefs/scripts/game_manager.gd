@@ -30,30 +30,6 @@ func next_day() -> void:
 	stats_changed.emit()
 
 
-const WEAPONS: Dictionary = {
-	"spatula": preload("res://resources/weapons/spatula.tres"),
-	"kitchen_knife": preload("res://resources/weapons/kitchen_knife.tres"),
-	"meat_tenderizer": preload("res://resources/weapons/meat_tenderizer.tres"),
-}
-
-# returns the weapon with this id, or null (with a warning) if it does not exist
-func get_weapon(weapon_id: String) -> WeaponData:
-	if not WEAPONS.has(weapon_id):
-		push_warning("GameManager: no weapon with id '" + weapon_id + "'")
-		return null
-	return WEAPONS[weapon_id]
-
-func has_weapon(weapon_id: String) -> bool:
-	return WEAPONS.has(weapon_id)
-
-func get_all_weapon_ids() -> Array:
-	return WEAPONS.keys()
-
-# useful later for enemy drops
-func get_random_weapon() -> WeaponData:
-	return WEAPONS.values().pick_random()
-
-
 # ---------------------------------------------------------------------------
 # INGREDIENT DICTIONARY (NOT IN USE YET - everything below is commented out)
 #
@@ -197,14 +173,13 @@ func trigger_game_over(reason: String = "Ricardo's cooking days are over.") -> v
 	get_tree().paused = false
 	get_tree().change_scene_to_file.call_deferred(GAME_OVER_SCENE)
 
-# resets money, debt, day, ingredients, weapons and the clock for a new game
+# resets money, debt, day, ingredients and the clock for a new game
 func reset_game() -> void:
 	for key in start_values:
 		set(key, start_values[key])
 	game_over_reason = ""
 	victory_reason = ""
 	InventoryManager.reset()
-	WeaponInventory.reset()
 	TimerContainer.reset_day()
 	LevelTransition.cancel()
 	get_tree().paused = false

@@ -16,9 +16,9 @@ static var preloadedScenes: Dictionary = {}
 const TIPS: Array[String] = [
 	"Tip: the deeper the sewer room, the rarer the ingredients.",
 	"Tip: Don Parmesan doesn't accept crumbs. Save up before the clock runs out.",
-	"Tip: switch weapons with 1, 2, 3 or the mouse wheel.",
+	"Tip: press Q to drop all your dishes when your inventory is full.",
 	"Tip: keep an eye on the flood meter when you are in the sewer.",
-	"Tip: you can carry up to 5 ingredients at once.",
+	"Tip: you can carry up to 8 ingredients at once.",
 ]
 
 @onready var progressBar: ProgressBar = %ProgressBar

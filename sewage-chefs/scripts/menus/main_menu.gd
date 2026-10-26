@@ -6,23 +6,26 @@ extends Control
 @export var fadeDuration: float = 0.5
 
 const INSTRUCTIONS_TEXT: String = """[center][b][color=#f5c542]Your goal[/color][/b][/center]
-You are Chef Ricardo, a rat with a brand-new restaurant and a loan from the mafia. Before the clock runs out you have to earn enough cheese (€) to pay [b]Don Parmesan[/b] his tribute. Every time you pay, the tribute goes up by €25.
+You are Chef Ricardo, a rat with a brand-new restaurant and a loan from the mafia. Every day, before the clock runs out, you have to earn enough cheese (€) to pay [b]Don Parmesan[/b] his tribute. The first tribute is €50 and it goes up by €25 every day. Pay him one last time on [b]day 5[/b] and you are free.
 
 [center][b][color=#f5c542]Controls[/color][/b][/center]
 [b]W A S D[/b] / [b]arrow keys[/b]  -  move
-[b]E[/b]  -  interact, pick up, talk
+[b]E[/b]  -  interact, serve, pick up, talk
 [b]Left mouse[/b]  -  attack towards the cursor
-[b]1 / 2 / 3[/b] or [b]mouse wheel[/b]  -  switch weapon
+[b]Q[/b]  -  drop all dishes
 [b]Esc[/b]  -  skip the intro
 
 [center][b][color=#f5c542]The restaurant[/color][/b][/center]
-Customers come in and show what they want to eat. Serve the requested dish and earn money.
+Customers come in and show the dish they want and its price. Walk up to them and press [b]E[/b] to serve it, if you have it. Be quick: when their patience bar runs out they leave without paying. Once the clock runs out you can't serve anymore.
 
 [center][b][color=#f5c542]The sewer[/color][/b][/center]
-Flush the toilet to go down into the sewer. Collect dishes (you can carry 5): the deeper the room, the rarer the dishes. Watch out for rats and keep an eye on the flood meter...
+Flush the toilet to go down into the sewer. Collect dishes (you can carry 8): the deeper the room, the rarer and more valuable the dishes. Rats will attack you, and standing in the sewage hurts too. Keep an eye on the flood meter. Your health is restored when you go back up to the restaurant.
 
 [center][b][color=#f5c542]When the clock runs out[/color][/b][/center]
-Don Parmesan comes to collect. Talk to him and pay up, if you can."""
+Don Parmesan comes to collect. Talk to him and pay up, if you can. If you refuse to pay, you have to fight his gang: beat his thugs or bribe them for €20 each. Every tribute you paid before means one thug less.
+
+[center][b][color=#f5c542]Game over[/color][/b][/center]
+If your health reaches zero, the game is over and you start again from day 1."""
 
 @onready var mainButtons: VBoxContainer = %MainButtons
 @onready var startButton: Button = %StartButton

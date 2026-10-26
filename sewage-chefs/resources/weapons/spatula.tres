@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://bm4yn8xgvk3rp"]
-
-[ext_resource type="Script" uid="uid://dx6chbuq05l60" path="res://scripts/weapons/weapon_data.gd" id="1_script"]
-[ext_resource type="Texture2D" uid="uid://cgmlrghe4tdd" path="res://sprites/Rats/spatula.png" id="2_icon"]
-
-[resource]
-script = ExtResource("1_script")
-weaponName = "Spatula"
-icon = ExtResource("2_icon")

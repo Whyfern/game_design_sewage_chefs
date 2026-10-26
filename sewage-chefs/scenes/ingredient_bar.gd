@@ -1,7 +1,8 @@
 
 extends HBoxContainer
 
-const SLOT_COUNT: int = 5
+# one slot for every ingredient the inventory can hold
+var SLOT_COUNT: int = InventoryManager.max_ingredients
 
 @export var slotTexture: Texture2D = preload("res://sprites/Rats/inventory slot.png")
 @export var slotSize: Vector2 = Vector2(80, 80)
