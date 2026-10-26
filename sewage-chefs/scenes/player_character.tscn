@@ -715,7 +715,7 @@ stream = ExtResource("8_pxja8")
 
 [node name="StepsSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1950206340]
 stream = SubResource("AudioStreamRandomizer_s4kof")
-volume_db = -20.0
+volume_db = -7.0
 
 [node name="HitSound" type="AudioStreamPlayer" parent="Sounds" unique_id=319973689]
 stream = SubResource("AudioStreamRandomizer_supdw")
