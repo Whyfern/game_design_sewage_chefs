@@ -22,6 +22,7 @@ var currentLocation: String = "restaurant"
 var combatActive: bool = false
 var combatTween: Tween
 var is_tense_mode: bool = false
+var pitchTween: Tween
 
 # A separate player lets kitchen ambience overlap the restaurant music.
 @onready var kitchenAmbience: AudioStreamPlayer = $"../KitchenAmbience"
@@ -39,6 +40,8 @@ func _ready() -> void:
 	EventBus.locationChanged.connect(_on_location_changed)
 	EventBus.deadlineApproaching.connect(trigger_tense_music)
 	EventBus.enemyCombatChanged.connect(_on_enemy_combat_changed)
+	# a new day starts when the mafia debt is paid
+	EventBus.debt_paid.connect(restart_music)
 	# Main starts in the restaurant.
 	_on_location_changed("restaurant")
 
@@ -112,21 +115,34 @@ func _fade_combat_layer(active: bool, immediately: bool = false) -> void:
 
 func _set_combat_volume(value: float) -> void:
 	sewerSoundtrack.set_sync_stream_volume(1, value)
-	
-	
+
+
 # Call this function when your clock hits the final 60 seconds
 func trigger_tense_music() -> void:
-	if is_tense_mode: 
+	if is_tense_mode:
 		return
 	is_tense_mode = true
-	
+
 	# Smoothly pitch up the music to make it sound tense and fast-paced
-	var tween = create_tween()
-	tween.tween_property(self, "pitch_scale", 1.25, 1.0) # Speeds up pitch to 1.25x over 1 second
+	if pitchTween and pitchTween.is_valid():
+		pitchTween.kill()
+	pitchTween = create_tween()
+	pitchTween.tween_property(self, "pitch_scale", 1.25, 1.0)
 
 
 # Call this if the player pays off debt or time resets
 func reset_music_pitch() -> void:
 	is_tense_mode = false
-	var tween = create_tween()
-	tween.tween_property(self, "pitch_scale", 1.0, 1.0)
+	if pitchTween and pitchTween.is_valid():
+		pitchTween.kill()
+	pitchTween = create_tween()
+	pitchTween.tween_property(self, "pitch_scale", 1.0, 1.0)
+
+# starts the song from the beginning at normal speed (new day)
+func restart_music() -> void:
+	# A pending deadline tween must not speed the music up again after payment.
+	if pitchTween and pitchTween.is_valid():
+		pitchTween.kill()
+	is_tense_mode = false
+	pitch_scale = 1.0
+	play(0.0)

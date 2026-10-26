@@ -1,0 +1,110 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/debt_dialogue.gd" id="1_debt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_box"]
+bg_color = Color(0.45490196, 0.45490196, 0.45490196, 0.6901961)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="DebtDialogue" type="CanvasLayer"]
+process_mode = 3
+layer = 20
+script = ExtResource("1_debt")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.45)
+
+[node name="Portrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(80, 80)
+offset_left = 189.0
+offset_top = 348.0
+offset_right = 439.0
+offset_bottom = 598.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BoxPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(600, 230)
+offset_left = 460.0
+offset_top = 400.0
+offset_right = 1060.0
+offset_bottom = 630.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_box")
+
+[node name="MarginContainer" type="MarginContainer" parent="BoxPanel"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BoxPanel/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NameLabel" type="Label" parent="BoxPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9619252, 0.95678073, 0.96766657, 1)
+theme_override_font_sizes/font_size = 25
+text = "Don Parmesan"
+
+[node name="MoneyLabel" type="Label" parent="BoxPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_font_sizes/font_size = 16
+text = "You have €0  ·  You owe €50"
+
+[node name="TextLabel" type="RichTextLabel" parent="BoxPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+
+[node name="ChoiceBox" type="HBoxContainer" parent="BoxPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 2
+
+[node name="PayButton" type="Button" parent="BoxPanel/MarginContainer/VBoxContainer/ChoiceBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Pay €50"
+
+[node name="RefuseButton" type="Button" parent="BoxPanel/MarginContainer/VBoxContainer/ChoiceBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Not yet..."
+
+[node name="FightButton" type="Button" parent="BoxPanel/MarginContainer/VBoxContainer/ChoiceBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "I'm not paying you!"
+
+[node name="ContinueLabel" type="Label" parent="BoxPanel/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9619252, 0.95678073, 0.96766657, 1)
+theme_override_font_sizes/font_size = 18
+text = "click / E  >"
+horizontal_alignment = 2

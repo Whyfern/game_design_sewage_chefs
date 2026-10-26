@@ -3,6 +3,9 @@ class_name room
 
 @onready var levelMan = get_node("../../..")
 @onready var ingredient_scene = preload("res://scenes/ingredient_collectible.tscn")
+@onready var toilet = load("res://scenes/toilet.tscn")
+@onready var enemy_scene = preload("res://scenes/rat_enemies.tscn")
+@export_range(0.0, 1.0, 0.05) var enemy_spawn_chance: float = 0.3
 
 var boundaryInstance
 
@@ -17,6 +20,7 @@ var floorInstance
 
 var grid_pos: Vector2
 var type: int
+var depth: int = 0
 
 #True means open
 var door_top: bool
@@ -46,6 +50,7 @@ func set_Start_Room_Pos():
 func assemble_room(start : bool):
 	if start:
 		choose_floor(true)
+		place_toilet()
 	else:
 		choose_floor(false)
 	choose_wall()
@@ -64,7 +69,13 @@ func choose_wall():
 	boundary = boundariesDict[file_name]
 	$Label.text = code
 	boundaryInstance = boundary.instantiate()
+	boundaryInstance.z_index = -2
 	self.add_child.call_deferred(boundaryInstance)
+
+func place_toilet():
+	var toiletInstance = toilet.instantiate()
+	toiletInstance.position = Vector2(1280/2, 704/2)
+	self.add_child.call_deferred(toiletInstance)
 
 func test_boundary():
 	print(door_top, ":top,  ", door_left, ":left,  ", door_bot, ":bot,  ", door_right, ":right")
@@ -73,9 +84,11 @@ func test_boundary():
 	
 	
 func spawn_ingredients():
-	print("Spawn function called!")
-	print("Floor children: ", floorInstance.get_children())
-	print("Has FoodSpawns child: ", floorInstance.has_node("FoodSpawns"))
+	
+	var common_ingredients = GameManager.get_ingredients_with_rarity("common")
+	var uncommon_ingredients = GameManager.get_ingredients_with_rarity("uncommon")
+	var rare_ingredients = GameManager.get_ingredients_with_rarity("rare")
+
 
 	var spawn_markers = floorInstance.find_children(
 		"FoodSpawn*",
@@ -84,16 +97,31 @@ func spawn_ingredients():
 		false
 	)
 
-	print("Markers found: ", spawn_markers.size())
-
 	for marker in spawn_markers:
-		print("Marker position: ", marker.global_position)
+		# Keep the existing 40% spawn chance.
+		if randf() > 0.3:
+			continue
+
+		var ingredient_options = common_ingredients
+
+		# Deeper rooms have better odds of uncommon and rare food.
+		var rarity_roll = randf()
+
+		if depth >= 3 and rarity_roll < 0.90:
+			ingredient_options = rare_ingredients
+		elif depth >= 2 and rarity_roll < 0.70:
+			ingredient_options = uncommon_ingredients
+		elif depth >= 2 and rarity_roll < 0.40:
+			ingredient_options = rare_ingredients
+		elif depth >= 1 and rarity_roll < 0.20:
+			ingredient_options = uncommon_ingredients
 
 		var ingredient = ingredient_scene.instantiate()
+		ingredient.ingredient_name = ingredient_options.pick_random()
+
 		floorInstance.add_child(ingredient)
 		ingredient.global_position = marker.global_position
 
-		print("Ingredient spawned at: ", ingredient.global_position)
 
 func choose_floor(start : bool):
 	floorsKeys = floorsDict.keys()
@@ -102,10 +130,43 @@ func choose_floor(start : bool):
 		floor = load("res://scenes/sewer rooms/sewer_room_floors/sewer_room_00.tscn")
 	else :
 		floor = floorsDict[randomKey]
-	print("Is start room: ", start)
+	#print("Is start room: ", start)
 	floorInstance = floor.instantiate()
-	print("Loaded floor scene: ", floor.resource_path)
+	floorInstance.z_index = -3
+	#print("Loaded floor scene: ", floor.resource_path)
 	add_child(floorInstance)
 	#self.add_child.call_deferred(floorInstance)
 	
+	var sewage_layer = floorInstance.find_child("SewerSewage", true, false)
+
+	if sewage_layer is TileMapLayer:
+		sewage_layer.add_to_group("sewage_tiles")
+		print("Sewage group added: ", sewage_layer.get_path())
+	else:
+		print("SewerSewage not found in: ", floor.resource_path)
+	
 	spawn_ingredients()
+	if not start:
+		spawn_enemies()
+
+
+
+func spawn_enemies() -> void:
+	var enemy_spawn_root = floorInstance.find_child("EnemySpawns", true, false)
+
+	if enemy_spawn_root == null:
+		return
+
+	var spawn_markers = enemy_spawn_root.get_children()
+
+	for marker in spawn_markers:
+		if not marker is Marker2D:
+			continue
+
+		if randf() > enemy_spawn_chance:
+			continue
+
+		var enemy = enemy_scene.instantiate()
+
+		enemy.position = to_local(marker.global_position)
+		add_child(enemy)

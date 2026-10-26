@@ -4,7 +4,7 @@ enum State {
 	IDLE,
 	CHASE,
 	RETURN,
-	ATTACK, 
+	ATTACK,
 	DEAD
 }
 
@@ -13,7 +13,7 @@ enum State {
 @export var enemyatkdmg: int = 10
 @export var enemyatkspd: float = 1.0
 @export var hitpoints:int = 180
-@export var aggrorange: float = 256
+@export var aggrorange: float = 384
 # Keep attacks reachable above the rat's tall body collider, too.
 @export var atkrange: float = 96
 @export_category("Related scenes")
@@ -27,11 +27,12 @@ var state: State = State.IDLE:
 		state = nextState
 		_update_combat_threat()
 var hitTargets: Array[Node] = []
+var navigationReady: bool = false
 
 @onready var spawnpoint: Vector2 = global_position
 @onready var animationtree: AnimationTree = $AnimationTree
 @onready var animationplayback: AnimationNodeStateMachinePlayback = $AnimationTree["parameters/playback"]
-@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player") 
+@onready var player: CharacterBody2D = get_tree().get_first_node_in_group("player")
 @onready var navagent: NavigationAgent2D = $NavigationAgent2D
 @onready var attackPivot: Node2D = $AttackPivot
 @onready var enemyStepSound: AudioStreamPlayer = $SoundManager/enStepsSound
@@ -43,6 +44,10 @@ var hitTargets: Array[Node] = []
 func _ready() -> void:
 	animationtree.set_active(true)
 	_update_combat_threat()
+	# Give newly generated navigation maps time to synchronize before path queries.
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	navigationReady = true
 
 
 func _update_combat_threat() -> void:
@@ -65,11 +70,15 @@ func _exit_tree() -> void:
 		EventBus.enemyCombatChanged.emit(self, false)
 
 
+
 func _physics_process(delta: float) -> void:
+	if not navigationReady:
+		return
+
 	if state == State.DEAD or state == State.ATTACK:
 		_update_idle_groan()
 		return
-		
+
 	if distance_to_player() <= atkrange:
 		state = State.ATTACK # CORRETTO: = invece di ==
 		attack()
@@ -83,7 +92,7 @@ func _physics_process(delta: float) -> void:
 		state = State.IDLE
 		update_animation()
 	_update_idle_groan()
-	
+
 
 func _update_idle_groan() -> void:
 	# Cancel the waiting period and any groan as soon as the rat stops being idle.
@@ -117,28 +126,29 @@ func move() -> void:
 		navagent.target_position = player.global_position
 	elif state == State.RETURN:
 		navagent.target_position = spawnpoint
-		
+
 	var nextpathposition: Vector2 = navagent.get_next_path_position()
-	
+
+
 	# CORRETTO: = invece di -
 	velocity = global_position.direction_to(nextpathposition) * enemyspeed
-	
+
 	if navagent.avoidance_enabled:
 		navagent.set_velocity_forced(velocity)
 	else:
 		_on_navigation_agent_2d_velocity_computed(velocity)
-		
+
 	move_and_slide()
-	
+
 	# CORRETTO: Aggiunto "state == State.CHASE"
 	if state == State.IDLE or state == State.CHASE:
 		if velocity.x < -0.01:
 			$Sprite2D.flip_h = true
 		elif velocity.x > 0.01:
 			$Sprite2D.flip_h = false
-			
+
 	update_animation()
-	
+
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity # Assicuriamoci che la velocity venga aggiornata se usi l'avoidance
@@ -154,17 +164,17 @@ func update_animation() -> void:
 			animationplayback.travel("run")
 		State.ATTACK:
 			animationplayback.travel("atk")
-		
-		
+
+
 # called by animation when sprite touches ground
 func play_enemy_footstep() -> void:
 	if state != State.CHASE: # steps only when charge state
 		return
-	if get_real_velocity().length() < 5.0: 
+	if get_real_velocity().length() < 5.0:
 		return
 	enemyStepSound.play()
-	
-	
+
+
 func attack() -> void:
 	if player == null:
 		return
@@ -178,14 +188,16 @@ func attack() -> void:
 	# Restart the swing even if the previous attack has not transitioned to idle yet.
 	animationplayback.start("atk", true)
 	await get_tree().create_timer(enemyatkspd).timeout
+	if state == State.DEAD:
+		return
 	state = State.IDLE
 	update_animation() # No blocking during Atk
-	
-	
+
+
 func play_enemy_atk() -> void:
 	enemyAtkSound.play()
-	
-	
+
+
 func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
 	if hitpoints <= 0:
@@ -193,11 +205,25 @@ func take_damage(damage_taken: int) -> void:
 
 
 func death() -> void:
-	state = State.DEAD
-	var deathscene: Node2D = deathPacked.instantiate()
-	%Effects.add_child(deathscene)
-	deathscene.global_position = global_position
+	if state == State.DEAD:
+		return
+	state = State.DEAD # Imposta lo stato a morto per sicurezza
+	spawn_death_animation()
 	queue_free()
+
+
+# added to the parent, otherwise it gets freed together with the rat
+func spawn_death_animation() -> void:
+	var deathscene: Node2D = deathPacked.instantiate()
+	var parentNode: Node = get_parent()
+	if parentNode is Node2D:
+		deathscene.position = parentNode.to_local(global_position)
+	else:
+		deathscene.position = global_position
+	deathscene.z_index = z_index
+	deathscene.z_as_relative = z_as_relative
+	deathscene.scale = Vector2.ONE
+	parentNode.add_child.call_deferred(deathscene)
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

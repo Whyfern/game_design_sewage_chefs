@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c2ugx7jyd17oo"]
+
+[ext_resource type="PackedScene" uid="uid://bjdeukfuw5b34" path="res://scenes/npc.tscn" id="1_8esca"]
+[ext_resource type="Texture2D" uid="uid://xwlvqm6cmah5" path="res://sprites/Rats/MafiaRat.PNG" id="1_mj8ym"]
+[ext_resource type="Script" path="res://scripts/don_parmesan.gd" id="2_donscript"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_422qx"]
+size = Vector2(61.26759, 26.269188)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3sv27"]
+radius = 56.0
+
+[node name="NPC" unique_id=456873055 instance=ExtResource("1_8esca")]
+script = ExtResource("2_donscript")
+npc_name = "Don Parmesan"
+dialogue = "It is time for your payment...
+You surely have not forgotten that, right?
+Now pay up, the payment is $mafia_debt."
+npc_texture = ExtResource("1_mj8ym")
+npc_portrait = ExtResource("1_mj8ym")
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=944734359]
+position = Vector2(3.999999, -5.808626e-07)
+shape = SubResource("RectangleShape2D_422qx")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1445205000]
+position = Vector2(-8, -72)
+scale = Vector2(0.075, 0.075)
+texture = ExtResource("1_mj8ym")
+
+[node name="CollisionShape2D" parent="Interactable" parent_id_path=PackedInt32Array(1601367178) index="0" unique_id=1912744389]
+shape = SubResource("CircleShape2D_3sv27")

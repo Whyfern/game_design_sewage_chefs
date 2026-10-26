@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dkovo7b3e5sxh" path="res://scripts/HUD/hud.gd" id="1_ahhtf"]
 [ext_resource type="Texture2D" uid="uid://bssbicuo5dxc5" path="res://sprites/FloodPipe/heart-pixel-art-254x254.webp" id="2_6fi6k"]
+[ext_resource type="Texture2D" uid="uid://codqfio5inmii" path="res://sprites/hpbar/hp_bar_pipe_under.png" id="2_o1o2r"]
 [ext_resource type="Texture2D" uid="uid://ctlisv4jkkguj" path="res://SpriteFrames/Cheesurrency (1).PNG" id="2_oo0fn"]
 [ext_resource type="Script" uid="uid://cyh4bbkdnwwng" path="res://scripts/HUD/animated_sprite_2d.gd" id="3_5ysmq"]
-[ext_resource type="Texture2D" uid="uid://cmyuegceu30q1" path="res://sprites/Rats/inventory slot.png" id="5_5pdws"]
-[ext_resource type="Script" uid="uid://dqjpubs0ulkj5" path="res://scripts/HUD/weapon_slot.gd" id="5_uo2fv"]
-[ext_resource type="Texture2D" uid="uid://cgmlrghe4tdd" path="res://sprites/Rats/spatula.png" id="6_047uy"]
+[ext_resource type="Texture2D" uid="uid://bhsq5uyv3whrn" path="res://sprites/hpbar/hp_bar_pipe_over.png" id="3_qn0nn"]
+[ext_resource type="Texture2D" uid="uid://c786j6jes1rsr" path="res://sprites/hpbar/hp_bar_pipe_progress.png" id="4_tks7v"]
+[ext_resource type="Script" uid="uid://c8j5dmgsg5nhk" path="res://scripts/HUD/health_bar.gd" id="5_qn0nn"]
 [ext_resource type="Texture2D" uid="uid://bd5yejc6j8ppb" path="res://SpriteFrames/ClockFrames/sky_24h_00.png" id="9_lvrsu"]
 [ext_resource type="Texture2D" uid="uid://bpgcm23je3gob" path="res://SpriteFrames/ClockFrames/sky_24h_01.png" id="10_ydkem"]
 [ext_resource type="Texture2D" uid="uid://q05p0rl2y2ep" path="res://SpriteFrames/ClockFrames/sky_24h_02.png" id="11_6d1ax"]
@@ -57,6 +58,9 @@
 [ext_resource type="Texture2D" uid="uid://cqp8flkyu537b" path="res://SpriteFrames/ClockFrames/sky_24h_47.png" id="56_bjcuq"]
 [ext_resource type="Script" uid="uid://d0hetq58mg346" path="res://scripts/HUD/clock_sprite.gd" id="56_lvrsu"]
 [ext_resource type="Script" uid="uid://bw4avsbvs0fv0" path="res://scripts/HUD/timer_container.gd" id="57_ydkem"]
+[ext_resource type="Script" uid="uid://dlfuguwuk08id" path="res://scenes/ingredient_bar.gd" id="58_6d1ax"]
+[ext_resource type="PackedScene" path="res://scenes/HUD/weapon_bar.tscn" id="60_weaponbar"]
+[ext_resource type="AudioStream" uid="uid://o6g7j3jja273" path="res://Music/565642__jcsg__plate-break-1.wav" id="61_qn0nn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd3ao"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -276,7 +280,22 @@ offset_transform_position = Vector2(60, -5)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 30
 
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=280637852]
+offset_left = 7.0000005
+offset_top = 36.0
+offset_right = 135.0
+offset_bottom = 76.0
+scale = Vector2(1.5, 1.5)
+max_value = 150.0
+value = 150.0
+texture_under = ExtResource("2_o1o2r")
+texture_over = ExtResource("3_qn0nn")
+texture_progress = ExtResource("4_tks7v")
+texture_progress_offset = Vector2(16.01, 0)
+script = ExtResource("5_qn0nn")
+
 [node name="HealthContainer" type="HBoxContainer" parent="." unique_id=2147416919]
+visible = false
 offset_left = 10.0
 offset_top = 70.0
 offset_right = 251.0
@@ -321,29 +340,15 @@ frame_progress = 0.10904889
 speed_scale = 0.5
 script = ExtResource("3_5ysmq")
 
-[node name="WeaponSlot" type="TextureRect" parent="." unique_id=166747344]
-custom_minimum_size = Vector2(60, 60)
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -350.0
-offset_top = -108.0
-offset_right = -222.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-texture = ExtResource("5_5pdws")
-expand_mode = 2
-script = ExtResource("5_uo2fv")
-
-[node name="WeaponIcon" type="TextureRect" parent="WeaponSlot" unique_id=648172156]
-layout_mode = 0
-offset_right = 128.0
-offset_bottom = 128.0
-texture = ExtResource("6_047uy")
-expand_mode = 2
+[node name="WeaponBar" parent="." unique_id=1842673135 instance=ExtResource("60_weaponbar")]
+anchors_preset = 2
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = -88.0
+offset_right = 280.0
+offset_bottom = 0.0
+grow_horizontal = 1
 
 [node name="ClockSprite" type="AnimatedSprite2D" parent="." unique_id=539584329]
 position = Vector2(1200, 63)
@@ -369,3 +374,18 @@ theme_override_font_sizes/font_size = 20
 text = "Due: 8:00"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="IngredientBar" type="HBoxContainer" parent="." unique_id=420412584]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("58_6d1ax")
+
+[node name="AudioStreamDrop" type="AudioStreamPlayer" parent="IngredientBar" unique_id=777288423]
+stream = ExtResource("61_qn0nn")

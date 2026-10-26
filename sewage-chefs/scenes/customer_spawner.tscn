@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://ckk4avvdvfjl5"]
+
+[ext_resource type="Script" uid="uid://cykfr254dnrqk" path="res://scripts/customer_spawner.gd" id="1_k4eeq"]
+[ext_resource type="PackedScene" uid="uid://c1elifmafstf0" path="res://scenes/customer.tscn" id="2_gpite"]
+[ext_resource type="Texture2D" uid="uid://cpeud75bhiqu5" path="res://sprites/ingredients_assets/t bone.png" id="3_6kly0"]
+[ext_resource type="Texture2D" uid="uid://bpgoavt4fnyd" path="res://sprites/ingredients_assets/brisket.png" id="4_t5ghw"]
+[ext_resource type="Texture2D" uid="uid://debw10wcr76q7" path="res://sprites/ingredients_assets/short ribs.png" id="5_unr6x"]
+[ext_resource type="AudioStream" uid="uid://c7c024bs7d7p5" path="res://Music/437333__giddster__bell-ringing.wav" id="6_t5ghw"]
+
+[sub_resource type="Curve2D" id="Curve2D_5pq87"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 676.00006, 0, 0, 0, 0, 688, 676.00006)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_j60qd"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 976, 0, 0, 0, 0, 1104, 896, 0, 0, 0, 0, 1104, 736, 0, 0, 0, 0, 856, 736)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_6kly0"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 706, 0, 0, 0, 0, 856, 706, 0, 0, 0, 0, 856, 596.00006, 0, 0, 0, 0, 746.88, 596.00006)
+}
+point_count = 5
+
+[sub_resource type="Curve2D" id="Curve2D_t5ghw"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 596.00006, 0, 0, 0, 0, 1072, 596.00006)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_hg1rr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1103.9999, 975.9998, 0, 0, 0, 0, 1103.9999, 680.6153, 0, 0, 0, 0, 1207.9999, 680.6153, 0, 0, 0, 0, 1208, 625.23065)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_unr6x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 716, 0, 0, 0, 0, 1264, 716, 0, 0, 0, 0, 1264.0002, 786)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_eyldg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1103, 960, 0, 0, 0, 0, 1104, 703, 0, 0, 0, 0, 1417.2625, 704.1542, 0, 0, -4.496808, 13.028135, 1416.2616, 661.84894)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_25334"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1102, 960, 0, 0, 0, 0, 1103, 703, 0, 0, 0, 0, 1463, 705, 0, 0, 0, 0, 1463, 787)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_mlxot"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 768, 0, 0, 0, 0, 744, 672, 0, 0, 0, 0, 744, 496)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_jr443"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 792, 0, 0, 0, 0, 928, 752, 0, 0, 0, 0, 928, 496)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_kgnbk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 496)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_nx6yo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 760, 0, 0, 0, 0, 1328, 592, 0, 0, 0, 0, 1328, 456)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_c3c7p"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 752, 0, 0, 0, 0, 1344, 704, 0, 0, 0, 0, 1552, 704)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_sg5ew"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 736, 0, 0, 0, 0, 1432, 704, 0, 0, 0, 0, 1560, 552)
+}
+point_count = 4
+
+[node name="CustomerSpawner" type="Node2D" unique_id=1173114822]
+script = ExtResource("1_k4eeq")
+customer_scene = ExtResource("2_gpite")
+order_icons = Array[Texture2D]([ExtResource("3_6kly0"), ExtResource("4_t5ghw"), ExtResource("5_unr6x")])
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1911987601]
+one_shot = true
+
+[node name="SpotL1" type="Path2D" parent="." unique_id=840546925]
+position = Vector2(0, 205.22618)
+scale = Vector2(1, 0.7733339)
+curve = SubResource("Curve2D_5pq87")
+
+[node name="SpotL2" type="Path2D" parent="." unique_id=454355826]
+position = Vector2(0, 276.7997)
+scale = Vector2(1, 0.7000004)
+curve = SubResource("Curve2D_j60qd")
+
+[node name="SpotL3" type="Path2D" parent="." unique_id=809959995]
+position = Vector2(213.67743, 179.19965)
+scale = Vector2(0.8064516, 0.8000005)
+curve = SubResource("Curve2D_6kly0")
+
+[node name="SpotB1" type="Path2D" parent="." unique_id=1796548268]
+position = Vector2(0, 199.74702)
+scale = Vector2(1, 0.77894783)
+curve = SubResource("Curve2D_t5ghw")
+
+[node name="SpotB2" type="Path2D" parent="." unique_id=1995520817]
+position = Vector2(84.92297, 114.13336)
+scale = Vector2(0.923077, 0.86666673)
+curve = SubResource("Curve2D_hg1rr")
+
+[node name="SpotB3" type="Path2D" parent="." unique_id=1245420656]
+position = Vector2(-55.200073, 179.19965)
+scale = Vector2(1.05, 0.8000005)
+curve = SubResource("Curve2D_unr6x")
+
+[node name="SpotB4" type="Path2D" parent="." unique_id=1974341452]
+position = Vector2(-23.64793, 6.9259033)
+scale = Vector2(1.0214396, 0.9927855)
+curve = SubResource("Curve2D_eyldg")
+
+[node name="SpotB5" type="Path2D" parent="." unique_id=1419980494]
+curve = SubResource("Curve2D_25334")
+
+[node name="SpotF1" type="Path2D" parent="." unique_id=1973367469]
+position = Vector2(24.533325, -3.0517578e-05)
+scale = Vector2(0.9777778, 1)
+curve = SubResource("Curve2D_mlxot")
+
+[node name="SpotF2" type="Path2D" parent="." unique_id=952296716]
+curve = SubResource("Curve2D_jr443")
+
+[node name="SpotF3" type="Path2D" parent="." unique_id=2049624554]
+curve = SubResource("Curve2D_kgnbk")
+
+[node name="SpotF4" type="Path2D" parent="." unique_id=1532171512]
+curve = SubResource("Curve2D_nx6yo")
+
+[node name="SpotR1" type="Path2D" parent="." unique_id=1342526652]
+curve = SubResource("Curve2D_c3c7p")
+
+[node name="SpotR2" type="Path2D" parent="." unique_id=160364299]
+curve = SubResource("Curve2D_sg5ew")
+
+[node name="AudioStreamBell" type="AudioStreamPlayer" parent="." unique_id=1085259683]
+stream = ExtResource("6_t5ghw")

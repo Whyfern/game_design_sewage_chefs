@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cda65libt4v4h" path="res://scripts/player_character.gd" id="1_6r27q"]
 [ext_resource type="PackedScene" uid="uid://brwacvk7dtkmb" path="res://scenes/interacting_component.tscn" id="2_kww55"]
 [ext_resource type="Texture2D" uid="uid://bpsqa6fuf3qqf" path="res://sprites/placeholder assets/old/chef_rat_animation2.png" id="3_kww55"]
+[ext_resource type="Script" uid="uid://cjq0fy7da8kp3" path="res://scripts/playerCamera.gd" id="4_4h0vy"]
 [ext_resource type="AudioStream" uid="uid://cja8n76ugdwgt" path="res://sfx/player/mouse_squeeck1.wav" id="4_6unfe"]
 [ext_resource type="AudioStream" uid="uid://cshxukrhrs00i" path="res://sfx/player/mouse_squeeck2.wav" id="5_pxja8"]
 [ext_resource type="AudioStream" uid="uid://gejm24i1j6o2" path="res://sfx/player/mouse_squeeck3.wav" id="6_iadup"]
@@ -13,9 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://cii60qpadpfsl" path="res://sfx/player/stesp_small3.wav" id="11_2vlw4"]
 [ext_resource type="AudioStream" uid="uid://1lnlv0ubo4ua" path="res://sfx/player/stesp_small4.wav" id="12_joi77"]
 [ext_resource type="AudioStream" uid="uid://dg34k0xcq0okt" path="res://sfx/player/pan_hit.wav" id="13_c4hvp"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
-size = Vector2(33, 39)
 
 [sub_resource type="Animation" id="Animation_pxja8"]
 resource_name = "Idle"
@@ -580,6 +578,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2vmgx"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qwq0k"]
 
@@ -604,7 +603,9 @@ radius = 11.333334
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2fon"]
 radius = 13.333333
-height = 53.33333
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uqykc"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j2fon"]
 random_pitch = 1.0594631
@@ -630,13 +631,14 @@ streams_count = 1
 stream_0/stream = ExtResource("13_c4hvp")
 
 [node name="Player_Character" type="CharacterBody2D" unique_id=702846183 groups=["player"]]
+z_index = 10
+z_as_relative = false
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_6r27q")
 
 [node name="InteractingComponent" parent="." unique_id=1461981296 instance=ExtResource("2_kww55")]
-visible = false
-position = Vector2(-1, -17)
+position = Vector2(0, -17)
 
 [node name="ChefRat" type="Sprite2D" parent="." unique_id=1828937166]
 position = Vector2(0, -24)
@@ -646,18 +648,16 @@ hframes = 4
 vframes = 6
 frame = 9
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2078879172]
-position = Vector2(2.5, -19.5)
-shape = SubResource("RectangleShape2D_uqykc")
-
 [node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1849512311]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
+top_level = true
 limit_left = 0
 limit_top = 0
 limit_right = 6400
 limit_bottom = 3520
 position_smoothing_enabled = true
+script = ExtResource("4_4h0vy")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1047978012]
 libraries/ = SubResource("AnimationLibrary_pxja8")
@@ -695,6 +695,18 @@ position = Vector2(2.1192766e-06, 20.000013)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CapsuleShape2D_j2fon")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=857181560]
+position = Vector2(0, -17)
+shape = SubResource("CapsuleShape2D_j2fon")
+
+[node name="environbox" type="Area2D" parent="." unique_id=439912251]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="environbox" unique_id=1127702131]
+position = Vector2(0, -15)
+shape = SubResource("CapsuleShape2D_uqykc")
+
 [node name="Sounds" type="Node" parent="." unique_id=612526113]
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="Sounds" unique_id=363168101]
@@ -707,10 +719,12 @@ volume_db = -5.0
 
 [node name="StepsSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1950206340]
 stream = SubResource("AudioStreamRandomizer_s4kof")
-volume_db = -20.0
+volume_db = -7.0
 
 [node name="HitSound" type="AudioStreamPlayer" parent="Sounds" unique_id=319973689]
 stream = SubResource("AudioStreamRandomizer_supdw")
 volume_db = -10.0
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="environbox" to="." method="_on_environbox_area_entered"]
+[connection signal="area_exited" from="environbox" to="." method="_on_environbox_area_exited"]

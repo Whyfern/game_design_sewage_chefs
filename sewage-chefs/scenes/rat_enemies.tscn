@@ -8,9 +8,10 @@
 [ext_resource type="AudioStream" uid="uid://c4sjfrdmony5u" path="res://sfx/enemy/big_whoosh.wav" id="6_00heb"]
 [ext_resource type="AudioStream" uid="uid://dlllhbctq2dnc" path="res://sfx/enemy/groan_8bit.wav" id="7_li6aj"]
 [ext_resource type="AudioStream" uid="uid://bo8f6iwokg1qt" path="res://sfx/enemy/groan2_8bit.wav" id="8_y8oxv"]
+[ext_resource type="Script" uid="uid://bdai3cpw3jyoj" path="res://scripts/enemies/enemy_health_bar.gd" id="4_hpbar"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s4kof"]
-size = Vector2(25, 27.5)
+size = Vector2(7.8333335, 8)
 
 [sub_resource type="Animation" id="Animation_5ik12"]
 length = 0.001
@@ -457,7 +458,8 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 graph_offset = Vector2(129, 65)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j2fon"]
-radius = 11.333334
+radius = 8.0
+height = 16.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mjdbt"]
 radius = 9.876543
@@ -481,6 +483,9 @@ stream_0/stream = ExtResource("7_li6aj")
 stream_1/stream = ExtResource("8_y8oxv")
 
 [node name="rat_enemies" type="CharacterBody2D" unique_id=893018143]
+z_index = 10
+z_as_relative = false
+y_sort_enabled = true
 scale = Vector2(3, 3)
 collision_layer = 4
 collision_mask = 3
@@ -488,11 +493,12 @@ script = ExtResource("1_i8cp6")
 deathPacked = ExtResource("2_00heb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1944109004]
-position = Vector2(0.5, -13.75)
+position = Vector2(-1.25, -4)
 shape = SubResource("RectangleShape2D_s4kof")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1573640639]
-position = Vector2(0, -15.000001)
+position = Vector2(-1.1920929e-07, -7.9999986)
+scale = Vector2(0.5442708, 0.5442708)
 texture = ExtResource("3_wl1vj")
 hframes = 4
 vframes = 5
@@ -511,7 +517,6 @@ avoidance_enabled = true
 radius = 26.0
 neighbor_distance = 128.0
 max_speed = 128.0
-debug_enabled = true
 debug_path_custom_color = Color(1, 0, 0.7666664, 1)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=390748007]
@@ -521,10 +526,10 @@ input_pickable = false
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=506566346]
-position = Vector2(0, -15)
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_j2fon")
 
-[node name="AttackPivot" type="Node2D" parent="." unique_id=1057692708]
+[node name="AttackPivot" type="Node2D" parent="." unique_id=856076786]
 
 [node name="Hitbox" type="Area2D" parent="AttackPivot" unique_id=1303339524]
 position = Vector2(0, -12)
@@ -536,6 +541,7 @@ monitoring = false
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackPivot/Hitbox" unique_id=608599767]
+position = Vector2(8.888889, -3.5762787e-07)
 scale = Vector2(1.8, 1.2)
 shape = SubResource("CapsuleShape2D_mjdbt")
 
@@ -556,6 +562,9 @@ max_distance = 1000.0
 [node name="IdleGroanTimer" type="Timer" parent="SoundManager" unique_id=1983517963]
 wait_time = 0.5
 one_shot = true
+[node name="HealthBar" type="Node2D" parent="." unique_id=422695716]
+position = Vector2(0, -19)
+script = ExtResource("4_hpbar")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="area_entered" from="AttackPivot/Hitbox" to="." method="_on_hitbox_area_entered"]

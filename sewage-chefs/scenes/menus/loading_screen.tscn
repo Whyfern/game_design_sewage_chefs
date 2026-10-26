@@ -1,0 +1,154 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/menus/loading_screen.gd" id="1_loading"]
+[ext_resource type="Texture2D" uid="uid://btrh8p0b5643m" path="res://sprites/Rats/Screenshot_2026-10-17_174818-removebg-preview.png" id="2_chef"]
+
+[sub_resource type="Gradient" id="Gradient_bg"]
+colors = PackedColorArray(0.09, 0.15, 0.09, 1, 0.02, 0.03, 0.02, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bg"]
+gradient = SubResource("Gradient_bg")
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.05, 0.07, 0.05, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.96, 0.77, 0.26, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.44, 0.68, 0.23, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="LoadingScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_loading")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_bg")
+expand_mode = 1
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 70.0
+offset_right = 400.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.96, 0.77, 0.26, 1)
+theme_override_colors/font_outline_color = Color(0.1, 0.06, 0.02, 1)
+theme_override_constants/outline_size = 14
+theme_override_font_sizes/font_size = 72
+text = "SEWAGE CHEFS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RatIcon" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -190.0
+offset_right = 130.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_chef")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 60.0
+offset_right = 300.0
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+show_percentage = false
+
+[node name="StatusLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 100.0
+offset_right = 300.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.9, 0.93, 0.88, 1)
+theme_override_font_sizes/font_size = 22
+text = "Loading... 0%"
+horizontal_alignment = 1
+
+[node name="TipLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -90.0
+offset_right = -40.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7, 0.78, 0.66, 1)
+theme_override_font_sizes/font_size = 18
+text = "Tip"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="FadeRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
