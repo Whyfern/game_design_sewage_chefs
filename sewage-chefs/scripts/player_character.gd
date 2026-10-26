@@ -43,14 +43,14 @@ func _ready() -> void:
 
 #user's mouse input management (activate only if the game is active)
 func _unhandled_input(event: InputEvent) -> void:
-	if state == State.DEAD: # a dead rat can't attack
+	if state == State.DEAD:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		attack()
 		
 		
 func _physics_process(delta: float) -> void:
-	if state == State.DEAD: # nothing moves or takes damage after dying
+	if state == State.DEAD:
 		return
 	poisonedStatus = poisonedByArea or is_on_sewage_tile()
 	
@@ -126,7 +126,7 @@ func attack() -> void:
 	
 	#wait for attack duration
 	await get_tree().create_timer(attackSpeed).timeout
-	if state == State.DEAD: # died during the swing, don't go back to idle/run
+	if state == State.DEAD:
 		return
 	
 	# Check what the player is doing *right now* to choose the correct next state
@@ -152,7 +152,7 @@ func play_footstep() -> void:
 		
 		
 func take_damage(damage_taken: int) -> void:
-	if state == State.DEAD: # already dead, ignore extra hits
+	if state == State.DEAD:
 		return
 	hitpoints -= damage_taken
 	hurtSound.play() # Play mouse squeak whenever player takes damage.
@@ -197,9 +197,9 @@ func is_on_sewage_tile() -> bool:
 
 
 
-# Ricardo dies: he stops, turns red and fades out, then the game over screen opens.
+# Ricardo fades out, then the game over screen opens
 func death() -> void:
-	if state == State.DEAD: # only die once
+	if state == State.DEAD:
 		return
 	state = State.DEAD
 	hitpoints = 0
@@ -207,11 +207,9 @@ func death() -> void:
 		hpBar.value = 0
 	velocity = Vector2.ZERO
 	AnimationPlayback.travel("Idle")
-	# enemies can't hit him anymore while he fades out
 	$Hurtbox.set_deferred("monitorable", false)
 	$Hitbox.set_deferred("monitoring", false)
 
-	# the reason shown on the game over screen depends on how he died
 	var reason: String = "Ricardo was defeated in the sewer."
 	if poisonedStatus:
 		reason = "Ricardo drowned in the sewage."

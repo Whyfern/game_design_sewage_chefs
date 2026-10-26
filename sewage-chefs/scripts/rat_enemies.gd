@@ -138,11 +138,24 @@ func take_damage(damage_taken: int) -> void:
 		
 
 func death() -> void:
+	if state == State.DEAD:
+		return
 	state = State.DEAD # Imposta lo stato a morto per sicurezza
-	var deathscene: Node2D = deathPacked.instantiate()
-	deathscene.position = global_position 
-	self.add_child(deathscene)
+	spawn_death_animation()
 	queue_free()
+
+
+# added to the parent, otherwise it gets freed together with the rat
+func spawn_death_animation() -> void:
+	var deathscene: Node2D = deathPacked.instantiate()
+	var parentNode: Node = get_parent()
+	if parentNode is Node2D:
+		deathscene.position = parentNode.to_local(global_position)
+	else:
+		deathscene.position = global_position
+	deathscene.z_index = z_index
+	deathscene.z_as_relative = z_as_relative
+	parentNode.add_child.call_deferred(deathscene)
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

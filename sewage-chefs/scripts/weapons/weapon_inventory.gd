@@ -1,19 +1,11 @@
 extends Node
 
-# Autoload "WeaponInventory": keeps track of the weapons the player carries.
-# This is separate from InventoryManager, which stores collected ingredients.
-#
-# Other scripts can use:
-#   WeaponInventory.get_equipped_weapon() -> WeaponData (or null)
-#   WeaponInventory.add_weapon(weapon)    -> WeaponData that had to be swapped out (or null)
-#   WeaponInventory.equip_slot(index)
-#   signals weapons_changed / equipped_changed(slotIndex)
+# Autoload "WeaponInventory": the weapons the player carries (3 slots)
 
 signal weapons_changed
 signal equipped_changed(slotIndex: int)
 
 const SLOT_COUNT: int = 3
-# id (from the weapon dictionary in GameManager) of the weapon the player starts with in slot 1
 const STARTING_WEAPON_ID: String = "spatula"
 
 var slots: Array[WeaponData] = []
@@ -41,9 +33,7 @@ func has_free_slot() -> bool:
 	return slots.has(null)
 
 
-# Puts a weapon in the first empty slot.
-# If every slot is full, the weapon in the equipped slot is replaced and returned,
-# so the caller (for example a pickup on the floor) can leave it behind.
+# puts a weapon in a free slot, or swaps it with the equipped one and returns that
 func add_weapon(weapon: WeaponData) -> WeaponData:
 	if weapon == null:
 		return null
@@ -52,7 +42,6 @@ func add_weapon(weapon: WeaponData) -> WeaponData:
 	if freeSlot != -1:
 		slots[freeSlot] = weapon
 		weapons_changed.emit()
-		# auto-equip the new weapon if the player was holding nothing
 		if slots[equippedSlot] == null:
 			equip_slot(freeSlot)
 		return null
@@ -76,8 +65,7 @@ func cycle_slot(direction: int) -> void:
 	equip_slot(posmod(equippedSlot + direction, SLOT_COUNT))
 
 
-# Slot switching: number keys 1-3 and the mouse wheel.
-# Handled here so the player script does not need to change for now.
+# switch slots with 1-3 and the mouse wheel
 func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventKey and event.pressed and not event.echo:

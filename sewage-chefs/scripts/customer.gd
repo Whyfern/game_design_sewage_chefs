@@ -18,6 +18,16 @@ signal departed(path: Path2D)
 var is_leaving: bool = false
 var is_walking: bool = false
 
+# patience timer: the customer leaves without paying when it runs out
+@export var patience_time: float = 45.0
+@export var patience_only_in_restaurant: bool = true
+@export var patience_bar_rect: Rect2 = Rect2(-32, -52, 64, 7)
+var patience_left: float = 0.0
+var is_waiting: bool = false
+var player_in_restaurant: bool = true
+var patience_bar: ProgressBar
+var patience_fill: StyleBoxFlat
+
 
 func _ready() -> void:
 	order_bubble.hide()
@@ -58,6 +68,12 @@ func _ready() -> void:
 	interactable.interactName = "Serve " + requested_dish
 	interactable.interact = serve_customer
 
+	make_patience_bar()
+	var spawner: Node = get_parent().get_parent().get_parent() if get_parent() else null
+	if spawner != null and spawner.get("current_location") != null:
+		player_in_restaurant = spawner.current_location == "restaurant"
+	EventBus.locationChanged.connect(_on_location_changed)
+
 func start_walking() -> void:
 	path_follow.progress = 0.0
 	is_walking = true
@@ -95,6 +111,7 @@ func show_order() -> void:
 	rarity_label.show()
 	order_bubble.show()
 	interactable.set_deferred("monitorable", true)
+	start_patience()
 
 func complete_order() -> void:
 	order_bubble.hide()
@@ -115,6 +132,7 @@ func serve_customer() -> void:
 		var payment: int = GameManager.get_ingredient_price(requested_dish)
 		GameManager.add_money(payment)
 		
+		stop_patience()
 		complete_order()
 		start_leaving()
 	else:
@@ -126,3 +144,73 @@ func start_leaving() -> void:
 	is_leaving = true
 	is_walking = true
 	interactable.set_deferred("monitorable", false)
+
+
+func make_patience_bar() -> void:
+	patience_bar = ProgressBar.new()
+	patience_bar.show_percentage = false
+	patience_bar.position = patience_bar_rect.position
+	patience_bar.size = patience_bar_rect.size
+	patience_bar.custom_minimum_size = patience_bar_rect.size
+	patience_bar.max_value = 1.0
+	patience_bar.step = 0.0
+	patience_bar.value = 1.0
+
+	var background := StyleBoxFlat.new()
+	background.bg_color = Color(0, 0, 0, 0.6)
+	background.set_corner_radius_all(3)
+	patience_fill = StyleBoxFlat.new()
+	patience_fill.bg_color = Color(0.3, 0.85, 0.3)
+	patience_fill.set_corner_radius_all(3)
+	patience_bar.add_theme_stylebox_override("background", background)
+	patience_bar.add_theme_stylebox_override("fill", patience_fill)
+
+	patience_bar.hide()
+	add_child(patience_bar)
+
+
+func start_patience() -> void:
+	patience_left = patience_time
+	is_waiting = true
+	update_patience_bar()
+	patience_bar.show()
+
+
+func stop_patience() -> void:
+	is_waiting = false
+	patience_bar.hide()
+
+
+func _process(delta: float) -> void:
+	if not is_waiting:
+		return
+	if patience_only_in_restaurant and not player_in_restaurant:
+		return
+
+	patience_left -= delta
+	update_patience_bar()
+	if patience_left <= 0.0:
+		run_out_of_patience()
+
+
+func update_patience_bar() -> void:
+	var ratio: float = clampf(patience_left / patience_time, 0.0, 1.0)
+	patience_bar.value = ratio
+	if ratio > 0.5:
+		patience_fill.bg_color = Color(0.95, 0.85, 0.2).lerp(Color(0.3, 0.85, 0.3), (ratio - 0.5) * 2.0)
+	else:
+		patience_fill.bg_color = Color(0.9, 0.2, 0.15).lerp(Color(0.95, 0.85, 0.2), ratio * 2.0)
+
+
+func run_out_of_patience() -> void:
+	stop_patience()
+	complete_order()
+	rarity_label.text = "Too slow!"
+	rarity_label.add_theme_color_override("font_color", Color(0.9, 0.2, 0.15))
+	rarity_label.show()
+	print("Customer left without ordering: ", requested_dish)
+	start_leaving()
+
+
+func _on_location_changed(location: String) -> void:
+	player_in_restaurant = location == "restaurant"

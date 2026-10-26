@@ -1,12 +1,9 @@
 extends HBoxContainer
 
-# Shows the 3 weapon slots at the bottom of the screen and highlights the
-# equipped one. Listens to the WeaponInventory autoload, so nothing else
-# has to update it.
+# Shows the 3 weapon slots and highlights the equipped one
 
 @export var slotTexture: Texture2D = preload("res://sprites/Rats/inventory slot.png")
 @export var slotSize: Vector2 = Vector2(80, 80)
-# how much of the slot the weapon icon fills (0-1)
 @export var iconFill: float = 0.6
 
 @export var selectedColor: Color = Color(1, 1, 1, 1)
@@ -44,7 +41,6 @@ func build_slots() -> void:
 		weaponIcon.size = slotSize - margin * 2.0
 		slotBackground.add_child(weaponIcon)
 
-		# small key hint in the corner: 1, 2, 3
 		var keyLabel := Label.new()
 		keyLabel.text = str(slotIndex + 1)
 		keyLabel.position = Vector2(6, 2)

@@ -1,8 +1,6 @@
 extends Control
 
 # Victory screen. Opened with GameManager.trigger_victory("reason").
-# Play Again: resets everything and starts at day 1 in the restaurant (no intro).
-# Main Menu: resets everything and goes back to the main menu.
 
 @export_file("*.tscn") var gameScenePath: String = "res://scenes/main.tscn"
 @export_file("*.tscn") var menuScenePath: String = "res://scenes/menus/main_menu.tscn"
@@ -15,12 +13,10 @@ extends Control
 @onready var titleLabel: Label = %TitleLabel
 @onready var fadeRect: ColorRect = %FadeRect
 
-# true after a button was pressed, so pressing twice does nothing
 var isLeaving: bool = false
 
 
 func _ready() -> void:
-	# show how the player won
 	reasonLabel.text = GameManager.victory_reason
 	statsLabel.text = "Finished on day %d  ·  Cheese left: €%d  ·  Tributes paid: %d" % [
 		GameManager.current_day, GameManager.money, GameManager.tributes_paid]
@@ -28,7 +24,6 @@ func _ready() -> void:
 	playAgainButton.pressed.connect(_on_play_again_pressed)
 	menuButton.pressed.connect(_on_menu_pressed)
 
-	# fade in from black, then select Play Again so the keyboard also works
 	fadeRect.visible = true
 	fadeRect.color.a = 1.0
 	var fadeIn: Tween = create_tween()
@@ -60,5 +55,4 @@ func leave_to(scenePath: String) -> void:
 	await fadeOut.finished
 
 	GameManager.reset_game()
-	# uses the version preloaded by the loading screen if there is one
 	LoadingScreen.change_to_scene(get_tree(), scenePath)

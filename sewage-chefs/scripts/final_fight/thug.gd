@@ -1,16 +1,11 @@
 extends "res://scripts/rat_enemies.gd"
 
 # One of Don Parmesan's thugs in the final fight.
-# It is a normal rat enemy (same AI, stats and animations) with one extra:
-# the player can walk up and press E to bribe it for GameManager.BRIBE_PRICE.
-# rat_enemies.gd itself is not changed; this script only adds to it.
 
-# emitted when the thug is gone, how = "bribed" or "killed"
 signal gone(thug: Node, how: String)
 
 @onready var bribeArea: interactable = $BribeInteractable
 
-# true once the thug is leaving, so it can't be bribed or killed twice
 var isLeaving: bool = false
 var messageLabel: Label
 
@@ -42,8 +37,6 @@ func leave(how: String) -> void:
 	bribeArea.isInteractable = false
 	bribeArea.set_deferred("monitorable", false)
 	$Hurtbox.set_deferred("monitorable", false)
-	# the hitbox lives under AttackPivot in rat_enemies.tscn, so search for it by name
-	# (this way it keeps working if the rat scene is reorganised again)
 	var hitbox: Area2D = find_child("Hitbox", true, false)
 	if hitbox != null:
 		hitbox.set_deferred("monitoring", false)
@@ -58,23 +51,18 @@ func leave(how: String) -> void:
 	queue_free()
 
 
-# replaces death() from rat_enemies.gd: the rat version looks for a %Effects node
-# that only exists inside the sewer rooms, so here the death animation is added
-# next to the thug instead
+# replaces death() from rat_enemies.gd so the arena is told that this thug is gone
 func death() -> void:
 	if isLeaving:
 		return
 	isLeaving = true
 	state = State.DEAD
-	var deathscene: Node2D = deathPacked.instantiate()
-	deathscene.position = position
-	get_parent().add_child(deathscene)
+	spawn_death_animation()
 	gone.emit(self, "killed")
 	queue_free()
 
 
-# rat_enemies.gd sets the state back to IDLE when an attack ends,
-# which would make a bribed thug start fighting again while it walks away
+# keeps a bribed thug from going back to fighting after its attack
 func attack() -> void:
 	await super.attack()
 	if isLeaving:

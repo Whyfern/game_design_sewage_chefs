@@ -1,13 +1,10 @@
 extends Control
 
 # Main menu: Start Game, How to Play, Quit.
-# "How to Play" opens the instructions panel on top of the menu.
 
-# scene that opens when Start Game is pressed (the intro, which then opens the game)
 @export_file("*.tscn") var startScenePath: String = "res://scenes/IntroScene.tscn"
 @export var fadeDuration: float = 0.5
 
-# Text of the "How to Play" panel. Edit it here; it uses BBCode ([b]bold[/b], [color=...]).
 const INSTRUCTIONS_TEXT: String = """[center][b][color=#f5c542]Your goal[/color][/b][/center]
 You are Chef Ricardo, a rat with a brand-new restaurant and a loan from the mafia. Before the clock runs out you have to earn enough cheese (€) to pay [b]Don Parmesan[/b] his tribute. Every time you pay, the tribute goes up by €25.
 
@@ -37,26 +34,21 @@ Don Parmesan comes to collect. Talk to him and pay up, if you can."""
 @onready var titleLabel: Label = %TitleLabel
 @onready var fadeRect: ColorRect = %FadeRect
 
-# true after Start Game was pressed, so pressing it twice does nothing
 var isStarting: bool = false
 
 
 func _ready() -> void:
-	# fill in the instructions and only show the main buttons at the start
 	instructionsText.text = INSTRUCTIONS_TEXT
 	instructionsPanel.visible = false
 
-	# connect each button to its function below
 	startButton.pressed.connect(_on_start_pressed)
 	instructionsButton.pressed.connect(_on_instructions_pressed)
 	quitButton.pressed.connect(_on_quit_pressed)
 	backButton.pressed.connect(_on_back_pressed)
 
-	# Quit does nothing in a web build, so hide it there
 	if OS.has_feature("web"):
 		quitButton.visible = false
 
-	# fade in from black, then select Start Game so the menu also works with the keyboard
 	fadeRect.visible = true
 	fadeRect.color.a = 1.0
 	var fadeIn: Tween = create_tween()
@@ -67,7 +59,6 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	# Esc closes the instructions
 	if instructionsPanel.visible and event.is_action_pressed("ui_cancel"):
 		get_viewport().set_input_as_handled()
 		_on_back_pressed()
