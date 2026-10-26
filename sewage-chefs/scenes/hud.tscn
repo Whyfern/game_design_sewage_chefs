@@ -60,6 +60,7 @@
 [ext_resource type="Script" uid="uid://bw4avsbvs0fv0" path="res://scripts/HUD/timer_container.gd" id="57_ydkem"]
 [ext_resource type="Script" uid="uid://dlfuguwuk08id" path="res://scenes/ingredient_bar.gd" id="58_6d1ax"]
 [ext_resource type="PackedScene" path="res://scenes/HUD/weapon_bar.tscn" id="60_weaponbar"]
+[ext_resource type="AudioStream" uid="uid://o6g7j3jja273" path="res://Music/565642__jcsg__plate-break-1.wav" id="61_qn0nn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hd3ao"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -385,3 +386,6 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource("58_6d1ax")
+
+[node name="AudioStreamDrop" type="AudioStreamPlayer" parent="IngredientBar" unique_id=777288423]
+stream = ExtResource("61_qn0nn")

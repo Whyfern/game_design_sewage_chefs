@@ -5,6 +5,7 @@ const SLOT_COUNT: int = 5
 
 @export var slotTexture: Texture2D = preload("res://sprites/Rats/inventory slot.png")
 @export var slotSize: Vector2 = Vector2(80, 80)
+@onready var drop_sound: AudioStreamPlayer = $AudioStreamDrop
 
 var slotNodes: Array[TextureRect] = []
 var iconNodes: Array[TextureRect] = []
@@ -107,3 +108,10 @@ func refresh_icons() -> void:
 				iconNodes[i].texture = null
 		else:
 			iconNodes[i].texture = null
+			
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("drop_item"):
+		if not InventoryManager.ingredients.is_empty():
+			drop_sound.play()
+			InventoryManager.drop_all_ingredients()
+		#InventoryManager.drop_all_ingredients()

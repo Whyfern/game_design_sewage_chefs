@@ -25,7 +25,10 @@ func _process(delta: float) -> void:
 	if currentInteractions and canInteract:
 		currentInteractions.sort_custom(_sort_by_nearest)
 		if currentInteractions[0].isInteractable:
-			interactLabel.text = currentInteractions[0].interactName
+			if InventoryManager.ingredients.size() >= InventoryManager.max_ingredients:
+				interactLabel.text = "Inventory full! Press Q to drop items"
+			else:
+				interactLabel.text = currentInteractions[0].interactName
 			
 			interactLabel.show()
 	else:
