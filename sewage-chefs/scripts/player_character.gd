@@ -14,6 +14,9 @@ enum State {
 @export var maxHitPoints : int = 150
 @export var hitpoints: int = 150
 
+@export_category("Acid damage")
+@export_range(1.0, 120.0, 0.5) var acidSurvivalSeconds: float = 20.0
+
 var state: State = State.IDLE
 var moveDirection: Vector2 = Vector2.ZERO
 
@@ -31,7 +34,6 @@ var poisonedStatus : bool = false
 var poisonedByArea: bool = false
 var poisonedDamage : int = 2
 var damageTimer : float = 0.0
-var damageInterval = 0.1
 
 var hpBar : Node
 
@@ -73,10 +75,15 @@ func _physics_process(delta: float) -> void:
 		poisonedProg = max(poisonedProg - (poisonedprogSpeed * delta), 0.0)
 
 	if poisonedProg >= poisonedProgMax and poisonedStatus:
+		# Spread a full health bar over the chosen exposure time (150 HP / 20 s = 7.5 HP/s).
+		var damageInterval: float = acidSurvivalSeconds * poisonedDamage / maxi(maxHitPoints, 1)
 		damageTimer += delta
-		if damageTimer >= damageInterval:
+		while damageTimer >= damageInterval:
+			# Keep the remaining time so the damage rate stays consistent across frame rates.
+			damageTimer -= damageInterval
 			take_damage(poisonedDamage)
-			damageTimer = 0.0
+			if state == State.DEAD:
+				return
 	else:
 		damageTimer = 0.0
 

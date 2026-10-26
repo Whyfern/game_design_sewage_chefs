@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dm556bb8u6pht" path="res://scripts/intro_scene.gd" id="1_ngq6t"]
 [ext_resource type="Texture2D" uid="uid://btrh8p0b5643m" path="res://sprites/Rats/Screenshot_2026-10-17_174818-removebg-preview.png" id="3_3uwhn"]
 [ext_resource type="Texture2D" uid="uid://xwlvqm6cmah5" path="res://sprites/Rats/MafiaRat.PNG" id="3_6tor5"]
+[ext_resource type="AudioStream" uid="uid://bixjl86srscmo" path="res://Music/cutscene_theme.wav" id="4_music"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngq6t"]
 bg_color = Color(0.05, 0.08, 0.05, 0.92)
@@ -28,6 +29,10 @@ fill_to = Vector2(0.5, 1)
 script = ExtResource("1_ngq6t")
 chef_portrait = ExtResource("3_3uwhn")
 don_portrait = ExtResource("3_6tor5")
+
+[node name="CutsceneMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_music")
+volume_db = -12.0
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1

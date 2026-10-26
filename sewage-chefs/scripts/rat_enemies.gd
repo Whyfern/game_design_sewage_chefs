@@ -19,8 +19,7 @@ enum State {
 @export_category("Related scenes")
 @export var deathPacked: PackedScene
 @export_category("Idle audio")
-@export_range(0.1, 60.0, 0.1) var idleGroanMinDelay: float = 3.0
-@export_range(0.1, 60.0, 0.1) var idleGroanMaxDelay: float = 7.0
+@export_range(0.1, 60.0, 0.1) var idleGroanIntervalSeconds: float = 4.0
 
 var state: State = State.IDLE:
 	set(nextState):
@@ -101,17 +100,18 @@ func _update_idle_groan() -> void:
 		enemyGroanSound.stop()
 		return
 
-	# Finish the current sound, then schedule a fresh random pause.
-	if enemyGroanSound.playing or not idleGroanTimer.is_stopped():
-		return
-	var maxDelay = maxf(idleGroanMinDelay, idleGroanMaxDelay)
-	idleGroanTimer.start(randf_range(idleGroanMinDelay, maxDelay))
+	# The first groan starts after one interval; later ones keep the same cadence.
+	if idleGroanTimer.is_stopped():
+		idleGroanTimer.start(idleGroanIntervalSeconds)
 
 
 func play_idle_groan() -> void:
 	# The state might have changed since the timer was started.
 	if state == State.IDLE:
-		enemyGroanSound.play()
+		# Never overlap voices if a longer recording is added later.
+		if not enemyGroanSound.playing:
+			enemyGroanSound.play()
+		idleGroanTimer.start(idleGroanIntervalSeconds)
 
 
 func distance_to_player() -> float:
@@ -216,13 +216,18 @@ func death() -> void:
 func spawn_death_animation() -> void:
 	var deathscene: Node2D = deathPacked.instantiate()
 	var parentNode: Node = get_parent()
-	if parentNode is Node2D:
-		deathscene.position = parentNode.to_local(global_position)
-	else:
-		deathscene.position = global_position
+	# The effect becomes a sibling, so it can use this rat's complete transform.
+	deathscene.transform = transform
 	deathscene.z_index = z_index
 	deathscene.z_as_relative = z_as_relative
-	deathscene.scale = Vector2.ONE
+	var ratSprite: Sprite2D = $Sprite2D
+	var deathSprite: Sprite2D = deathscene.get_node("death_anim")
+	deathSprite.transform = ratSprite.transform
+	deathSprite.flip_h = ratSprite.flip_h
+	deathSprite.flip_v = ratSprite.flip_v
+	deathSprite.centered = ratSprite.centered
+	# Retain the death sheet's -17 px correction: its artwork sits lower in each frame.
+	deathSprite.offset += ratSprite.offset
 	parentNode.add_child.call_deferred(deathscene)
 
 

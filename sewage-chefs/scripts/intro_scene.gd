@@ -11,6 +11,11 @@ extends Node2D
 @export var seconds_per_character: float = 0.025
 @export var fade_duration: float = 0.8
 
+@export_category("Cutscene music")
+@export_range(-40.0, 0.0, 0.5) var music_volume_db: float = -12.0
+@export_range(0.1, 5.0, 0.1) var music_fade_in_seconds: float = 1.5
+@export_range(0.1, 5.0, 0.1) var music_fade_out_seconds: float = 0.8
+
 # colour of the portrait of the character that is NOT talking
 const INACTIVE_PORTRAIT_COLOR: Color = Color(0.4, 0.4, 0.4, 1.0)
 const ACTIVE_PORTRAIT_COLOR: Color = Color(1, 1, 1, 1)
@@ -22,6 +27,7 @@ const ACTIVE_PORTRAIT_COLOR: Color = Color(1, 1, 1, 1)
 @onready var text_label: RichTextLabel = %TextLabel
 @onready var continue_label: Label = %ContinueLabel
 @onready var fade_rect: ColorRect = %FadeRect
+@onready var cutscene_music: AudioStreamPlayer = $CutsceneMusic
 
 var dialog_lines: Array[Dictionary] = []
 var current_line_index: int = 0
@@ -29,8 +35,10 @@ var is_typing: bool = false
 var is_transitioning: bool = true # blocks input while fading in/out
 var text_tween: Tween
 var continue_tween: Tween
+var music_tween: Tween
 
 func _ready() -> void:
+	_start_cutscene_music()
 	dialog_lines = [
 		{
 			"name": "Chef Ricardo",
@@ -74,6 +82,17 @@ func _ready() -> void:
 	is_transitioning = false
 
 	_display_current_line()
+
+
+func _start_cutscene_music() -> void:
+	# The music belongs to this scene and keeps looping while dialogue waits for input.
+	cutscene_music.volume_linear = 0.0
+	cutscene_music.play()
+	music_tween = create_tween()
+	music_tween.tween_property(
+		cutscene_music, "volume_linear", db_to_linear(music_volume_db), music_fade_in_seconds
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_transitioning:
@@ -168,14 +187,21 @@ func _on_intro_finished() -> void:
 	_stop_continue_blink()
 	if text_tween:
 		text_tween.kill()
+	# Esc can finish the intro while the music is still fading in.
+	if music_tween and music_tween.is_valid():
+		music_tween.kill()
 
 	EventBus.intro_dialogue_finished.emit()
 
-	# fade to black, then load the game
+	# Fade music and screen together, then load the game after both finish.
 	fade_rect.visible = true
-	var fade_out: Tween = create_tween()
+	var fade_out: Tween = create_tween().set_parallel(true)
 	fade_out.tween_property(fade_rect, "color:a", 1.0, fade_duration)
+	fade_out.tween_property(
+		cutscene_music, "volume_linear", 0.0, music_fade_out_seconds
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	await fade_out.finished
+	cutscene_music.stop()
 
 	if next_scene_path != "":
 		get_tree().change_scene_to_file(next_scene_path)

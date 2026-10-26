@@ -32,4 +32,4 @@ shape = SubResource("CircleShape2D_uqykc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1837462211]
 stream = ExtResource("4_jh3ps")
-volume_db = 7.0
+volume_db = -3.0

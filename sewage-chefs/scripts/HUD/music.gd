@@ -11,7 +11,7 @@ const SEWER_DRUMS: AudioStream = preload(
 )
 
 @export_category("Combat music")
-@export_range(-40.0, 0.0, 0.5) var combatLayerVolumeDb: float = -9.0
+@export_range(-40.0, 6.0, 0.5) var combatLayerVolumeDb: float = 1.0
 @export_range(0.1, 5.0, 0.1) var combatFadeInSeconds: float = 0.5
 @export_range(0.1, 5.0, 0.1) var combatFadeOutSeconds: float = 1.5
 @export_range(0.1, 10.0, 0.1) var combatReleaseSeconds: float = 2.0
