@@ -1,8 +1,9 @@
 extends Node2D
 
 func _ready() -> void:
-	$AnimationPlayer.play ("enemy_death")
-
+	scale = Vector2.ONE
+	$AnimationPlayer.play("enemy_death")
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	queue_free()
+	if anim_name == "enemy_death":
+		queue_free()

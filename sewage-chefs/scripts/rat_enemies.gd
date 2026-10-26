@@ -155,6 +155,7 @@ func spawn_death_animation() -> void:
 		deathscene.position = global_position
 	deathscene.z_index = z_index
 	deathscene.z_as_relative = z_as_relative
+	deathscene.scale = Vector2.ONE
 	parentNode.add_child.call_deferred(deathscene)
 
 
