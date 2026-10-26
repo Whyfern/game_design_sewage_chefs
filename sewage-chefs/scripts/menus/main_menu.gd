@@ -5,6 +5,11 @@ extends Control
 @export_file("*.tscn") var startScenePath: String = "res://scenes/IntroScene.tscn"
 @export var fadeDuration: float = 0.5
 
+@export_category("Menu music")
+@export_range(-40.0, 0.0, 0.5) var musicVolumeDb: float = -12.0
+@export_range(0.1, 5.0, 0.1) var musicFadeInSeconds: float = 1.5
+@export_range(0.1, 5.0, 0.1) var musicFadeOutSeconds: float = 0.5
+
 const INSTRUCTIONS_TEXT: String = """[center][b][color=#f5c542]Your goal[/color][/b][/center]
 You are Chef Ricardo, a rat with a brand-new restaurant and a loan from the mafia. Every day, before the clock runs out, you have to earn enough cheese (€) to pay [b]Don Parmesan[/b] his tribute. The first tribute is €50 and it goes up by €25 every day. Pay him one last time on [b]day 5[/b] and you are free.
 
@@ -36,11 +41,15 @@ If your health reaches zero, the game is over and you start again from day 1."""
 @onready var backButton: Button = %BackButton
 @onready var titleLabel: Label = %TitleLabel
 @onready var fadeRect: ColorRect = %FadeRect
+@onready var menuMusic: AudioStreamPlayer = $MenuMusic
 
 var isStarting: bool = false
+var musicTween: Tween
+var screenFadeTween: Tween
 
 
 func _ready() -> void:
+	_start_menu_music()
 	instructionsText.text = INSTRUCTIONS_TEXT
 	instructionsPanel.visible = false
 
@@ -54,11 +63,21 @@ func _ready() -> void:
 
 	fadeRect.visible = true
 	fadeRect.color.a = 1.0
-	var fadeIn: Tween = create_tween()
-	fadeIn.tween_property(fadeRect, "color:a", 0.0, fadeDuration)
-	await fadeIn.finished
+	screenFadeTween = create_tween()
+	screenFadeTween.tween_property(fadeRect, "color:a", 0.0, fadeDuration)
+	await screenFadeTween.finished
 	fadeRect.visible = false
 	startButton.grab_focus()
+
+
+func _start_menu_music() -> void:
+	# Fade amplitude from complete silence, keeping the same playback running afterward.
+	menuMusic.volume_linear = 0.0
+	menuMusic.play()
+	musicTween = create_tween()
+	musicTween.tween_property(
+		menuMusic, "volume_linear", db_to_linear(musicVolumeDb), musicFadeInSeconds
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -73,10 +92,19 @@ func _on_start_pressed() -> void:
 		return
 	isStarting = true
 
+	# Starting quickly must cancel either fade-in before the fade-out takes control.
+	if musicTween and musicTween.is_valid():
+		musicTween.kill()
+	if screenFadeTween and screenFadeTween.is_valid():
+		screenFadeTween.kill()
 	fadeRect.visible = true
-	var fadeOut: Tween = create_tween()
+	var fadeOut: Tween = create_tween().set_parallel(true)
 	fadeOut.tween_property(fadeRect, "color:a", 1.0, fadeDuration)
+	fadeOut.tween_property(
+		menuMusic, "volume_linear", 0.0, musicFadeOutSeconds
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	await fadeOut.finished
+	menuMusic.stop()
 
 	LoadingScreen.change_to_scene(get_tree(), startScenePath)
 

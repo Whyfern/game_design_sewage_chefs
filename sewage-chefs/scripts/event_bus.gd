@@ -28,3 +28,6 @@ signal locationChanged(location: String)
 
 # Announces the final minute before the payment deadline.
 signal deadlineApproaching
+
+# Enemies announce changes to their overall combat involvement.
+signal enemyCombatChanged(enemy: Node, active: bool)

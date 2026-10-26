@@ -3,7 +3,7 @@ extends CharacterBody2D
 enum State {
 	IDLE,
 	RUN,
-	ATTACK, 
+	ATTACK,
 	DEAD
 }
 
@@ -13,6 +13,9 @@ enum State {
 @export var attackDamage: int = 60
 @export var maxHitPoints : int = 150
 @export var hitpoints: int = 150
+
+@export_category("Acid damage")
+@export_range(1.0, 120.0, 0.5) var acidSurvivalSeconds: float = 20.0
 
 var state: State = State.IDLE
 var moveDirection: Vector2 = Vector2.ZERO
@@ -31,15 +34,26 @@ var poisonedStatus : bool = false
 var poisonedByArea: bool = false
 var poisonedDamage : int = 2
 var damageTimer : float = 0.0
-var damageInterval = 0.1
 
-@onready var HUD : CanvasLayer = get_node("../HUD")
 var hpBar : Node
 
 func _ready() -> void:
 	animationTree.set_active(true)
-	hpBar = await EventBus.HUDloaded
+	# Hear positional enemy sounds from Pip, even when the camera is offset.
+	$AudioListener2D.make_current()
+
+
+	# The HUD may become ready after the player, or may be absent in combat tests.
+	EventBus.HUDloaded.connect(_on_hud_loaded)
+	var existing_bar = get_node_or_null("../../HUD/HealthBar")
+	if existing_bar:
+		_on_hud_loaded(existing_bar)
+
+
+func _on_hud_loaded(bar: TextureProgressBar) -> void:
+	hpBar = bar
 	hpBar.max_value = maxHitPoints
+	hpBar.value = hitpoints
 
 #user's mouse input management (activate only if the game is active)
 func _unhandled_input(event: InputEvent) -> void:
@@ -47,61 +61,66 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		attack()
-		
-		
+
+
 func _physics_process(delta: float) -> void:
 	if state == State.DEAD:
 		return
 	poisonedStatus = poisonedByArea or is_on_sewage_tile()
-	
+
 	if poisonedStatus:
 		poisonedProg = min(poisonedProg + (poisonedprogSpeed * delta), poisonedProgMax)
 		#print(poisonedProg)
 	else:
 		poisonedProg = max(poisonedProg - (poisonedprogSpeed * delta), 0.0)
-	
+
 	if poisonedProg >= poisonedProgMax and poisonedStatus:
+		# Spread a full health bar over the chosen exposure time (150 HP / 20 s = 7.5 HP/s).
+		var damageInterval: float = acidSurvivalSeconds * poisonedDamage / maxi(maxHitPoints, 1)
 		damageTimer += delta
-		if damageTimer >= damageInterval:
+		while damageTimer >= damageInterval:
+			# Keep the remaining time so the damage rate stays consistent across frame rates.
+			damageTimer -= damageInterval
 			take_damage(poisonedDamage)
-			damageTimer = 0.0 
+			if state == State.DEAD:
+				return
 	else:
 		damageTimer = 0.0
-	
+
 	if hpBar:
 		hpBar.value = hitpoints
-		
+
 	if not state == State.ATTACK:
 		movement_loop()
 
 
-func movement_loop() -> void: 
+func movement_loop() -> void:
 	moveDirection.x = int(Input.is_action_pressed("press_d")) - int(Input.is_action_pressed("press_a"))
 	moveDirection.y = int(Input.is_action_pressed("press_s")) - int(Input.is_action_pressed("press_w"))
 	var motion: Vector2 = moveDirection.normalized() * speed
 	set_velocity(motion)
 	move_and_slide()
-	
-	# Player's up / down Run animation  
+
+	# Player's up / down Run animation
 	if moveDirection != Vector2.ZERO:
 		animationTree.set("parameters/Run/blend_position", moveDirection)
-	
-	# Player's sprite flipping in idle / run state 
+
+	# Player's sprite flipping in idle / run state
 	if state == State.IDLE or state == State.RUN:
 		if moveDirection.x < -0.01:
 			$ChefRat.flip_h = true
-		elif moveDirection.x > 0.01: 
-			$ChefRat.flip_h = false 
-	
+		elif moveDirection.x > 0.01:
+			$ChefRat.flip_h = false
+
 	if motion != Vector2.ZERO and state != State.RUN: #if you push input and the character is still (IDLE), it has to start movineg (RUN)
 		state = State.RUN
 		update_animation()
 	elif motion == Vector2.ZERO and state != State.IDLE: #if character is moving (RUN) with 0 movement, it means it's still (IDLE)
 		state = State.IDLE
 		update_animation()
-		
-		
-func update_animation() -> void: 
+
+
+func update_animation() -> void:
 	match state:
 		State.IDLE:
 			AnimationPlayback.travel("Idle")
@@ -109,30 +128,30 @@ func update_animation() -> void:
 			AnimationPlayback.travel("Run")
 		State.ATTACK:
 			AnimationPlayback.travel("Attack")
-		
-		
+
+
 func attack() -> void:
 	#verify the player is not attacking and set state
 	if state == State.ATTACK:
 		return
 	state = State.ATTACK
-	
+
 	#find the attack direction and push to animationtree and blendspace2D
 	var mousePos: Vector2 = get_global_mouse_position()
 	var attackDir: Vector2 = (mousePos - global_position).normalized()
 	$ChefRat.flip_h = attackDir.x < 0 and abs(attackDir.x) >= abs(attackDir.y)
 	animationTree.set ("parameters/Attack/BlendSpace2D/blend_position", attackDir)
 	update_animation()
-	
+
 	#wait for attack duration
 	await get_tree().create_timer(attackSpeed).timeout
 	if state == State.DEAD:
 		return
-	
+
 	# Check what the player is doing *right now* to choose the correct next state
 	var isMoving = (int(Input.is_action_pressed("press_d")) - int(Input.is_action_pressed("press_a")) != 0) or \
 					(int(Input.is_action_pressed("press_s")) - int(Input.is_action_pressed("press_w")) != 0)
-	
+
 	if isMoving:
 		state = State.RUN
 	else:
@@ -143,14 +162,14 @@ func attack() -> void:
 # Called by an animation key when Pip swings his pan.
 func play_attack_whoosh() -> void:
 	attackSound.play()
-	
-	
+
+
 # Called whenever a foot lands during a walking animation.
 func play_footstep() -> void:
 	if state == State.RUN:
 		stepSound.play()
-		
-		
+
+
 func take_damage(damage_taken: int) -> void:
 	if state == State.DEAD:
 		return
@@ -159,7 +178,7 @@ func take_damage(damage_taken: int) -> void:
 	print(hitpoints)
 	if hitpoints <= 0:
 		death()
-		
+
 
 
 #func is_on_sewage_tile() -> bool:
@@ -246,7 +265,7 @@ func _on_environbox_area_exited(area: Area2D) -> void:
 		#print("left ", area.name)
 	if "sewage_area2d" in area.name.to_lower():
 		poisonedByArea = false
-		
+
 func refill_health() -> void:
 	hitpoints = maxHitPoints
 	if hpBar:

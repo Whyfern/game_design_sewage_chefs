@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://th7ed2mbbpvv" path="res://scripts/enemy_death.gd" id="1_5o8jb"]
 [ext_resource type="Texture2D" uid="uid://i7kcc2h81onu" path="res://sprites/placeholder assets/Rat - Warrior/Death/Death-Sheet.png" id="1_217mc"]
+[ext_resource type="AudioStream" uid="uid://qd155es41kjs" path="res://sfx/enemy/groan_death_8bit.wav" id="3_w8rse"]
 
 [sub_resource type="Animation" id="Animation_5o8jb"]
 length = 0.001
@@ -42,16 +43,23 @@ _data = {
 }
 
 [node name="enemy_death" type="Node2D" unique_id=1505900030]
+scale = Vector2(3, 3)
 script = ExtResource("1_5o8jb")
 
 [node name="death_anim" type="Sprite2D" parent="." unique_id=109173414]
-position = Vector2(0.49999726, -58.500008)
-scale = Vector2(1.828125, 1.828125)
+position = Vector2(0, -12)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("1_217mc")
+offset = Vector2(0, -17)
 hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1033788176]
 root_node = NodePath("../death_anim")
 libraries/ = SubResource("AnimationLibrary_lwfox")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=298984978]
+stream = ExtResource("3_w8rse")
+volume_db = -10.0
+max_distance = 1000.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
