@@ -61,8 +61,6 @@ func _ready() -> void:
 		else:
 			push_warning("LoadingScreen: scene not found: " + scenePath)
 
-	start_rat_bobbing()
-
 	# fade in from black
 	fadeRect.visible = true
 	fadeRect.color.a = 1.0
@@ -134,13 +132,6 @@ func finish_loading() -> void:
 		get_tree().change_scene_to_file(nextScenePath)
 
 
-# small up-and-down animation of the rat above the bar
-func start_rat_bobbing() -> void:
-	var startY: float = ratIcon.position.y
-	var bob: Tween = create_tween().set_loops()
-	bob.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	bob.tween_property(ratIcon, "position:y", startY - 12.0, 0.45)
-	bob.tween_property(ratIcon, "position:y", startY, 0.45)
 
 
 # Helper for other scenes (used by the main menu): changes to a scene and uses the

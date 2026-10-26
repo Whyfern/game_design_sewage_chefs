@@ -93,3 +93,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			cycle_slot(1)
 			get_viewport().set_input_as_handled()
+
+
+# back to only the starting weapon in slot 1 (used when a new game starts)
+func reset() -> void:
+	slots.fill(null)
+	slots[0] = GameManager.get_weapon(STARTING_WEAPON_ID)
+	equippedSlot = 0
+	weapons_changed.emit()
+	equipped_changed.emit(equippedSlot)

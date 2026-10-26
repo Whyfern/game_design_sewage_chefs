@@ -23,6 +23,7 @@ TimerContainer="*uid://bw4avsbvs0fv0"
 Dialogue="*uid://cx7yhlr0bvvkh"
 InventoryManager="*uid://ybbri20uwopi"
 WeaponInventory="*res://scripts/weapons/weapon_inventory.gd"
+LevelTransition="*res://scenes/menus/level_transition.tscn"
 
 [display]
 

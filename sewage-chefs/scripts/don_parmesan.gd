@@ -2,6 +2,7 @@ extends NPC
 
 # Don Parmesan: instead of the normal NPC dialogue he opens the debt payment
 # screen. When the player pays, the next day starts and he walks away.
+# On the final day, paying wins the game. Refusing to pay starts the final fight.
 
 const DEBT_DIALOGUE_SCENE: PackedScene = preload("res://scenes/debt_dialogue.tscn")
 
@@ -19,10 +20,26 @@ func talk() -> void:
 	debtDialogue.donName = npc_name
 	get_tree().root.add_child(debtDialogue)
 
-	var paid: bool = await debtDialogue.run()
+	var result: String = await debtDialogue.run()
 
-	if paid:
+	if result == "fight":
+		# stop talking to him, the final fight takes over
 		hasBeenPaid = true
+		interaction_area.isInteractable = false
+		interaction_area.set_deferred("monitorable", false)
+		BossArena.start_fight(get_tree())
+		return
+
+	if result == "paid" and GameManager.is_final_day():
+		# last tribute paid: the player is free
+		GameManager.tributes_paid += 1
+		GameManager.trigger_victory("You paid off Don Parmesan. Free at last!")
+		return
+
+	if result == "paid":
+		hasBeenPaid = true
+		# every tribute paid makes one thug leave the Don's gang
+		GameManager.tributes_paid += 1
 		interaction_area.isInteractable = false
 		interaction_area.set_deferred("monitorable", false)
 		

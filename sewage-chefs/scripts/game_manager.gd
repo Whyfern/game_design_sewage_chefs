@@ -167,3 +167,85 @@ func get_ingredient_price(ingredient_name: String) -> int:
 			return 35
 		_:
 			return 0
+
+
+# ---------------------------------------------------------------------------
+# GAME OVER / NEW GAME
+# GameManager.trigger_game_over("reason") opens the game over screen.
+# reset_game() puts everything back to the start (used by Try Again / Main Menu).
+# ---------------------------------------------------------------------------
+
+const GAME_OVER_SCENE: String = "res://scenes/menus/game_over.tscn"
+
+# text shown on the game over screen
+var game_over_reason: String = ""
+# starting values of the variables at the top, saved so reset_game() can restore them
+var start_values: Dictionary = {}
+
+func _ready() -> void:
+	start_values = {
+		"current_day": current_day,
+		"money": money,
+		"mafia_debt": mafia_debt,
+		"tributes_paid": tributes_paid,
+	}
+
+# ends the game and opens the game over screen, for example:
+#   GameManager.trigger_game_over("Ricardo was defeated in the sewer")
+func trigger_game_over(reason: String = "Ricardo's cooking days are over.") -> void:
+	game_over_reason = reason
+	get_tree().paused = false
+	get_tree().change_scene_to_file.call_deferred(GAME_OVER_SCENE)
+
+# resets money, debt, day, ingredients, weapons and the clock for a new game
+func reset_game() -> void:
+	for key in start_values:
+		set(key, start_values[key])
+	game_over_reason = ""
+	victory_reason = ""
+	InventoryManager.reset()
+	WeaponInventory.reset()
+	TimerContainer.reset_day()
+	LevelTransition.cancel()
+	get_tree().paused = false
+	stats_changed.emit()
+
+
+# ---------------------------------------------------------------------------
+# FINAL FIGHT / VICTORY
+# Every day the player can refuse to pay Don Parmesan and fight his gang.
+# Day FINAL_DAY is the last day: pay everything (victory) or fight.
+# Every tribute paid makes one thug leave the Don's gang.
+# ---------------------------------------------------------------------------
+
+const FINAL_DAY: int = 5
+const MAX_THUGS: int = 5
+const BRIBE_PRICE: int = 20
+const VICTORY_SCENE: String = "res://scenes/menus/victory.tscn"
+
+# how many times the player has paid the Don (used for the size of his gang)
+var tributes_paid: int = 0
+# text shown on the victory screen
+var victory_reason: String = ""
+
+func is_final_day() -> bool:
+	return current_day >= FINAL_DAY
+
+# 5 thugs at the start, one less for every tribute paid, but always at least 1
+func get_thug_count() -> int:
+	return max(1, MAX_THUGS - tributes_paid)
+
+# pays an amount if the player has enough money (used for bribes)
+func spend_money(amount: int) -> bool:
+	if money < amount:
+		return false
+	money -= amount
+	stats_changed.emit()
+	return true
+
+# ends the game with a win and opens the victory screen, for example:
+#   GameManager.trigger_victory("You paid off Don Parmesan. Free at last!")
+func trigger_victory(reason: String = "The restaurant is yours!") -> void:
+	victory_reason = reason
+	get_tree().paused = false
+	get_tree().change_scene_to_file.call_deferred(VICTORY_SCENE)

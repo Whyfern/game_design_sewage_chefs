@@ -43,11 +43,15 @@ func _ready() -> void:
 
 #user's mouse input management (activate only if the game is active)
 func _unhandled_input(event: InputEvent) -> void:
+	if state == State.DEAD: # a dead rat can't attack
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 		attack()
 		
 		
 func _physics_process(delta: float) -> void:
+	if state == State.DEAD: # nothing moves or takes damage after dying
+		return
 	poisonedStatus = poisonedByArea or is_on_sewage_tile()
 	
 	if poisonedStatus:
@@ -122,6 +126,8 @@ func attack() -> void:
 	
 	#wait for attack duration
 	await get_tree().create_timer(attackSpeed).timeout
+	if state == State.DEAD: # died during the swing, don't go back to idle/run
+		return
 	
 	# Check what the player is doing *right now* to choose the correct next state
 	var isMoving = (int(Input.is_action_pressed("press_d")) - int(Input.is_action_pressed("press_a")) != 0) or \
@@ -146,6 +152,8 @@ func play_footstep() -> void:
 		
 		
 func take_damage(damage_taken: int) -> void:
+	if state == State.DEAD: # already dead, ignore extra hits
+		return
 	hitpoints -= damage_taken
 	hurtSound.play() # Play mouse squeak whenever player takes damage.
 	print(hitpoints)
@@ -189,8 +197,33 @@ func is_on_sewage_tile() -> bool:
 
 
 
+# Ricardo dies: he stops, turns red and fades out, then the game over screen opens.
 func death() -> void:
-	print ("I died")
+	if state == State.DEAD: # only die once
+		return
+	state = State.DEAD
+	hitpoints = 0
+	if hpBar:
+		hpBar.value = 0
+	velocity = Vector2.ZERO
+	AnimationPlayback.travel("Idle")
+	# enemies can't hit him anymore while he fades out
+	$Hurtbox.set_deferred("monitorable", false)
+	$Hitbox.set_deferred("monitoring", false)
+
+	# the reason shown on the game over screen depends on how he died
+	var reason: String = "Ricardo was defeated in the sewer."
+	if poisonedStatus:
+		reason = "Ricardo drowned in the sewage."
+	elif get_tree().current_scene.has_node("BossArena"):
+		reason = "Don Parmesan's gang got you."
+
+	var fade: Tween = create_tween()
+	fade.tween_property($ChefRat, "modulate", Color(1, 0.3, 0.3), 0.2)
+	fade.tween_property(self, "modulate:a", 0.0, 0.8)
+	await fade.finished
+
+	GameManager.trigger_game_over(reason)
 
 #signal used for Hitboxes - hurtboxes
 # Called when Pip's attack hitbox touches another area.

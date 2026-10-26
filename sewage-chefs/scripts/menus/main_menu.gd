@@ -56,8 +56,6 @@ func _ready() -> void:
 	if OS.has_feature("web"):
 		quitButton.visible = false
 
-	start_title_animation()
-
 	# fade in from black, then select Start Game so the menu also works with the keyboard
 	fadeRect.visible = true
 	fadeRect.color.a = 1.0
@@ -107,12 +105,3 @@ func _on_back_pressed() -> void:
 # closes the game
 func _on_quit_pressed() -> void:
 	get_tree().quit()
-
-
-# the title slowly floats up and down
-func start_title_animation() -> void:
-	titleLabel.pivot_offset = titleLabel.size / 2.0
-	var floatTween: Tween = create_tween().set_loops()
-	floatTween.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
-	floatTween.tween_property(titleLabel, "rotation_degrees", 1.5, 1.6)
-	floatTween.tween_property(titleLabel, "rotation_degrees", -1.5, 1.6)

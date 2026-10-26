@@ -31,3 +31,8 @@ func remove_ingredient(ingredient_name: String) -> bool:
 	inventory_changed.emit()
 
 	return true
+
+# empties the ingredient inventory (used when a new game starts)
+func reset() -> void:
+	ingredients.clear()
+	inventory_changed.emit()
