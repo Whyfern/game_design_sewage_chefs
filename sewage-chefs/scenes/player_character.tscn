@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://byj6u3qmbvrah" path="res://sfx/player/stesp_small2.wav" id="10_c4hvp"]
 [ext_resource type="AudioStream" uid="uid://cii60qpadpfsl" path="res://sfx/player/stesp_small3.wav" id="11_2vlw4"]
 [ext_resource type="AudioStream" uid="uid://1lnlv0ubo4ua" path="res://sfx/player/stesp_small4.wav" id="12_joi77"]
-[ext_resource type="AudioStream" uid="uid://4yx48a2s4bsp" path="res://sfx/player/pan_hit.mp3" id="13_c4hvp"]
+[ext_resource type="AudioStream" uid="uid://dg34k0xcq0okt" path="res://sfx/player/pan_hit.wav" id="13_c4hvp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uqykc"]
 size = Vector2(33, 39)
@@ -650,7 +650,7 @@ frame = 9
 position = Vector2(2.5, -19.5)
 shape = SubResource("RectangleShape2D_uqykc")
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
+[node name="AudioListener2D" type="AudioListener2D" parent="." unique_id=1849512311]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1170340475]
 limit_left = 0
@@ -699,9 +699,11 @@ shape = SubResource("CapsuleShape2D_j2fon")
 
 [node name="HurtSound" type="AudioStreamPlayer" parent="Sounds" unique_id=363168101]
 stream = SubResource("AudioStreamRandomizer_j2fon")
+volume_db = -5.0
 
 [node name="AttackSound" type="AudioStreamPlayer" parent="Sounds" unique_id=428120540]
 stream = ExtResource("8_pxja8")
+volume_db = -5.0
 
 [node name="StepsSound" type="AudioStreamPlayer" parent="Sounds" unique_id=1950206340]
 stream = SubResource("AudioStreamRandomizer_s4kof")

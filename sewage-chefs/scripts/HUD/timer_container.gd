@@ -1,7 +1,6 @@
 extends VBoxContainer
 
 @onready var countdown_label: Label = %TimeCountdownLabel
-
 @export var day_duration_seconds: float = 480.0 # 8 minutes for a full game day
 var time_elapsed: float = 0.0
 var is_active: bool = true

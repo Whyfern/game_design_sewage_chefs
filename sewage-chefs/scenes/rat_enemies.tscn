@@ -550,7 +550,7 @@ volume_db = -6.0
 
 [node name="enGroanSound" type="AudioStreamPlayer2D" parent="SoundManager" unique_id=804460814]
 stream = SubResource("AudioStreamRandomizer_supdw")
-volume_db = -10.0
+volume_db = -8.0
 max_distance = 1000.0
 
 [node name="IdleGroanTimer" type="Timer" parent="SoundManager" unique_id=1983517963]

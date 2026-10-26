@@ -22,7 +22,10 @@ enum State {
 @export_range(0.1, 60.0, 0.1) var idleGroanMinDelay: float = 3.0
 @export_range(0.1, 60.0, 0.1) var idleGroanMaxDelay: float = 7.0
 
-var state: State = State.IDLE
+var state: State = State.IDLE:
+	set(nextState):
+		state = nextState
+		_update_combat_threat()
 var hitTargets: Array[Node] = []
 
 @onready var spawnpoint: Vector2 = global_position
@@ -39,6 +42,27 @@ var hitTargets: Array[Node] = []
 
 func _ready() -> void:
 	animationtree.set_active(true)
+	_update_combat_threat()
+
+
+func _update_combat_threat() -> void:
+	if not is_inside_tree():
+		return
+	var active = state == State.CHASE or state == State.ATTACK
+	# Group membership is a set: repeated CHASE updates cannot count a rat twice.
+	if active == is_in_group("combat_threats"):
+		return
+	if active:
+		add_to_group("combat_threats")
+	else:
+		remove_from_group("combat_threats")
+	EventBus.enemyCombatChanged.emit(self, active)
+
+
+func _exit_tree() -> void:
+	if is_in_group("combat_threats"):
+		remove_from_group("combat_threats")
+		EventBus.enemyCombatChanged.emit(self, false)
 
 
 func _physics_process(delta: float) -> void:
@@ -166,13 +190,13 @@ func take_damage(damage_taken: int) -> void:
 	hitpoints -= damage_taken
 	if hitpoints <= 0:
 		death()
-		
+
 
 func death() -> void:
-	state = State.DEAD # Imposta lo stato a morto per sicurezza
+	state = State.DEAD
 	var deathscene: Node2D = deathPacked.instantiate()
-	deathscene.position = global_position 
 	%Effects.add_child(deathscene)
+	deathscene.global_position = global_position
 	queue_free()
 
 
