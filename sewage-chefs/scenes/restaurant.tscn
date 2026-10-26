@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://q8de8lfolntq" path="res://scripts/npc_spawner.gd" id="4_0duca"]
 [ext_resource type="PackedScene" uid="uid://c2ugx7jyd17oo" path="res://scenes/don_parmesan.tscn" id="5_5scnu"]
 [ext_resource type="PackedScene" uid="uid://bgrbpcamkbr14" path="res://scenes/toilet.tscn" id="7_bp8vj"]
-[ext_resource type="PackedScene" uid="uid://blqppn6em7ydt" path="res://scenes/customer_spawner.tscn" id="11_qujyy"]
+[ext_resource type="PackedScene" uid="uid://ckk4avvdvfjl5" path="res://scenes/customer_spawner.tscn" id="11_qujyy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1sijj"]
 texture = ExtResource("2_d4a0i")
@@ -143,8 +143,10 @@ point_count = 6
 [node name="Restaurant" type="Node2D" unique_id=476074317]
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=765219709]
-offset_right = 2156.0
-offset_bottom = 1336.0
+offset_left = -552.0
+offset_top = -400.0
+offset_right = 2765.9163
+offset_bottom = 1656.0
 color = Color(0, 0, 0, 1)
 
 [node name="RestaurantFloor" type="TileMapLayer" parent="." unique_id=476772844]
@@ -173,11 +175,29 @@ speed = 200.0
 [node name="DonParmesanPath" type="Path2D" parent="." unique_id=1315854500]
 curve = SubResource("Curve2D_jruaf")
 
-[node name="CustomerSpawner" parent="." unique_id=1173114822 node_paths=PackedStringArray("entrance_paths") instance=ExtResource("11_qujyy")]
-entrance_paths = [NodePath("SpotL1"), NodePath("SpotL2"), NodePath("SpotL3"), NodePath("SpotB1"), NodePath("SpotB2"), NodePath("SpotB3"), NodePath("PathB4"), NodePath("SpotB5")]
-min_spawn_time = 2.0
-max_spawn_time = 5.0
-
 [node name="Toilet" parent="." unique_id=1982298826 instance=ExtResource("7_bp8vj")]
 z_index = 13
 position = Vector2(400, 370)
+
+[node name="CustomerSpawner" parent="." unique_id=1173114822 instance=ExtResource("11_qujyy")]
+
+[node name="ColorRect2" type="ColorRect" parent="." unique_id=1819182658]
+offset_left = 960.0
+offset_top = 864.0
+offset_right = 1216.0
+offset_bottom = 1024.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="." unique_id=1357911114]
+offset_left = 960.0
+offset_top = 832.0
+offset_right = 1072.0
+offset_bottom = 864.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="." unique_id=337139475]
+offset_left = 1136.0
+offset_top = 832.0
+offset_right = 1216.0
+offset_bottom = 864.0
+color = Color(0, 0, 0, 1)

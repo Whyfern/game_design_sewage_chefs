@@ -6,6 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://bpgoavt4fnyd" path="res://sprites/ingredients_assets/brisket.png" id="4_t5ghw"]
 [ext_resource type="Texture2D" uid="uid://debw10wcr76q7" path="res://sprites/ingredients_assets/short ribs.png" id="5_unr6x"]
 
+[sub_resource type="Curve2D" id="Curve2D_5pq87"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 676.00006, 0, 0, 0, 0, 688, 676.00006)
+}
+point_count = 3
+
 [sub_resource type="Curve2D" id="Curve2D_j60qd"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1104, 976, 0, 0, 0, 0, 1104, 896, 0, 0, 0, 0, 1104, 736, 0, 0, 0, 0, 856, 736)
@@ -24,27 +30,21 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_unr6x"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 716, 0, 0, 0, 0, 1264, 716, 0, 0, 0, 0, 1264.0002, 786)
-}
-point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_5pq87"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 676.00006, 0, 0, 0, 0, 688, 676.00006)
-}
-point_count = 3
-
 [sub_resource type="Curve2D" id="Curve2D_hg1rr"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 1103.9999, 975.9998, 0, 0, 0, 0, 1103.9999, 680.6153, 0, 0, 0, 0, 1207.9999, 680.6153, 0, 0, 0, 0, 1208, 625.23065)
 }
 point_count = 4
 
+[sub_resource type="Curve2D" id="Curve2D_unr6x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 975.9998, 0, 0, 0, 0, 1104, 716, 0, 0, 0, 0, 1264, 716, 0, 0, 0, 0, 1264.0002, 786)
+}
+point_count = 4
+
 [sub_resource type="Curve2D" id="Curve2D_eyldg"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1103, 960, 0, 0, 0, 0, 1104, 703, 0, 0, 0, 0, 1417.2625, 704.1542, 0, 0, -4.496808, 13.028135, 1417.2625, 641.7036)
+"points": PackedVector2Array(0, 0, 0, 0, 1103, 960, 0, 0, 0, 0, 1104, 703, 0, 0, 0, 0, 1417.2625, 704.1542, 0, 0, -4.496808, 13.028135, 1416.2616, 661.84894)
 }
 point_count = 4
 
@@ -54,14 +54,54 @@ _data = {
 }
 point_count = 4
 
-[node name="CustomerSpawner" type="Node2D" unique_id=1173114822 node_paths=PackedStringArray("entrance_paths")]
+[sub_resource type="Curve2D" id="Curve2D_mlxot"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 768, 0, 0, 0, 0, 744, 672, 0, 0, 0, 0, 744, 496)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_jr443"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 792, 0, 0, 0, 0, 928, 752, 0, 0, 0, 0, 928, 496)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_kgnbk"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 496)
+}
+point_count = 2
+
+[sub_resource type="Curve2D" id="Curve2D_nx6yo"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 760, 0, 0, 0, 0, 1328, 592, 0, 0, 0, 0, 1328, 456)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_c3c7p"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 752, 0, 0, 0, 0, 1344, 704, 0, 0, 0, 0, 1552, 704)
+}
+point_count = 4
+
+[sub_resource type="Curve2D" id="Curve2D_sg5ew"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1104, 960, 0, 0, 0, 0, 1104, 736, 0, 0, 0, 0, 1432, 704, 0, 0, 0, 0, 1560, 552)
+}
+point_count = 4
+
+[node name="CustomerSpawner" type="Node2D" unique_id=1173114822]
 script = ExtResource("1_k4eeq")
 customer_scene = ExtResource("2_gpite")
-entrance_paths = [NodePath("SpotL1"), NodePath("SpotL2"), NodePath("SpotL3"), NodePath("SpotB1"), NodePath("SpotB2"), NodePath("SpotB3"), NodePath("PathB4")]
 order_icons = Array[Texture2D]([ExtResource("3_6kly0"), ExtResource("4_t5ghw"), ExtResource("5_unr6x")])
 
 [node name="SpawnTimer" type="Timer" parent="." unique_id=1911987601]
 one_shot = true
+
+[node name="SpotL1" type="Path2D" parent="." unique_id=840546925]
+position = Vector2(0, 205.22618)
+scale = Vector2(1, 0.7733339)
+curve = SubResource("Curve2D_5pq87")
 
 [node name="SpotL2" type="Path2D" parent="." unique_id=454355826]
 position = Vector2(0, 276.7997)
@@ -78,25 +118,40 @@ position = Vector2(0, 199.74702)
 scale = Vector2(1, 0.77894783)
 curve = SubResource("Curve2D_t5ghw")
 
-[node name="SpotB3" type="Path2D" parent="." unique_id=1245420656]
-position = Vector2(-55.200073, 179.19965)
-scale = Vector2(1.05, 0.8000005)
-curve = SubResource("Curve2D_unr6x")
-
-[node name="SpotL1" type="Path2D" parent="." unique_id=840546925]
-position = Vector2(0, 205.22618)
-scale = Vector2(1, 0.7733339)
-curve = SubResource("Curve2D_5pq87")
-
 [node name="SpotB2" type="Path2D" parent="." unique_id=1995520817]
 position = Vector2(84.92297, 114.13336)
 scale = Vector2(0.923077, 0.86666673)
 curve = SubResource("Curve2D_hg1rr")
 
-[node name="PathB4" type="Path2D" parent="." unique_id=1974341452]
-position = Vector2(0.92077637, 6.9259033)
-scale = Vector2(0.9991652, 0.9927855)
+[node name="SpotB3" type="Path2D" parent="." unique_id=1245420656]
+position = Vector2(-55.200073, 179.19965)
+scale = Vector2(1.05, 0.8000005)
+curve = SubResource("Curve2D_unr6x")
+
+[node name="SpotB4" type="Path2D" parent="." unique_id=1974341452]
+position = Vector2(-23.64793, 6.9259033)
+scale = Vector2(1.0214396, 0.9927855)
 curve = SubResource("Curve2D_eyldg")
 
 [node name="SpotB5" type="Path2D" parent="." unique_id=1419980494]
 curve = SubResource("Curve2D_25334")
+
+[node name="SpotF1" type="Path2D" parent="." unique_id=1973367469]
+position = Vector2(24.533325, -3.0517578e-05)
+scale = Vector2(0.9777778, 1)
+curve = SubResource("Curve2D_mlxot")
+
+[node name="SpotF2" type="Path2D" parent="." unique_id=952296716]
+curve = SubResource("Curve2D_jr443")
+
+[node name="SpotF3" type="Path2D" parent="." unique_id=2049624554]
+curve = SubResource("Curve2D_kgnbk")
+
+[node name="SpotF4" type="Path2D" parent="." unique_id=1532171512]
+curve = SubResource("Curve2D_nx6yo")
+
+[node name="SpotR1" type="Path2D" parent="." unique_id=1342526652]
+curve = SubResource("Curve2D_c3c7p")
+
+[node name="SpotR2" type="Path2D" parent="." unique_id=160364299]
+curve = SubResource("Curve2D_sg5ew")

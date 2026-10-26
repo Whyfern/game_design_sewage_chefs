@@ -137,8 +137,15 @@ func choose_floor(start : bool):
 	add_child(floorInstance)
 	#self.add_child.call_deferred(floorInstance)
 	
+	var sewage_layer = floorInstance.find_child("SewerSewage", true, false)
+
+	if sewage_layer is TileMapLayer:
+		sewage_layer.add_to_group("sewage_tiles")
+		print("Sewage group added: ", sewage_layer.get_path())
+	else:
+		print("SewerSewage not found in: ", floor.resource_path)
+	
 	spawn_ingredients()
-	#spawn_enemies()
 	if not start:
 		spawn_enemies()
 

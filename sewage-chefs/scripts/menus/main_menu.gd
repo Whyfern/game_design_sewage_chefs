@@ -19,10 +19,10 @@ You are Chef Ricardo, a rat with a brand-new restaurant and a loan from the mafi
 [b]Esc[/b]  -  skip the intro
 
 [center][b][color=#f5c542]The restaurant[/color][/b][/center]
-Customers come in and show what they want to eat. Cook their order and serve it to earn money.
+Customers come in and show what they want to eat. Serve the requested dish and earn money.
 
 [center][b][color=#f5c542]The sewer[/color][/b][/center]
-Flush the toilet to go down into the sewer. Collect ingredients (you can carry 15): the deeper the room, the rarer the food. Watch out for rats, they may drop better weapons. And keep an eye on the flood meter...
+Flush the toilet to go down into the sewer. Collect dishes (you can carry 5): the deeper the room, the rarer the dishes. Watch out for rats and keep an eye on the flood meter...
 
 [center][b][color=#f5c542]When the clock runs out[/color][/b][/center]
 Don Parmesan comes to collect. Talk to him and pay up, if you can."""

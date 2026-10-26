@@ -25,12 +25,13 @@ var moveDirection: Vector2 = Vector2.ZERO
 @onready var hitSound: AudioStreamPlayer = $Sounds/HitSound
 
 var poisonedProg : float = 0
-var poisonedProgMax : int = 3
-var poisonedprogSpeed : int = 4
+var poisonedProgMax : int = 1
+var poisonedprogSpeed : int = 10
 var poisonedStatus : bool = false
-var poisonedDamage : int = 1
+var poisonedByArea: bool = false
+var poisonedDamage : int = 2
 var damageTimer : float = 0.0
-var damageInterval = 0.5
+var damageInterval = 0.1
 
 @onready var HUD : CanvasLayer = get_node("../HUD")
 var hpBar : Node
@@ -47,13 +48,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		
 func _physics_process(delta: float) -> void:
+	poisonedStatus = poisonedByArea or is_on_sewage_tile()
 	
 	if poisonedStatus:
 		poisonedProg = min(poisonedProg + (poisonedprogSpeed * delta), poisonedProgMax)
 		#print(poisonedProg)
 	else:
 		poisonedProg = max(poisonedProg - (poisonedprogSpeed * delta), 0.0)
-		damageTimer = 0
 	
 	if poisonedProg >= poisonedProgMax and poisonedStatus:
 		damageTimer += delta
@@ -65,16 +66,6 @@ func _physics_process(delta: float) -> void:
 	
 	if hpBar:
 		hpBar.value = hitpoints
-	
-		
-	# can not move during dialogue
-	#if Dialogue.is_active:
-		#velocity = Vector2.ZERO
-		#
-		#state = State.IDLE
-		#update_animation()
-		#
-		#return
 		
 	if not state == State.ATTACK:
 		movement_loop()
@@ -162,6 +153,42 @@ func take_damage(damage_taken: int) -> void:
 		death()
 		
 
+
+#func is_on_sewage_tile() -> bool:
+	#for sewage_layer in get_tree().get_nodes_in_group("sewage_tiles"):
+		#if not sewage_layer is TileMapLayer:
+			#continue
+#
+		#var tile_position = sewage_layer.local_to_map(
+			#sewage_layer.to_local(global_position)
+		#)
+#
+		#if sewage_layer.get_cell_source_id(tile_position) != -1:
+			#return true
+#
+	#return false
+
+
+func is_on_sewage_tile() -> bool:
+	var sewage_layers = get_tree().get_nodes_in_group("sewage_tiles")
+
+	for sewage_layer in sewage_layers:
+		if not sewage_layer is TileMapLayer:
+			continue
+
+		var tile_position = sewage_layer.local_to_map(
+			sewage_layer.to_local(global_position)
+		)
+
+		var source_id = sewage_layer.get_cell_source_id(tile_position)
+
+		if source_id != -1:
+			return true
+
+	return false
+
+
+
 func death() -> void:
 	print ("I died")
 
@@ -177,17 +204,17 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 
 func _on_environbox_area_entered(area: Area2D) -> void:
-	if GameManager.sewageAreaOverlap:
-		print("entered ", area.name.to_lower())
+	#if GameManager.sewageAreaOverlap:
+		#print("entered ", area.name.to_lower())
 	if "sewage_area2d" in area.name.to_lower():
-		poisonedStatus = true
+		poisonedByArea = true
 
 
 func _on_environbox_area_exited(area: Area2D) -> void:
-	if GameManager.sewageAreaOverlap:
-		print("left ", area.name)
-	if "sewage@Area2D" in area.name.to_lower():
-		poisonedStatus = false
+	#if GameManager.sewageAreaOverlap:
+		#print("left ", area.name)
+	if "sewage_area2d" in area.name.to_lower():
+		poisonedByArea = false
 		
 func refill_health() -> void:
 	hitpoints = maxHitPoints

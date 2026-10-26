@@ -1,10 +1,10 @@
 extends Node
 
 @export var customer_scene: PackedScene
-@export var entrance_paths: Array[Path2D] = []
+var entrance_paths: Array[Path2D] = []
 
-@export var min_spawn_time: float = 5.0
-@export var max_spawn_time: float = 12.0
+var min_spawn_time: float = 5
+var max_spawn_time: float = 15
 
 @export var order_icons: Array[Texture2D] = []
 
@@ -15,11 +15,27 @@ var spawned_customers: int = 0
 var occupied_paths: Array[Path2D] = []
 
 
+#func _ready() -> void:
+	#spawn_timer.one_shot = true
+	#spawn_timer.timeout.connect(_on_spawn_timer_timeout)
+	#schedule_next_customer()
+
+
+
 func _ready() -> void:
+
+	
+	print("Min spawn time: ", min_spawn_time)
+	print("Max spawn time: ", max_spawn_time)
+	
+	for child in get_children():
+		if child is Path2D:
+			entrance_paths.append(child)
+	
 	spawn_timer.one_shot = true
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	schedule_next_customer()
-
+	
 
 func get_available_paths() -> Array[Path2D]:
 	var available_paths: Array[Path2D] = []

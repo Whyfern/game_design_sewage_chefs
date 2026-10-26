@@ -5,10 +5,10 @@
 [ext_resource type="Script" uid="uid://di05c4xptbcgk" path="res://scripts/event_bus.gd" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://cx114n0r6b7sw" path="res://scripts/level_manager.gd" id="3_sugp2"]
 [ext_resource type="PackedScene" uid="uid://cv140hv8hx2ft" path="res://scenes/hud.tscn" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://3yasfovf7aip" path="res://scripts/HUD/music.gd" id="6_eb6dy"]
 [ext_resource type="Texture2D" uid="uid://cqyno206tk4ih" path="res://sprites/FloodPipe/sewage_meter_under.png" id="7_choun"]
 [ext_resource type="Texture2D" uid="uid://bxwp21yo5lma4" path="res://sprites/FloodPipe/sewage_meter_over.png" id="8_ya4ey"]
 [ext_resource type="Texture2D" uid="uid://eqjsw4bv0y5w" path="res://sprites/FloodPipe/sewage_meter_progress.png" id="9_eb6dy"]
-[ext_resource type="Script" uid="uid://3yasfovf7aip" path="res://scripts/HUD/music.gd" id="6_eb6dy"]
 [ext_resource type="Script" uid="uid://dwcf4021puq4y" path="res://scripts/texture_progress_bar.gd" id="10_choun"]
 [ext_resource type="AudioStream" uid="uid://b0vy3r157c6xw" path="res://sfx/ambient/kitchen_ambient.mp3" id="11_kitchen"]
 

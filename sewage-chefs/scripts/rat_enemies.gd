@@ -13,7 +13,7 @@ enum State {
 @export var enemyatkdmg: int = 10
 @export var enemyatkspd: float = 1.0
 @export var hitpoints:int = 180
-@export var aggrorange: float = 512
+@export var aggrorange: float = 384
 # Keep attacks reachable above the rat's tall body collider, too.
 @export var atkrange: float = 96
 @export_category("Related scenes")

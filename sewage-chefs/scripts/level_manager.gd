@@ -53,7 +53,8 @@ func instatiate_restaurant():
 
 		if restaurantInstance.get_parent() == null:
 			main.add_child.call_deferred(restaurantInstance)
-
+			
+		restaurantInstance.show()
 		
 		startPos = charStartRest
 		playChar.position = startPos
@@ -98,7 +99,8 @@ func instantiate_sewer():
 		playChar.position = startPos
 		
 		if is_instance_valid(restaurantInstance) and restaurantInstance.get_parent() == main:
-			main.remove_child.call_deferred(restaurantInstance)
+			#main.remove_child.call_deferred(restaurantInstance)
+			restaurantInstance.hide()
 
 		restaurantState = false
 		EventBus.locationChanged.emit("sewer")

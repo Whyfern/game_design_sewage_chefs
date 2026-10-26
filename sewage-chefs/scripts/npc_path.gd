@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var speed: float = 150.0  # Speed along the path
+@export var speed: float = 200.0  # Speed along the path
  
 # Get a reference to the PathFollow2D parent node
 @onready var path_follow: PathFollow2D = get_parent() as PathFollow2D

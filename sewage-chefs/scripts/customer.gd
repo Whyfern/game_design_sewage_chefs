@@ -2,7 +2,7 @@
 extends CharacterBody2D
 class_name Customer
 
-@export var speed: float = 150.0
+@export var speed: float = 300.0
 @export var requested_item_icon: Texture2D
 @export var requested_dish: String = "Asparagus"
 
