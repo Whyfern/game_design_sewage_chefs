@@ -32,6 +32,11 @@ func remove_ingredient(ingredient_name: String) -> bool:
 
 	return true
 
+func drop_all_ingredients() -> void:
+	ingredients.clear()
+	inventory_changed.emit()
+	print("All dishes dropped!")
+
 # empties the ingredient inventory (used when a new game starts)
 func reset() -> void:
 	ingredients.clear()

@@ -3,6 +3,7 @@ extends StaticBody2D
 @onready var interactable : Area2D = $Interactable
 @export var ingredient_name: String = "Onion"
 @onready var pickup_sound: AudioStreamPlayer = $AudioStreamPlayer
+#@onready var drop_sound: AudioStreamPlayer = $AudioStreamPlayer2
 #pickup_sound.volume_db = 6.0
 
 #@onready var interactable = get_node_or_null("interactable_ingredient")
