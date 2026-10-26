@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cpeud75bhiqu5" path="res://sprites/ingredients_assets/t bone.png" id="3_6kly0"]
 [ext_resource type="Texture2D" uid="uid://bpgoavt4fnyd" path="res://sprites/ingredients_assets/brisket.png" id="4_t5ghw"]
 [ext_resource type="Texture2D" uid="uid://debw10wcr76q7" path="res://sprites/ingredients_assets/short ribs.png" id="5_unr6x"]
+[ext_resource type="AudioStream" uid="uid://c7c024bs7d7p5" path="res://Music/437333__giddster__bell-ringing.wav" id="6_t5ghw"]
 
 [sub_resource type="Curve2D" id="Curve2D_5pq87"]
 _data = {
@@ -155,3 +156,6 @@ curve = SubResource("Curve2D_c3c7p")
 
 [node name="SpotR2" type="Path2D" parent="." unique_id=160364299]
 curve = SubResource("Curve2D_sg5ew")
+
+[node name="AudioStreamBell" type="AudioStreamPlayer" parent="." unique_id=1085259683]
+stream = ExtResource("6_t5ghw")

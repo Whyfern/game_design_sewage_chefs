@@ -3,16 +3,21 @@ extends Node
 @export var customer_scene: PackedScene
 var entrance_paths: Array[Path2D] = []
 
-var min_spawn_time: float = 5
-var max_spawn_time: float = 15
+var min_spawn_time: float = 1
+var max_spawn_time: float = 5
 
 @export var order_icons: Array[Texture2D] = []
 
 @onready var spawn_timer: Timer = $SpawnTimer
 @export var max_customers: int = 8
 
+@export var bell_sound: AudioStream
+@onready var bell_player: AudioStreamPlayer = $AudioStreamBell
+
 var spawned_customers: int = 0
 var occupied_paths: Array[Path2D] = []
+
+var current_location: String = "restaurant"
 
 
 #func _ready() -> void:
@@ -35,6 +40,7 @@ func _ready() -> void:
 	spawn_timer.one_shot = true
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	schedule_next_customer()
+	EventBus.locationChanged.connect(_on_location_changed)
 	
 
 func get_available_paths() -> Array[Path2D]:
@@ -86,13 +92,23 @@ func spawn_customer() -> bool:
 	customer.departed.connect(_on_customer_departed)
 
 	customer.start_walking()
+	print("Bell node: ", bell_player)
+	print("bell audio:", bell_player.stream)
+	if current_location == "restaurant" and bell_player.stream != null:
+		bell_player.volume_db = 0.0
+		bell_player.play(8.0)
 	return true
 	
 	
 	
 func _on_customer_departed(path: Path2D) -> void:
+	if bell_player.stream !=null:
+		bell_player.play(8.0)
 	occupied_paths.erase(path)
 	spawned_customers = maxi(0, spawned_customers - 1)
 
 	if spawn_timer.is_stopped() and spawned_customers < max_customers and not get_available_paths().is_empty():
 		schedule_next_customer()
+		
+func _on_location_changed(location: String) -> void:
+	current_location = location
